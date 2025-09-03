@@ -1,0 +1,30 @@
+[
+  {
+    "license_plate": "ABC 123",
+    "make": "تويتا",
+    "model": "كامري",
+    "year": 2024,
+    "color": "أبيض",
+    "assigned_driver_id": "54c9188b",
+    "insurance_expiry": "2025-09-30",
+    "registration_status": "أقل من 3 شهور",
+    "is_active": true,
+    "id": "abdbbd82",
+    "created_at": "2025-08-21T16:38:11.942000",
+    "updated_at": "2025-08-21T23:41:22.115812"
+  },
+  {
+    "license_plate": "BBB254",
+    "make": "تويتا",
+    "model": "يارز",
+    "year": 2024,
+    "color": "أحمر",
+    "assigned_driver_id": "b8dcbab3",
+    "insurance_expiry": "2025-09-17",
+    "registration_status": "أقل من شهر",
+    "is_active": true,
+    "id": "9631364f",
+    "created_at": "2025-08-21T23:46:12.072521",
+    "updated_at": "2025-08-22T00:17:15.896957"
+  }
+]

@@ -1,19 +1,39 @@
 {
   "permissions": {
     "allow": [
+      "Bash(node:*)",
+      "Bash(python -m py_compile:*)",
+      "mcp__smithery-ai-server-sequential-thinking__sequentialthinking",
+      "mcp__microsoft-playwright-mcp__browser_navigate",
+      "mcp__microsoft-playwright-mcp__browser_type",
+      "mcp__microsoft-playwright-mcp__browser_snapshot",
+      "mcp__microsoft-playwright-mcp__browser_click",
+      "mcp__microsoft-playwright-mcp__browser_close",
       "mcp__context7__resolve-library-id",
+      "mcp__microsoft-playwright-mcp__browser_wait_for",
+      "Bash(mkdir:*)",
+      "Bash(grep:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Read(/E:\\/**)",
       "Bash(python:*)",
-      "Bash(set PYTHONIOENCODING=utf-8)",
-      "mcp__playwright-mcp__browser_navigate",
-      "mcp__playwright-mcp__browser_type",
-      "mcp__playwright-mcp__browser_install",
-      "mcp__zen__version",
-      "Bash(curl:*)",
-      "mcp__server-sequential-thinking__sequentialthinking",
-      "Bash(claude mcp:*)",
-      "Read(C:\\Users\\HP/**)"
+      "mcp__byterover-mcp__byterover-retrieve-knowledge",
+      "mcp__filesystem-mcp__directory_tree",
+      "mcp__filesystem-mcp__read_multiple_files",
+      "mcp__filesystem-mcp__read_text_file",
+      "Bash(sed:*)",
+      "mcp__filesystem-mcp__write_file",
+      "mcp__filesystem-mcp__edit_file",
+      "mcp__byterover-mcp__byterover-store-knowledge",
+      "mcp__filesystem-mcp__list_allowed_directories"
     ],
     "deny": [],
     "ask": []
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "input=$(cat); current_dir=$(echo \"$input\" | jq -r '.workspace.current_dir'); printf \"\\033[36mPS\\033[0m \\033[33m%s\\033[0m\\033[37m>\\033[0m\" \"$current_dir\""
   }
 }

@@ -1,0 +1,49 @@
+[
+  {
+    "driver_id": "54c9188b",
+    "title": "السائق أمين",
+    "notes": "وجد بعض النقود",
+    "date_created": "2025-08-21T16:35:28.993326",
+    "created_by": "admin",
+    "type": "note",
+    "attachments": [
+      {
+        "filename": "driver_d1_20250819_031540_20250821_163528.png",
+        "original_name": "driver_d1_20250819_031540.png",
+        "type": "image",
+        "size": "211.2 KB",
+        "content_type": "image/png"
+      }
+    ],
+    "id": "a67a5f39",
+    "created_at": "2025-08-21T16:35:28.993597",
+    "updated_at": "2025-08-21T16:35:28.993602"
+  },
+  {
+    "driver_id": "54c9188b",
+    "title": "العالمل أمين جدا",
+    "notes": "أحب هذا العامل",
+    "date_created": "2025-08-22T00:11:24.573195",
+    "created_by": "admin",
+    "type": "note",
+    "attachments": [
+      {
+        "filename": "card_designe_2_20250822_001124.png",
+        "original_name": "card_designe_2.png",
+        "type": "image",
+        "size": "50.6 KB",
+        "content_type": "image/png"
+      },
+      {
+        "filename": "emilia_card_last_last_printing_20250822_001124.pdf",
+        "original_name": "emilia_card_last_last_printing.pdf",
+        "type": "document",
+        "size": "2924.7 KB",
+        "content_type": "application/pdf"
+      }
+    ],
+    "id": "268f8ad7",
+    "created_at": "2025-08-22T00:11:24.573409",
+    "updated_at": "2025-08-22T00:11:24.573412"
+  }
+]
