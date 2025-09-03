@@ -1,0 +1,5420 @@
+[
+  {
+    "id": "de437c56",
+    "timestamp": "2025-08-22T21:31:11.306414",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "2cb134ee",
+    "timestamp": "2025-08-22T21:31:11.552382",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "d519748e",
+    "timestamp": "2025-08-22T21:31:26.596102",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "055bef3c",
+    "timestamp": "2025-08-22T21:31:26.831309",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "cb551be3",
+    "timestamp": "2025-08-22T21:35:42.404736",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "5c56f6e3",
+    "timestamp": "2025-08-22T21:35:42.658650",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "7a0f5464",
+    "timestamp": "2025-08-22T21:39:28.375307",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "3b3bb53c",
+    "timestamp": "2025-08-22T21:39:28.599032",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "180cc227",
+    "timestamp": "2025-08-22T21:39:31.743252",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "7a8eef8f",
+    "timestamp": "2025-08-22T21:39:32.301691",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "33ad6a13",
+    "timestamp": "2025-08-22T21:40:09.454518",
+    "action": "search",
+    "entity_type": "global",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "query": "أحمد",
+      "results_count": 7
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "af76d7b3",
+    "timestamp": "2025-08-22T21:43:15.341742",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "0df5365e",
+    "timestamp": "2025-08-22T21:43:15.597678",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "0bbb7a01",
+    "timestamp": "2025-08-22T21:43:25.266739",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "3f310772",
+    "timestamp": "2025-08-22T21:43:25.511640",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "11446865",
+    "timestamp": "2025-08-22T21:43:55.057944",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "07fb5eb3",
+    "timestamp": "2025-08-22T21:43:55.323555",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "d2dbba68",
+    "timestamp": "2025-08-22T21:47:06.958521",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "5662b578",
+    "timestamp": "2025-08-22T21:47:07.554128",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "1133d632",
+    "timestamp": "2025-08-22T21:47:35.434109",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "8dedb719",
+    "timestamp": "2025-08-22T21:47:35.659698",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "e145919e",
+    "timestamp": "2025-08-22T21:48:09.993468",
+    "action": "drill_through",
+    "entity_type": "unpaid_advances",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "total_drivers": 10,
+      "total_unpaid": 2005.0,
+      "total_advances": 14
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "af445dfc",
+    "timestamp": "2025-08-22T21:51:30.116567",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "343d624a",
+    "timestamp": "2025-08-22T21:51:30.352790",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "12410a5c",
+    "timestamp": "2025-08-22T21:51:36.269316",
+    "action": "search",
+    "entity_type": "global",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "query": "محم",
+      "results_count": 8
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "03470a45",
+    "timestamp": "2025-08-22T21:51:36.887203",
+    "action": "search",
+    "entity_type": "global",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "query": "محمد",
+      "results_count": 8
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "58fd5f87",
+    "timestamp": "2025-08-22T21:51:45.043408",
+    "action": "search",
+    "entity_type": "global",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "query": "abc",
+      "results_count": 1
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "4af96186",
+    "timestamp": "2025-08-22T21:53:08.506838",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "64550bd4",
+    "timestamp": "2025-08-22T21:53:08.738631",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "41de44ce",
+    "timestamp": "2025-08-22T22:11:09.046005",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "06677505",
+    "timestamp": "2025-08-22T22:11:09.281768",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "f3cdf078",
+    "timestamp": "2025-08-22T22:53:41.093681",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "3721e525",
+    "timestamp": "2025-08-22T22:53:41.322814",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "5466c38c",
+    "timestamp": "2025-08-22T22:54:39.259184",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "ca1ee631",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-document.pdf",
+      "size_bytes": 328,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "4ed2efd3",
+    "timestamp": "2025-08-22T23:02:39.544909",
+    "action": "update",
+    "entity_type": "document",
+    "entity_id": "ca1ee631",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "updated_fields": [
+        "display_name",
+        "category",
+        "notes",
+        "status"
+      ],
+      "entity_type": "other",
+      "entity_id": null
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "bfa15ddc",
+    "timestamp": "2025-08-22T23:02:39.599319",
+    "action": "update_status",
+    "entity_type": "document",
+    "entity_id": "ca1ee631",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "old_status": "active",
+      "new_status": "expired",
+      "entity_type": "other",
+      "entity_id": null
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "04d5f9d1",
+    "timestamp": "2025-08-22T23:02:39.871094",
+    "action": "delete",
+    "entity_type": "document",
+    "entity_id": "ca1ee631",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-document.pdf",
+      "display_name": "وثيقة اختبار محدثة"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "5c6fedc4",
+    "timestamp": "2025-08-22T23:03:06.146993",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "76865bd7",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-bulk-1.pdf",
+      "size_bytes": 41,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "4babfc6d",
+    "timestamp": "2025-08-22T23:03:06.470648",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "380f947f",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-bulk-2.pdf",
+      "size_bytes": 41,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "433c9577",
+    "timestamp": "2025-08-22T23:03:06.720363",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "ca47a133",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-bulk-3.pdf",
+      "size_bytes": 41,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "ec7a183c",
+    "timestamp": "2025-08-22T23:03:06.788177",
+    "action": "bulk_delete",
+    "entity_type": "document",
+    "entity_id": "76865bd7",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-bulk-1.pdf",
+      "display_name": "وثيقة اختبار 1 للحذف المتعدد"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "23633219",
+    "timestamp": "2025-08-22T23:03:06.805138",
+    "action": "bulk_delete",
+    "entity_type": "document",
+    "entity_id": "380f947f",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-bulk-2.pdf",
+      "display_name": "وثيقة اختبار 2 للحذف المتعدد"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "3b5cdc61",
+    "timestamp": "2025-08-22T23:03:06.821692",
+    "action": "bulk_delete",
+    "entity_type": "document",
+    "entity_id": "ca47a133",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-bulk-3.pdf",
+      "display_name": "وثيقة اختبار 3 للحذف المتعدد"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "c5fb13a4",
+    "timestamp": "2025-08-22T23:06:16.398626",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "4007b0fd",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-preview.pdf",
+      "size_bytes": 328,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "cb95af4f",
+    "timestamp": "2025-08-22T23:06:16.734112",
+    "action": "download",
+    "entity_type": "document",
+    "entity_id": "4007b0fd",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-preview.pdf"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "6c10aecb",
+    "timestamp": "2025-08-22T23:06:16.874131",
+    "action": "preview",
+    "entity_type": "document",
+    "entity_id": "4007b0fd",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-preview.pdf"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "eecf594d",
+    "timestamp": "2025-08-22T23:06:17.187053",
+    "action": "delete",
+    "entity_type": "document",
+    "entity_id": "4007b0fd",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-preview.pdf",
+      "display_name": "وثيقة اختبار للمعاينة والتحميل"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "dc283a88",
+    "timestamp": "2025-08-22T23:12:07.942249",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "2c9e9f1d",
+    "timestamp": "2025-08-22T23:12:08.171652",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "d1dfc746",
+    "timestamp": "2025-08-23T00:07:05.046121",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "5905da5b",
+    "timestamp": "2025-08-23T00:07:05.270642",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "0146a66b",
+    "timestamp": "2025-08-23T00:07:43.558231",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "3c2089de",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-document.pdf",
+      "size_bytes": 328,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "eb333f47",
+    "timestamp": "2025-08-23T00:30:46.045387",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "3a890bcb",
+    "timestamp": "2025-08-23T00:30:46.283703",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "ad50df16",
+    "timestamp": "2025-08-23T00:31:08.764903",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "72c17d6b",
+    "timestamp": "2025-08-23T00:31:09.300231",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "f9fa465a",
+    "timestamp": "2025-08-23T00:38:09.633234",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "ca6ef1ce",
+    "timestamp": "2025-08-23T00:38:09.854751",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "5e954fc3",
+    "timestamp": "2025-08-23T00:43:04.374977",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "743de3c3",
+    "timestamp": "2025-08-23T00:43:05.403765",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "9edc3d7e",
+    "timestamp": "2025-08-23T00:51:43.311549",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "9aeb0833",
+    "timestamp": "2025-08-23T00:51:43.598802",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "2b7ebb44",
+    "timestamp": "2025-08-23T00:51:49.478824",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "ccefd95c",
+    "timestamp": "2025-08-23T00:51:49.728565",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "178d89aa",
+    "timestamp": "2025-08-23T01:01:19.363738",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "0566e317",
+    "timestamp": "2025-08-23T01:01:20.029161",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "94679f51",
+    "timestamp": "2025-08-23T01:01:59.494249",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "0dcac632",
+    "timestamp": "2025-08-23T01:02:00.819949",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "f2758b59",
+    "timestamp": "2025-08-23T01:05:45.580273",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "89cc90fe",
+    "timestamp": "2025-08-23T01:05:46.322133",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "a19e4742",
+    "timestamp": "2025-08-23T01:08:45.934169",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "76709607",
+    "timestamp": "2025-08-23T01:08:46.784780",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "80778ca7",
+    "timestamp": "2025-08-23T01:11:07.163472",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "6f9a15ff",
+    "timestamp": "2025-08-23T01:11:07.419844",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "ac857700",
+    "timestamp": "2025-08-23T01:22:28.435010",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "bae51d5e",
+    "timestamp": "2025-08-23T01:22:28.664996",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "6904ac1d",
+    "timestamp": "2025-08-23T01:24:42.759812",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "080acae6",
+    "timestamp": "2025-08-23T01:24:43.640979",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "34d894b9",
+    "timestamp": "2025-08-23T01:31:49.685669",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "da8c6d54",
+    "timestamp": "2025-08-23T01:31:50.385513",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "f79ce19f",
+    "timestamp": "2025-08-23T01:35:21.671029",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "a31f04ac",
+    "timestamp": "2025-08-23T01:35:21.921798",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "3a24f319",
+    "timestamp": "2025-08-23T01:46:21.882824",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "a0e58c8e",
+    "timestamp": "2025-08-23T01:46:22.725721",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "6e886892",
+    "timestamp": "2025-08-23T01:46:34.498235",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "290ac3fd",
+    "timestamp": "2025-08-23T01:46:34.737383",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "b2189147",
+    "timestamp": "2025-08-23T01:52:36.490682",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "a8808d97",
+    "timestamp": "2025-08-23T01:52:37.275339",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "ba92f2c6",
+    "timestamp": "2025-08-23T01:53:12.673720",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "0d18c49e",
+    "timestamp": "2025-08-23T01:53:12.903595",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "cb507487",
+    "timestamp": "2025-08-23T02:00:57.085317",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "beebd31e",
+    "timestamp": "2025-08-23T02:00:57.353769",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "d3465460",
+    "timestamp": "2025-08-23T02:04:42.714405",
+    "action": "update",
+    "entity_type": "driver",
+    "entity_id": "d002",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "driver_name": "محمد أحمد سالم",
+      "updated_fields": [
+        "full_name",
+        "phone",
+        "national_id",
+        "employment_type",
+        "car_ownership",
+        "base_salary",
+        "default_commission_per_order",
+        "max_advance_limit",
+        "advance_deduction_mode",
+        "advance_deduction_value",
+        "primary_client_id",
+        "secondary_client_id",
+        "employment_date",
+        "residency_number",
+        "residency_expiry_date",
+        "residence_status",
+        "assigned_vehicle_id",
+        "is_active",
+        "hire_date"
+      ],
+      "changes_count": 19
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "ca555084",
+    "timestamp": "2025-08-23T02:05:22.999251",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "0d98a0f6",
+    "timestamp": "2025-08-23T02:05:23.816746",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "9d83db0c",
+    "timestamp": "2025-08-23T02:09:43.915817",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "885e8174",
+    "timestamp": "2025-08-23T02:09:44.274054",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "8169fa47",
+    "timestamp": "2025-08-23T02:38:58.992469",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "d4375394",
+    "timestamp": "2025-08-23T02:38:59.233683",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "c4d1d85c",
+    "timestamp": "2025-08-23T02:52:13.223734",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "ef65a2a1",
+    "timestamp": "2025-08-23T02:52:14.084882",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "2c426cc8",
+    "timestamp": "2025-08-23T02:54:15.218198",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "6ce5d778",
+    "timestamp": "2025-08-23T02:54:15.471011",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "5c07ccc3",
+    "timestamp": "2025-08-23T02:56:34.897833",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "ca2392a1",
+    "timestamp": "2025-08-23T02:56:35.131879",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "2c5c0b5a",
+    "timestamp": "2025-08-23T03:11:05.336344",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "fee4aec9",
+    "timestamp": "2025-08-23T03:12:24.140993",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "fa2805df",
+    "timestamp": "2025-08-23T03:12:24.374637",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "87f6cf8c",
+    "timestamp": "2025-08-23T03:13:25.183141",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "2a74b775",
+    "timestamp": "2025-08-23T03:13:25.426540",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "7791899a",
+    "timestamp": "2025-08-23T03:22:29.130503",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "5ae08ca0",
+    "timestamp": "2025-08-23T03:22:29.387184",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "504f28ee",
+    "timestamp": "2025-08-23T03:24:19.493672",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "252608e2",
+    "timestamp": "2025-08-23T03:24:19.735254",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "3673bee5",
+    "timestamp": "2025-08-23T03:36:54.321240",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "fa140b5a",
+    "timestamp": "2025-08-23T03:36:54.562499",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "5db7bc72",
+    "timestamp": "2025-08-23T03:39:48.253002",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "2a8da2aa",
+    "timestamp": "2025-08-23T03:39:48.488075",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "85288219",
+    "timestamp": "2025-08-23T03:44:21.179012",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "95e5a48d",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "test-document.pdf",
+      "size_bytes": 604,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "b3ad0995",
+    "timestamp": "2025-08-23T03:45:46.867926",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "e41b3eaa",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "test-image.png",
+      "size_bytes": 88,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "82f7d1ca",
+    "timestamp": "2025-08-23T03:47:45.929304",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "a7ad4b1f",
+    "timestamp": "2025-08-23T03:47:46.160285",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "2a619359",
+    "timestamp": "2025-08-23T10:41:02.856193",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "43a0af4b",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "11.png",
+      "size_bytes": 112731,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "22305703",
+    "timestamp": "2025-08-23T10:41:29.223595",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "6dea318d",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "1.jpg",
+      "size_bytes": 489389,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "0de8940a",
+    "timestamp": "2025-08-23T10:41:29.321836",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "62dc577d",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "1.jpg",
+      "size_bytes": 489389,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "7faa0e8f",
+    "timestamp": "2025-08-23T10:42:22.086157",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "9c16a755",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d002",
+      "filename": "1.jpg",
+      "size_bytes": 489389,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "7e390f87",
+    "timestamp": "2025-08-23T10:48:03.590039",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "de1ef050",
+    "timestamp": "2025-08-23T10:48:03.842834",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "a9c38e4c",
+    "timestamp": "2025-08-23T10:48:34.314917",
+    "action": "delete",
+    "entity_type": "document",
+    "entity_id": "43a0af4b",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "11.png",
+      "display_name": "11"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "847a0998",
+    "timestamp": "2025-08-23T10:48:37.188340",
+    "action": "preview",
+    "entity_type": "document",
+    "entity_id": "e41b3eaa",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "test-image.png"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "79d6d13b",
+    "timestamp": "2025-08-23T10:48:44.148453",
+    "action": "download",
+    "entity_type": "document",
+    "entity_id": "e41b3eaa",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "test-image.png"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "b3c84c82",
+    "timestamp": "2025-08-23T10:48:49.597565",
+    "action": "preview",
+    "entity_type": "document",
+    "entity_id": "6dea318d",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "1.jpg"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "fb5781f7",
+    "timestamp": "2025-08-23T10:49:14.916837",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "78889e60",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "—Pngtree—doctor 3d icon medical professional_20452337.png",
+      "size_bytes": 2409471,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "c4e88adf",
+    "timestamp": "2025-08-23T10:49:46.760209",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "56996a20",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "عقد الزواج 1.jpg",
+      "size_bytes": 1048237,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "83ff1be3",
+    "timestamp": "2025-08-23T10:51:20.526001",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "1a1eb91c",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "vehicle",
+      "entity_id": "v001",
+      "filename": "عقد الزواج 1.jpg",
+      "size_bytes": 1048237,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "8476c244",
+    "timestamp": "2025-08-23T10:54:18.748529",
+    "action": "download",
+    "entity_type": "document",
+    "entity_id": "95e5a48d",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "test-document.pdf"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "113abb47",
+    "timestamp": "2025-08-23T10:54:18.855837",
+    "action": "download",
+    "entity_type": "document",
+    "entity_id": "95e5a48d",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "test-document.pdf"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "e023c602",
+    "timestamp": "2025-08-23T10:57:24.512156",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "d5d3b93b",
+    "timestamp": "2025-08-23T10:57:24.751022",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "09f1fd6e",
+    "timestamp": "2025-08-23T11:02:19.327341",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "ce65abe1",
+    "timestamp": "2025-08-23T11:02:19.875189",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "c066460e",
+    "timestamp": "2025-08-23T11:02:26.929732",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "2deb3767",
+    "timestamp": "2025-08-23T11:02:27.173415",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "faec6813",
+    "timestamp": "2025-08-23T11:04:20.308906",
+    "action": "create",
+    "entity_type": "driver",
+    "entity_id": "3175eb4f",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "driver_name": "هنا وليد محمد",
+      "employment_type": "mixed",
+      "phone": "+96555683688"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "58891c80",
+    "timestamp": "2025-08-23T11:06:08.241982",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "0862caf1",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "test-document.pdf",
+      "size_bytes": 604,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "9d083012",
+    "timestamp": "2025-08-23T11:08:36.446771",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "8fe17fc2",
+    "timestamp": "2025-08-23T11:08:36.699340",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "d896a5ee",
+    "timestamp": "2025-08-23T11:21:44.963339",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "c01645aa",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "images.jpg",
+      "size_bytes": 6834,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "2ddeed13",
+    "timestamp": "2025-08-23T11:22:11.964558",
+    "action": "delete",
+    "entity_type": "document",
+    "entity_id": "e41b3eaa",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "test-image.png",
+      "display_name": "Test Image Document"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "003b5a03",
+    "timestamp": "2025-08-23T11:22:15.119477",
+    "action": "delete",
+    "entity_type": "document",
+    "entity_id": "6dea318d",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "1.jpg",
+      "display_name": "1"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "525be01e",
+    "timestamp": "2025-08-23T11:22:18.082456",
+    "action": "delete",
+    "entity_type": "document",
+    "entity_id": "95e5a48d",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "test-document.pdf",
+      "display_name": "test-document"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "0e24f869",
+    "timestamp": "2025-08-23T11:22:21.310424",
+    "action": "delete",
+    "entity_type": "document",
+    "entity_id": "62dc577d",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "1.jpg",
+      "display_name": "1"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "caa736fb",
+    "timestamp": "2025-08-23T11:22:25.002709",
+    "action": "delete",
+    "entity_type": "document",
+    "entity_id": "78889e60",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "—Pngtree—doctor 3d icon medical professional_20452337.png",
+      "display_name": "—Pngtree—doctor 3d icon medical professional_20452337"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "2677ae3d",
+    "timestamp": "2025-08-23T11:22:27.983957",
+    "action": "delete",
+    "entity_type": "document",
+    "entity_id": "56996a20",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "عقد الزواج 1.jpg",
+      "display_name": "عقد الزواج 1"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "ba020dc1",
+    "timestamp": "2025-08-23T11:22:30.698283",
+    "action": "delete",
+    "entity_type": "document",
+    "entity_id": "0862caf1",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "test-document.pdf",
+      "display_name": "test-document"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "31f68f07",
+    "timestamp": "2025-08-23T11:22:37.540734",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "0c7c6cef",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "images.jpg",
+      "size_bytes": 6834,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "aa62629b",
+    "timestamp": "2025-08-23T11:22:42.811997",
+    "action": "delete",
+    "entity_type": "document",
+    "entity_id": "c01645aa",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "images.jpg",
+      "display_name": "images"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "871f6b75",
+    "timestamp": "2025-08-23T11:23:00.686242",
+    "action": "update",
+    "entity_type": "document",
+    "entity_id": "0c7c6cef",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "updated_fields": [
+        "display_name",
+        "category",
+        "notes",
+        "expiry_date"
+      ],
+      "entity_type": "driver",
+      "entity_id": "d001"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "11f6a154",
+    "timestamp": "2025-08-23T11:23:06.209339",
+    "action": "preview",
+    "entity_type": "document",
+    "entity_id": "0c7c6cef",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "images.jpg"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "3e2fccf7",
+    "timestamp": "2025-08-23T11:23:48.808879",
+    "action": "download",
+    "entity_type": "document",
+    "entity_id": "0c7c6cef",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "images.jpg"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "f1a11bf3",
+    "timestamp": "2025-08-23T11:24:27.466169",
+    "action": "download",
+    "entity_type": "document",
+    "entity_id": "0c7c6cef",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "images.jpg"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "f0db04df",
+    "timestamp": "2025-08-23T11:25:18.499585",
+    "action": "update",
+    "entity_type": "document",
+    "entity_id": "1a1eb91c",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "updated_fields": [
+        "display_name",
+        "category",
+        "notes",
+        "expiry_date"
+      ],
+      "entity_type": "vehicle",
+      "entity_id": "v001"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "905168c9",
+    "timestamp": "2025-08-23T11:25:28.345243",
+    "action": "download",
+    "entity_type": "document",
+    "entity_id": "1a1eb91c",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "vehicle",
+      "entity_id": "v001",
+      "filename": "عقد الزواج 1.jpg"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "a3f4e358",
+    "timestamp": "2025-08-23T11:25:35.383037",
+    "action": "update",
+    "entity_type": "document",
+    "entity_id": "0c7c6cef",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "updated_fields": [
+        "display_name",
+        "category",
+        "notes",
+        "expiry_date"
+      ],
+      "entity_type": "driver",
+      "entity_id": "d001"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "f96c4b53",
+    "timestamp": "2025-08-23T11:25:40.385215",
+    "action": "download",
+    "entity_type": "document",
+    "entity_id": "0c7c6cef",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "images.jpg"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "e8d89240",
+    "timestamp": "2025-08-23T11:28:02.113366",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "13ec10e5",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "images.jpg",
+      "size_bytes": 6834,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "c1a6ed8b",
+    "timestamp": "2025-08-23T11:31:39.587031",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "5363b0ce",
+    "timestamp": "2025-08-23T11:31:39.832005",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "f83764db",
+    "timestamp": "2025-08-23T11:37:15.957670",
+    "action": "update",
+    "entity_type": "driver",
+    "entity_id": "3175eb4f",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "driver_name": "هنا وليد محمد",
+      "updated_fields": [
+        "full_name",
+        "phone",
+        "national_id",
+        "employment_type",
+        "car_ownership",
+        "base_salary",
+        "default_commission_per_order",
+        "max_advance_limit",
+        "advance_deduction_mode",
+        "advance_deduction_value",
+        "primary_client_id",
+        "secondary_client_id",
+        "employment_date",
+        "residency_number",
+        "residency_expiry_date",
+        "residence_status",
+        "assigned_vehicle_id",
+        "is_active",
+        "hire_date"
+      ],
+      "changes_count": 19
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "806af935",
+    "timestamp": "2025-08-23T11:39:17.679990",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "b2b9fe1b",
+    "timestamp": "2025-08-23T11:39:17.919104",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "8baaca60",
+    "timestamp": "2025-08-23T11:39:43.748162",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "17e25bb3",
+    "timestamp": "2025-08-23T11:39:43.976904",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "5afbf620",
+    "timestamp": "2025-08-23T11:40:33.085444",
+    "action": "update",
+    "entity_type": "driver",
+    "entity_id": "3175eb4f",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "driver_name": "هنا وليد محمد",
+      "updated_fields": [
+        "full_name",
+        "phone",
+        "national_id",
+        "employment_type",
+        "car_ownership",
+        "base_salary",
+        "default_commission_per_order",
+        "max_advance_limit",
+        "advance_deduction_mode",
+        "advance_deduction_value",
+        "primary_client_id",
+        "secondary_client_id",
+        "employment_date",
+        "residency_number",
+        "residency_expiry_date",
+        "residence_status",
+        "assigned_vehicle_id",
+        "is_active",
+        "hire_date"
+      ],
+      "changes_count": 19
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "67af938a",
+    "timestamp": "2025-08-23T11:40:37.188269",
+    "action": "update",
+    "entity_type": "driver",
+    "entity_id": "3175eb4f",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "driver_name": "هنا وليد محمد",
+      "updated_fields": [
+        "full_name",
+        "phone",
+        "national_id",
+        "employment_type",
+        "car_ownership",
+        "base_salary",
+        "default_commission_per_order",
+        "max_advance_limit",
+        "advance_deduction_mode",
+        "advance_deduction_value",
+        "primary_client_id",
+        "secondary_client_id",
+        "employment_date",
+        "residency_number",
+        "residency_expiry_date",
+        "residence_status",
+        "assigned_vehicle_id",
+        "is_active",
+        "hire_date"
+      ],
+      "changes_count": 19
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "3c756074",
+    "timestamp": "2025-08-23T11:40:44.140216",
+    "action": "update",
+    "entity_type": "driver",
+    "entity_id": "3175eb4f",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "driver_name": "هنا وليد محمد",
+      "updated_fields": [
+        "full_name",
+        "phone",
+        "national_id",
+        "employment_type",
+        "car_ownership",
+        "base_salary",
+        "default_commission_per_order",
+        "max_advance_limit",
+        "advance_deduction_mode",
+        "advance_deduction_value",
+        "primary_client_id",
+        "secondary_client_id",
+        "employment_date",
+        "residency_number",
+        "residency_expiry_date",
+        "residence_status",
+        "assigned_vehicle_id",
+        "is_active",
+        "hire_date"
+      ],
+      "changes_count": 19
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "a4e1b371",
+    "timestamp": "2025-08-23T11:42:34.796737",
+    "action": "update",
+    "entity_type": "driver",
+    "entity_id": "3175eb4f",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "driver_name": "هنا وليد محمد",
+      "updated_fields": [
+        "full_name",
+        "phone",
+        "national_id",
+        "employment_type",
+        "car_ownership",
+        "base_salary",
+        "default_commission_per_order",
+        "max_advance_limit",
+        "advance_deduction_mode",
+        "advance_deduction_value",
+        "primary_client_id",
+        "secondary_client_id",
+        "employment_date",
+        "residency_number",
+        "residency_expiry_date",
+        "residence_status",
+        "assigned_vehicle_id",
+        "is_active",
+        "hire_date"
+      ],
+      "changes_count": 19
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "208d67e6",
+    "timestamp": "2025-08-23T11:43:20.364310",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "79e28802",
+    "timestamp": "2025-08-23T11:43:20.586241",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "ac6bba67",
+    "timestamp": "2025-08-23T11:43:51.410651",
+    "action": "update",
+    "entity_type": "driver",
+    "entity_id": "3175eb4f",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "driver_name": "هنا وليد محمد",
+      "updated_fields": [
+        "full_name",
+        "phone",
+        "national_id",
+        "employment_type",
+        "car_ownership",
+        "base_salary",
+        "default_commission_per_order",
+        "max_advance_limit",
+        "advance_deduction_mode",
+        "advance_deduction_value",
+        "primary_client_id",
+        "secondary_client_id",
+        "employment_date",
+        "residency_number",
+        "residency_expiry_date",
+        "residence_status",
+        "assigned_vehicle_id",
+        "is_active",
+        "hire_date"
+      ],
+      "changes_count": 19
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "c2e72783",
+    "timestamp": "2025-08-23T11:45:05.518804",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "c5380baa",
+    "timestamp": "2025-08-23T11:45:05.773709",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "7cd1ace6",
+    "timestamp": "2025-08-23T11:47:11.949165",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "5282970c",
+    "timestamp": "2025-08-23T11:47:12.204253",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "8f8a23e1",
+    "timestamp": "2025-08-23T11:54:42.726464",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "2a835e78",
+    "timestamp": "2025-08-23T11:54:42.997601",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "c49a3ff5",
+    "timestamp": "2025-08-23T11:56:51.223898",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "43466112",
+    "timestamp": "2025-08-23T11:56:51.485494",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "592fe9e2",
+    "timestamp": "2025-08-23T11:57:05.875240",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "adbe6246",
+    "timestamp": "2025-08-23T11:57:06.419366",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "f1553d51",
+    "timestamp": "2025-08-23T12:03:06.995461",
+    "action": "download",
+    "entity_type": "document",
+    "entity_id": "0c7c6cef",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "images.jpg"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "aab4d4a5",
+    "timestamp": "2025-08-23T12:06:13.621206",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "68c7914f",
+    "timestamp": "2025-08-23T12:06:13.863849",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "3e4401dd",
+    "timestamp": "2025-08-23T12:06:42.313739",
+    "action": "update",
+    "entity_type": "driver",
+    "entity_id": "d001",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "driver_name": "أحمد محمد علي",
+      "updated_fields": [
+        "full_name",
+        "phone",
+        "national_id",
+        "employment_type",
+        "car_ownership",
+        "base_salary",
+        "default_commission_per_order",
+        "max_advance_limit",
+        "advance_deduction_mode",
+        "advance_deduction_value",
+        "primary_client_id",
+        "secondary_client_id",
+        "employment_date",
+        "residency_number",
+        "residency_expiry_date",
+        "residence_status",
+        "assigned_vehicle_id",
+        "is_active",
+        "hire_date"
+      ],
+      "changes_count": 19
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "919b6f26",
+    "timestamp": "2025-08-23T12:08:10.983624",
+    "action": "update",
+    "entity_type": "driver",
+    "entity_id": "d002",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "driver_name": "محمد أحمد سالم",
+      "updated_fields": [
+        "full_name",
+        "phone",
+        "national_id",
+        "employment_type",
+        "car_ownership",
+        "base_salary",
+        "default_commission_per_order",
+        "max_advance_limit",
+        "advance_deduction_mode",
+        "advance_deduction_value",
+        "primary_client_id",
+        "secondary_client_id",
+        "employment_date",
+        "residency_number",
+        "residency_expiry_date",
+        "residence_status",
+        "assigned_vehicle_id",
+        "is_active",
+        "hire_date"
+      ],
+      "changes_count": 19
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "7490d4bf",
+    "timestamp": "2025-08-23T12:08:18.737551",
+    "action": "update",
+    "entity_type": "driver",
+    "entity_id": "d002",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "driver_name": "محمد أحمد سالم",
+      "updated_fields": [
+        "full_name",
+        "phone",
+        "national_id",
+        "employment_type",
+        "car_ownership",
+        "base_salary",
+        "default_commission_per_order",
+        "max_advance_limit",
+        "advance_deduction_mode",
+        "advance_deduction_value",
+        "primary_client_id",
+        "secondary_client_id",
+        "employment_date",
+        "residency_number",
+        "residency_expiry_date",
+        "residence_status",
+        "assigned_vehicle_id",
+        "is_active",
+        "hire_date"
+      ],
+      "changes_count": 19
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "e1f4de9b",
+    "timestamp": "2025-08-23T12:08:25.740797",
+    "action": "update",
+    "entity_type": "driver",
+    "entity_id": "d002",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "driver_name": "محمد أحمد سالم",
+      "updated_fields": [
+        "full_name",
+        "phone",
+        "national_id",
+        "employment_type",
+        "car_ownership",
+        "base_salary",
+        "default_commission_per_order",
+        "max_advance_limit",
+        "advance_deduction_mode",
+        "advance_deduction_value",
+        "primary_client_id",
+        "secondary_client_id",
+        "employment_date",
+        "residency_number",
+        "residency_expiry_date",
+        "residence_status",
+        "assigned_vehicle_id",
+        "is_active",
+        "hire_date"
+      ],
+      "changes_count": 19
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "56184791",
+    "timestamp": "2025-08-23T12:08:43.918934",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "f3e80877",
+    "timestamp": "2025-08-23T12:08:44.157575",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "274c6d98",
+    "timestamp": "2025-08-23T12:08:52.818327",
+    "action": "update",
+    "entity_type": "driver",
+    "entity_id": "d002",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "driver_name": "محمد أحمد سالم",
+      "updated_fields": [
+        "full_name",
+        "phone",
+        "national_id",
+        "employment_type",
+        "car_ownership",
+        "base_salary",
+        "default_commission_per_order",
+        "max_advance_limit",
+        "advance_deduction_mode",
+        "advance_deduction_value",
+        "primary_client_id",
+        "secondary_client_id",
+        "employment_date",
+        "residency_number",
+        "residency_expiry_date",
+        "residence_status",
+        "assigned_vehicle_id",
+        "is_active",
+        "hire_date"
+      ],
+      "changes_count": 19
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "45c855a4",
+    "timestamp": "2025-08-23T12:09:08.160106",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "893c18c1",
+    "timestamp": "2025-08-23T12:09:08.409367",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "7d06d4ee",
+    "timestamp": "2025-08-23T12:28:27.316231",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "79cc5efe",
+    "timestamp": "2025-08-23T12:28:27.569749",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "6f615172",
+    "timestamp": "2025-08-23T12:38:41.744821",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "ddd5a3ef",
+    "timestamp": "2025-08-23T12:38:41.983376",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "f17ba37b",
+    "timestamp": "2025-08-23T12:38:57.018545",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "2324b185",
+    "timestamp": "2025-08-23T12:38:57.249409",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "92765739",
+    "timestamp": "2025-08-23T12:43:33.530173",
+    "action": "update",
+    "entity_type": "driver",
+    "entity_id": "d001",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "driver_name": "أحمد محمد علي",
+      "updated_fields": [
+        "full_name",
+        "phone",
+        "national_id",
+        "employment_type",
+        "car_ownership",
+        "base_salary",
+        "default_commission_per_order",
+        "max_advance_limit",
+        "advance_deduction_mode",
+        "advance_deduction_value",
+        "primary_client_id",
+        "secondary_client_id",
+        "employment_date",
+        "residency_number",
+        "residency_expiry_date",
+        "residence_status",
+        "assigned_vehicle_id",
+        "is_active",
+        "hire_date"
+      ],
+      "changes_count": 19
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "47b8f3c6",
+    "timestamp": "2025-08-23T12:47:38.332179",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "fe52251f",
+    "timestamp": "2025-08-23T12:47:38.564252",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "acd11b57",
+    "timestamp": "2025-08-23T12:51:16.150143",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "36f7c0f8",
+    "timestamp": "2025-08-23T12:51:16.391552",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "64a3fb61",
+    "timestamp": "2025-08-23T12:57:46.888476",
+    "action": "delete",
+    "entity_type": "document",
+    "entity_id": "13ec10e5",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "images.jpg",
+      "display_name": "images"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "359e806e",
+    "timestamp": "2025-08-23T12:57:50.258579",
+    "action": "delete",
+    "entity_type": "document",
+    "entity_id": "0c7c6cef",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "images.jpg",
+      "display_name": "البطاقة المدنية - محدثة"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "90e2c3e0",
+    "timestamp": "2025-08-23T12:58:34.416561",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "4db487a2",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "omar waleed2.png",
+      "size_bytes": 511666,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "2f6181c6",
+    "timestamp": "2025-08-23T13:04:31.157935",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "10651bdd",
+    "timestamp": "2025-08-23T13:04:31.402385",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "1882fc14",
+    "timestamp": "2025-08-23T13:11:21.359108",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "4cb22b30",
+    "timestamp": "2025-08-23T13:11:21.604005",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "8c9fcd56",
+    "timestamp": "2025-08-23T13:11:32.831551",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "118287c3",
+    "timestamp": "2025-08-23T13:11:33.062020",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "d0f71de2",
+    "timestamp": "2025-08-23T13:12:34.709198",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "654bfdde",
+    "timestamp": "2025-08-23T13:12:34.944517",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "50d3df1e",
+    "timestamp": "2025-08-23T13:13:14.737034",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "b2f8d9bb",
+    "timestamp": "2025-08-23T13:13:14.975376",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "8021cda1",
+    "timestamp": "2025-08-23T13:17:34.074461",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "53c4d65e",
+    "timestamp": "2025-08-23T13:17:34.319667",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "68253319",
+    "timestamp": "2025-08-23T13:32:58.188081",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "e13f56d8",
+    "timestamp": "2025-08-23T13:32:58.435677",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "916aaee6",
+    "timestamp": "2025-08-23T13:41:39.956372",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "939819a4",
+    "timestamp": "2025-08-23T13:41:40.209733",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "3aa14566",
+    "timestamp": "2025-08-23T13:43:51.377825",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "f9f69097",
+    "timestamp": "2025-08-23T13:43:51.617370",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "0143a462",
+    "timestamp": "2025-08-23T13:50:27.720422",
+    "action": "download",
+    "entity_type": "document",
+    "entity_id": "4db487a2",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "omar waleed2.png"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "0dd2d6f0",
+    "timestamp": "2025-08-23T13:55:03.700741",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "128a6e94",
+    "timestamp": "2025-08-23T13:55:03.945993",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "85fe31c1",
+    "timestamp": "2025-08-23T13:59:19.720724",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "750a446f",
+    "timestamp": "2025-08-23T13:59:20.508712",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "079a122d",
+    "timestamp": "2025-08-23T23:51:07.919375",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "47c673fd",
+    "timestamp": "2025-08-23T23:51:08.193982",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "8abec313",
+    "timestamp": "2025-08-23T23:51:41.271972",
+    "action": "update",
+    "entity_type": "document",
+    "entity_id": "4db487a2",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "updated_fields": [
+        "display_name",
+        "category",
+        "notes",
+        "expiry_date"
+      ],
+      "entity_type": "driver",
+      "entity_id": "d001"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "52c4556e",
+    "timestamp": "2025-08-23T23:56:26.356208",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "d91326af",
+    "timestamp": "2025-08-23T23:56:26.588988",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "337bb8e3",
+    "timestamp": "2025-08-23T23:56:31.681393",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "8856c886",
+    "timestamp": "2025-08-23T23:56:31.926104",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "c1e2b954",
+    "timestamp": "2025-08-23T23:56:40.604567",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "a2ea8398",
+    "timestamp": "2025-08-23T23:56:40.836159",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "55da0d9f",
+    "timestamp": "2025-08-24T00:11:09.536244",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "b2f55e4d",
+    "timestamp": "2025-08-24T00:11:09.787835",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "f17dc57e",
+    "timestamp": "2025-08-24T00:16:10.668367",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "d48d1e0d",
+    "timestamp": "2025-08-24T00:16:10.931190",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "b5355e77",
+    "timestamp": "2025-08-24T08:47:16.186045",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "9ad4561c",
+    "timestamp": "2025-08-24T08:47:16.429200",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "8a32e987",
+    "timestamp": "2025-08-24T08:48:04.401134",
+    "action": "download",
+    "entity_type": "document",
+    "entity_id": "4db487a2",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "omar waleed2.png"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "53038df7",
+    "timestamp": "2025-08-24T08:54:21.428471",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "7f800d61",
+    "timestamp": "2025-08-24T08:54:21.682895",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "baaa70e1",
+    "timestamp": "2025-08-24T08:58:32.504376",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "46daf699",
+    "timestamp": "2025-08-24T08:58:32.769290",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "3801dee8",
+    "timestamp": "2025-08-24T08:59:33.198088",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "b3081f31",
+    "timestamp": "2025-08-24T08:59:33.479949",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "94299c4b",
+    "timestamp": "2025-08-24T09:02:18.300293",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "7a1961a5",
+    "timestamp": "2025-08-24T09:02:18.552229",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "20c870ac",
+    "timestamp": "2025-08-24T09:02:56.644753",
+    "action": "download",
+    "entity_type": "document",
+    "entity_id": "4db487a2",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "omar waleed2.png"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "4d0bc084",
+    "timestamp": "2025-08-24T09:03:24.577784",
+    "action": "update",
+    "entity_type": "document",
+    "entity_id": "4db487a2",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "updated_fields": [
+        "display_name",
+        "category",
+        "notes",
+        "expiry_date"
+      ],
+      "entity_type": "driver",
+      "entity_id": "d001"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "1aa41b70",
+    "timestamp": "2025-08-24T09:09:08.325653",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "cb634eee",
+    "timestamp": "2025-08-24T09:09:08.553537",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "bcb208b9",
+    "timestamp": "2025-08-24T09:09:57.761408",
+    "action": "update",
+    "entity_type": "driver",
+    "entity_id": "d001",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "driver_name": "أحمد محمد علي - CSRF TEST",
+      "updated_fields": [
+        "full_name",
+        "phone",
+        "national_id",
+        "employment_type",
+        "car_ownership",
+        "base_salary",
+        "default_commission_per_order",
+        "max_advance_limit",
+        "primary_client_id",
+        "secondary_client_id",
+        "employment_date",
+        "residency_number",
+        "residency_expiry_date",
+        "residence_status",
+        "assigned_vehicle_id",
+        "is_active",
+        "hire_date"
+      ],
+      "changes_count": 17
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "92af1302",
+    "timestamp": "2025-08-24T09:13:17.093781",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "26deeff2",
+    "timestamp": "2025-08-24T09:13:17.336198",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "2a9ded9f",
+    "timestamp": "2025-08-24T09:14:22.181034",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "9ff0a94a",
+    "timestamp": "2025-08-24T09:14:22.439221",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "30436d44",
+    "timestamp": "2025-08-24T09:17:47.876647",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "c250fa1e",
+    "timestamp": "2025-08-24T09:17:48.422760",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "10383f4e",
+    "timestamp": "2025-08-24T09:21:32.098555",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "59147843",
+    "timestamp": "2025-08-24T09:21:32.333788",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "3179660f",
+    "timestamp": "2025-08-24T13:35:32.449463",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "32084cec",
+    "timestamp": "2025-08-24T13:35:32.696751",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "4ac1c0d9",
+    "timestamp": "2025-08-24T14:29:10.291620",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "1360ce93",
+    "timestamp": "2025-08-24T14:29:10.551398",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "b8044ae5",
+    "timestamp": "2025-08-24T14:32:45.686155",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "02a5dff2",
+    "timestamp": "2025-08-24T14:32:45.927954",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "7fd02961",
+    "timestamp": "2025-08-24T14:38:10.226883",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "3646cef6",
+    "timestamp": "2025-08-24T14:38:10.474758",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "968b8e2c",
+    "timestamp": "2025-08-24T15:01:18.958233",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "1eb776d5",
+    "timestamp": "2025-08-24T15:01:19.217507",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "7b60aadb",
+    "timestamp": "2025-08-24T15:04:30.311174",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "25e95c15",
+    "timestamp": "2025-08-24T15:04:30.565523",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "1089242e",
+    "timestamp": "2025-08-24T15:04:41.135573",
+    "action": "preview",
+    "entity_type": "document",
+    "entity_id": "4db487a2",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "omar waleed2.png"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "410164a5",
+    "timestamp": "2025-08-24T15:04:50.962633",
+    "action": "download",
+    "entity_type": "document",
+    "entity_id": "4db487a2",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "omar waleed2.png"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "4557d09f",
+    "timestamp": "2025-08-24T15:15:05.028924",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "cf831cf0",
+    "timestamp": "2025-08-24T15:15:05.282645",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "576c10a1",
+    "timestamp": "2025-08-24T15:18:25.213206",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "32296e9e",
+    "timestamp": "2025-08-24T15:18:25.757293",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "5eafeddd",
+    "timestamp": "2025-08-24T15:25:18.272431",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "d990d5fe",
+    "timestamp": "2025-08-24T15:25:18.820614",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "df67fde1",
+    "timestamp": "2025-08-24T15:28:39.086861",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "03d807c5",
+    "timestamp": "2025-08-24T15:28:39.333783",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "7195d5fc",
+    "timestamp": "2025-08-24T16:43:51.516190",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "23136fa7",
+    "timestamp": "2025-08-24T16:43:51.796615",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "95c2cbdc",
+    "timestamp": "2025-08-24T16:44:04.447419",
+    "action": "preview",
+    "entity_type": "document",
+    "entity_id": "4db487a2",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "omar waleed2.png"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "5b9756b0",
+    "timestamp": "2025-08-24T16:50:47.526054",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "d99795ae",
+    "timestamp": "2025-08-24T16:50:47.786306",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "9035752c",
+    "timestamp": "2025-08-24T16:51:03.397685",
+    "action": "download",
+    "entity_type": "document",
+    "entity_id": "4db487a2",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "driver",
+      "entity_id": "d001",
+      "filename": "omar waleed2.png"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "c3968220",
+    "timestamp": "2025-08-24T17:56:19.713344",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "306fb3d8",
+    "timestamp": "2025-08-24T17:56:19.989678",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "2fff6482",
+    "timestamp": "2025-08-24T17:57:10.863472",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "084d7ddf",
+    "timestamp": "2025-08-24T17:57:11.113972",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "8a5cb99d",
+    "timestamp": "2025-08-24T21:32:35.107361",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "f738ecdd",
+    "timestamp": "2025-08-24T21:32:35.362628",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "2610664c",
+    "timestamp": "2025-08-24T21:44:57.994641",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "a85dc6c2",
+    "timestamp": "2025-08-24T21:44:58.254905",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "98ad04fe",
+    "timestamp": "2025-08-24T21:50:52.299440",
+    "action": "update",
+    "entity_type": "document",
+    "entity_id": "4db487a2",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "updated_fields": [
+        "display_name",
+        "category",
+        "notes",
+        "expiry_date"
+      ],
+      "entity_type": "driver",
+      "entity_id": "d001"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "1662ad8e",
+    "timestamp": "2025-08-24T22:51:01.702575",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "048a971e",
+    "timestamp": "2025-08-24T22:51:01.984901",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "bf734068",
+    "timestamp": "2025-08-24T22:56:25.224202",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "fcaa8257",
+    "timestamp": "2025-08-24T22:56:25.480202",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "8d3753f7",
+    "timestamp": "2025-08-24T22:57:16.304200",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "99605b9b",
+    "timestamp": "2025-08-24T22:57:16.360006",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "91d38a36",
+    "timestamp": "2025-08-24T22:57:16.642894",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "26446fca",
+    "timestamp": "2025-08-24T22:57:16.859687",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  }
+]

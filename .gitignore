@@ -1,0 +1,140 @@
+# EMAR Delivery Management System - Git Ignore Rules
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Flask
+instance/
+.webassets-cache
+
+# Environment variables
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Operating System
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+nul
+
+# Node modules (if any frontend dependencies)
+node_modules/
+npm-debug.log*
+
+# Backup files
+*.bak
+*.backup
+backup_*/
+
+# Test files (keep test documents but ignore temporary test files)
+test-document.pdf
+test-document.txt
+test-image.png
+
+# Sensitive data directories
+secure_uploads/
+
+# Generated documentation files (keep source docs)
+*.pdf
+*.docx
+*.xlsx
+
+# Exports directory (optional - uncomment if you don't want to track exports)
+# exports/
+
+# Database files (if using SQLite)
+*.db
+*.sqlite
+*.sqlite3
+
+# Compiled CSS and JS (if using preprocessors)
+*.min.css
+*.min.js
+
+# Package files
+*.tar.gz
+*.zip
+*.rar
+
+# Local configuration files
+local_config.py
+local_settings.py
+
+# SSL certificates
+*.pem
+*.key
+*.crt
+
+# Deployment files
+deployment/
+docker-compose.override.yml
+
+# Monitoring and profiling
+.profile
+*.prof

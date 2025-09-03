@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الوثائق - شركة إعمار لتوصيل الطلبات</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    
+    <style>
+        .documents-page {
+            direction: rtl;
+            text-align: right;
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .entity-card {
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .entity-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .entity-card-header {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 1rem;
+            position: relative;
+        }
+        
+        .entity-card-body {
+            padding: 1.5rem;
+        }
+        
+        .document-badge {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            background: #28a745;
+            color: white;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            border: 3px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .document-badge.warning {
+            background: #ffc107;
+        }
+        
+        .document-badge.danger {
+            background: #dc3545;
+        }
+        
+        .document-badge.secondary {
+            background: #6c757d;
+        }
+        
+        .entity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .entity-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .entity-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .entity-details {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .entity-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .search-controls {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .search-input {
+            border-radius: 25px;
+            border: 1px solid #dee2e6;
+            padding: 0.5rem 1rem;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            border-radius: 20px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.875rem;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #6c757d;
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+        
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .entity-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+            
+            .page-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .search-controls {
+                padding: 0.75rem;
+            }
+            
+            .filter-buttons {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .entity-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .entity-card {
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Upload Modal Styles */
+        .upload-area {
+            border: 2px dashed #dee2e6;
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            border-color: #007bff;
+            background: #e3f2fd;
+        }
+
+        .upload-area.dragover {
+            border-color: #007bff;
+            background: #e3f2fd;
+            transform: scale(1.02);
+        }
+
+        .upload-content h5 {
+            color: #495057;
+            margin-bottom: 1rem;
+        }
+
+        .files-preview {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            background: white;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            border: 1px solid #dee2e6;
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+
+        .file-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            margin-left: 0.75rem;
+        }
+
+        .file-icon.pdf { background: #dc3545; color: white; }
+        .file-icon.image { background: #17a2b8; color: white; }
+        .file-icon.document { background: #007bff; color: white; }
+        .file-icon.spreadsheet { background: #28a745; color: white; }
+
+        .file-details h6 {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .file-size {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+
+        .file-status {
+            margin-right: 0.75rem;
+        }
+
+        .file-status.valid {
+            color: #28a745;
+        }
+
+        .file-status.invalid {
+            color: #dc3545;
+        }
+
+        .upload-progress {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .metadata-form {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        /* Animation for file upload */
+        @keyframes uploadPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .uploading {
+            animation: uploadPulse 2s infinite;
+        }
+
+        /* UX Polish and Enhancements */
+        :root {
+            --primary-color: #007bff;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --info-color: #17a2b8;
+            --border-radius: 8px;
+            --border-radius-lg: 12px;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            --box-shadow-lg: 0 8px 25px rgba(0,0,0,0.15);
+            --transition: all 0.3s ease;
+            --transition-fast: all 0.15s ease;
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-xxl: 3rem;
+        }
+
+        /* Skeleton Loaders */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeletonLoading 1.5s infinite;
+            border-radius: var(--border-radius);
+        }
+
+        @keyframes skeletonLoading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .skeleton-card {
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--box-shadow);
+        }
+
+        .skeleton-header {
+            height: 80px;
+            margin-bottom: var(--spacing-md);
+            border-radius: var(--border-radius);
+        }
+
+        .skeleton-body {
+            height: 60px;
+            border-radius: var(--border-radius);
+        }
+
+        .skeleton-line {
+            height: 16px;
+            margin-bottom: var(--spacing-sm);
+            border-radius: 4px;
+        }
+
+        .skeleton-line.short {
+            width: 60%;
+        }
+
+        .skeleton-line.medium {
+            width: 80%;
+        }
+
+        /* Enhanced Hover Effects */
+        .entity-card {
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .entity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,123,255,0.1), rgba(0,123,255,0.05));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .entity-card:hover::before {
+            opacity: 1;
+        }
+
+        .entity-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--box-shadow-lg);
+        }
+
+        .entity-card:active {
+            transform: translateY(-2px);
+        }
+
+        /* Button Enhancements */
+        .btn {
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .btn-ripple::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+
+        .btn-ripple:active::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Improved Focus States */
+        .form-control:focus,
+        .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+            outline: none;
+        }
+
+        .btn:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* Success Animations */
+        @keyframes successPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .success-pulse {
+            animation: successPulse 0.6s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        /* Loading States */
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            border-radius: var(--border-radius-lg);
+        }
+
+        .loading-spinner-enhanced {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .spinner-border-lg {
+            width: 3rem;
+            height: 3rem;
+        }
+
+        /* Enhanced Empty States */
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-xxl);
+            color: #6c757d;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-lg);
+            opacity: 0.5;
+            color: var(--primary-color);
+        }
+
+        .empty-state h4 {
+            color: #495057;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .empty-state p {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* Improved Modal Transitions */
+        .modal.fade .modal-dialog {
+            transition: transform 0.3s ease-out;
+            transform: translate(0, -50px);
+        }
+
+        .modal.show .modal-dialog {
+            transform: none;
+        }
+
+        /* Better Progress Bars */
+        .progress {
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            transition: width 0.3s ease;
+        }
+
+        /* Enhanced File Upload Area */
+        .upload-area {
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .upload-area.dragover {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, rgba(0,123,255,0.1), rgba(0,123,255,0.05));
+            transform: scale(1.02);
+        }
+
+        .upload-area::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px dashed var(--primary-color);
+            border-radius: var(--border-radius-lg);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .upload-area.dragover::after {
+            opacity: 1;
+        }
+
+        /* Responsive Improvements */
+        @media (max-width: 768px) {
+            .entity-card {
+                margin-bottom: var(--spacing-md);
+            }
+
+            .page-header {
+                flex-direction: column;
+                gap: var(--spacing-md);
+                text-align: center;
+            }
+
+            .btn-group {
+                flex-wrap: wrap;
+                gap: var(--spacing-sm);
+            }
+
+            .modal-dialog {
+                margin: var(--spacing-sm);
+            }
+        }
+
+        /* Accessibility Improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* High Contrast Mode Support */
+        @media (prefers-contrast: high) {
+            .entity-card {
+                border: 2px solid;
+            }
+
+            .btn {
+                border-width: 2px;
+            }
+        }
+
+        /* Reduced Motion Support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Enhanced Empty States */
+        .empty-state-enhanced {
+            text-align: center;
+            padding: var(--spacing-xxl) var(--spacing-lg);
+            color: #6c757d;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .empty-icon {
+            margin-bottom: var(--spacing-lg);
+            opacity: 0.6;
+        }
+
+        .empty-icon i {
+            color: var(--primary-color);
+            filter: drop-shadow(0 2px 4px rgba(0,123,255,0.1));
+        }
+
+        .empty-title {
+            color: #495057;
+            margin-bottom: var(--spacing-md);
+            font-weight: 600;
+        }
+
+        .empty-description {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-xl);
+            line-height: 1.6;
+        }
+
+        .empty-actions {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .empty-actions .btn {
+            padding: 0.75rem 2rem;
+            font-size: 1.1rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .empty-actions .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow-lg);
+        }
+
+        .empty-tips {
+            padding: var(--spacing-md);
+            background: rgba(0,123,255,0.05);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(0,123,255,0.1);
+        }
+
+        /* Enhanced Loading States */
+        .loading-enhanced {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-xxl);
+            gap: var(--spacing-md);
+        }
+
+        .loading-text {
+            color: #6c757d;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .skeleton-card-enhanced {
+            background: linear-gradient(90deg, #f8f9fa 25%, #e9ecef 50%, #f8f9fa 75%);
+            background-size: 200% 100%;
+            animation: shimmerEnhanced 1.8s infinite ease-in-out;
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--box-shadow);
+        }
+
+        @keyframes shimmerEnhanced {
+            0% {
+                background-position: 200% 0;
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                background-position: -200% 0;
+                opacity: 0.8;
+            }
+        }
+
+        .skeleton-header-enhanced {
+            height: 24px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 4px;
+            margin-bottom: var(--spacing-md);
+            width: 70%;
+        }
+
+        .skeleton-body-enhanced {
+            height: 16px;
+            background: rgba(0,0,0,0.08);
+            border-radius: 4px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .skeleton-body-enhanced.short {
+            width: 60%;
+        }
+
+        .skeleton-body-enhanced.medium {
+            width: 80%;
+        }
+
+        /* Enhanced RTL Alignment */
+        .rtl-enhanced {
+            direction: rtl;
+            text-align: right;
+        }
+
+        .rtl-enhanced .btn-group {
+            direction: rtl;
+        }
+
+        .rtl-enhanced .btn-group .btn:first-child {
+            border-top-right-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .rtl-enhanced .btn-group .btn:last-child {
+            border-top-left-radius: var(--border-radius);
+            border-bottom-left-radius: var(--border-radius);
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .rtl-enhanced .input-group .form-control {
+            border-top-left-radius: var(--border-radius);
+            border-bottom-left-radius: var(--border-radius);
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .rtl-enhanced .input-group .btn {
+            border-top-right-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .rtl-enhanced .modal-header .btn-close {
+            margin: -0.5rem 0 -0.5rem auto;
+        }
+
+        /* Icon positioning for RTL */
+        .rtl-enhanced .icon-left {
+            margin-right: 0;
+            margin-left: var(--spacing-sm);
+        }
+
+        .rtl-enhanced .icon-right {
+            margin-left: 0;
+            margin-right: var(--spacing-sm);
+        }
+
+        /* Upload Progress Enhancement */
+        .upload-progress-enhanced {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-lg);
+            margin: var(--spacing-md) 0;
+            border: 1px solid #dee2e6;
+            box-shadow: var(--box-shadow);
+        }
+
+        .progress-enhanced {
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            background: #e9ecef;
+            margin: var(--spacing-sm) 0;
+        }
+
+        .progress-bar-enhanced {
+            background: linear-gradient(90deg, var(--primary-color), #0056b3);
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .upload-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .upload-filename {
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .upload-percentage {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        /* Enhanced Hover Effects */
+        .entity-card-enhanced {
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius-lg);
+        }
+
+        .entity-card-enhanced::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,123,255,0.08), rgba(0,123,255,0.04));
+            opacity: 0;
+            transition: var(--transition);
+            border-radius: var(--border-radius-lg);
+        }
+
+        .entity-card-enhanced:hover::before {
+            opacity: 1;
+        }
+
+        .entity-card-enhanced:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .entity-card-enhanced:active {
+            transform: translateY(-3px);
+        }
+
+        /* Enhanced Button Styles */
+        .btn-enhanced {
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            border-radius: var(--border-radius);
+        }
+
+        .btn-enhanced::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+
+        .btn-enhanced:active::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Enhanced Focus States */
+        .form-control-enhanced:focus,
+        .form-select-enhanced:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(0,123,255,0.15);
+            outline: none;
+        }
+
+        .btn-enhanced:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+            box-shadow: 0 0 0 0.25rem rgba(0,123,255,0.15);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-truck"></i>
+                إعمار للتوصيل
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <i class="fas fa-tachometer-alt"></i>
+                            لوحة التحكم
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('drivers')">
+                            <i class="fas fa-users"></i>
+                            السائقون
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('vehicles')">
+                            <i class="fas fa-car"></i>
+                            السيارات
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('clients')">
+                            <i class="fas fa-building"></i>
+                            العملاء
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('orders')">
+                            <i class="fas fa-shopping-cart"></i>
+                            الطلبات
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('advances')">
+                            <i class="fas fa-money-bill-wave"></i>
+                            السُلف والمديونيات
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('salaries')">
+                            <i class="fas fa-wallet"></i>
+                            الرواتب
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('maintenance')">
+                            <i class="fas fa-tools"></i>
+                            الصيانة
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('breakdowns')">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            الأعطال
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('reports')">
+                            <i class="fas fa-chart-bar"></i>
+                            التقارير
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/documents">
+                            <i class="fas fa-folder-open"></i>
+                            الأوراق
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('settings')">
+                            <i class="fas fa-cog"></i>
+                            الإعدادات
+                        </a>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            خروج
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid documents-page rtl-enhanced">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div>
+                <h1 class="mb-0">
+                    <i class="fas fa-folder-open text-primary icon-right"></i>
+                    إدارة الوثائق
+                </h1>
+                <p class="text-muted mb-0">إدارة وثائق السائقين والمركبات والملفات الأخرى</p>
+            </div>
+            <button class="btn btn-primary btn-lg btn-enhanced" id="uploadBtn">
+                <i class="fas fa-upload icon-right"></i>
+                رفع وثيقة جديدة
+            </button>
+        </div>
+
+        <!-- Tab Navigation -->
+        <ul class="nav nav-tabs nav-fill" id="documentsTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="drivers-tab" data-bs-toggle="tab" data-bs-target="#drivers-content" type="button" role="tab">
+                    <i class="fas fa-user"></i>
+                    وثائق السائقين
+                    <span class="badge bg-primary ms-2" id="driversCount">0</span>
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="vehicles-tab" data-bs-toggle="tab" data-bs-target="#vehicles-content" type="button" role="tab">
+                    <i class="fas fa-car"></i>
+                    وثائق المركبات
+                    <span class="badge bg-primary ms-2" id="vehiclesCount">0</span>
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="other-tab" data-bs-toggle="tab" data-bs-target="#other-content" type="button" role="tab">
+                    <i class="fas fa-folder"></i>
+                    وثائق أخرى
+                    <span class="badge bg-primary ms-2" id="otherCount">0</span>
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="documentsTabContent">
+            <!-- Drivers Tab -->
+            <div class="tab-pane fade show active" id="drivers-content" role="tabpanel">
+                <!-- Search Controls -->
+                <div class="search-controls">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                                <input type="text" class="form-control search-input" id="driversSearch" placeholder="البحث في السائقين...">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="filter-buttons">
+                                <button class="btn btn-outline-success filter-btn active" data-filter="all">الكل</button>
+                                <button class="btn btn-outline-success filter-btn" data-filter="complete">مكتملة</button>
+                                <button class="btn btn-outline-warning filter-btn" data-filter="expiring">تنتهي قريباً</button>
+                                <button class="btn btn-outline-danger filter-btn" data-filter="expired">منتهية</button>
+                                <button class="btn btn-outline-secondary filter-btn" data-filter="missing">ناقصة</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Drivers Grid -->
+                <div id="driversGrid" class="entity-grid">
+                    <!-- Loading spinner -->
+                    <div class="loading-spinner">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">جاري التحميل...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vehicles Tab -->
+            <div class="tab-pane fade" id="vehicles-content" role="tabpanel">
+                <!-- Search Controls -->
+                <div class="search-controls">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                                <input type="text" class="form-control search-input" id="vehiclesSearch" placeholder="البحث في المركبات...">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="filter-buttons">
+                                <button class="btn btn-outline-success filter-btn active" data-filter="all">الكل</button>
+                                <button class="btn btn-outline-success filter-btn" data-filter="complete">مكتملة</button>
+                                <button class="btn btn-outline-warning filter-btn" data-filter="expiring">تنتهي قريباً</button>
+                                <button class="btn btn-outline-danger filter-btn" data-filter="expired">منتهية</button>
+                                <button class="btn btn-outline-secondary filter-btn" data-filter="missing">ناقصة</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicles Grid -->
+                <div id="vehiclesGrid" class="entity-grid">
+                    <!-- Loading spinner -->
+                    <div class="loading-spinner">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">جاري التحميل...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Documents Tab -->
+            <div class="tab-pane fade" id="other-content" role="tabpanel">
+                <!-- Search Controls -->
+                <div class="search-controls">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                                <input type="text" class="form-control search-input" id="otherSearch" placeholder="البحث في الوثائق...">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="filter-buttons">
+                                <button class="btn btn-outline-primary filter-btn active" data-filter="all">الكل</button>
+                                <button class="btn btn-outline-info filter-btn" data-filter="id_copy">نسخ الهوية</button>
+                                <button class="btn btn-outline-warning filter-btn" data-filter="contract">عقود</button>
+                                <button class="btn btn-outline-success filter-btn" data-filter="other">أخرى</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Documents List -->
+                <div id="otherDocuments" class="entity-grid">
+                    <!-- Loading spinner -->
+                    <div class="loading-spinner">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">جاري التحميل...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Document Management Modal -->
+    <div class="modal fade" id="documentModal" tabindex="-1" dir="rtl">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-folder-open text-primary"></i>
+                        وثائق <span id="entityName" class="text-primary"></span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <!-- Controls Row -->
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <!-- Search -->
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="documentSearch" placeholder="البحث في الوثائق...">
+                                <span class="input-group-text">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- Action Buttons -->
+                            <div class="btn-group float-end" role="group">
+                                <button class="btn btn-primary" id="uploadDocBtn">
+                                    <i class="fas fa-upload"></i> رفع وثيقة
+                                </button>
+                                <button class="btn btn-success" id="downloadSelectedBtn" disabled>
+                                    <i class="fas fa-download"></i> تحميل المحدد
+                                </button>
+                                <button class="btn btn-danger" id="deleteSelectedBtn" disabled>
+                                    <i class="fas fa-trash"></i> حذف المحدد
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filters Row -->
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <select class="form-select" id="categoryFilter">
+                                <option value="">جميع الفئات</option>
+                                <option value="id_copy">نسخة الهوية</option>
+                                <option value="license">رخصة القيادة</option>
+                                <option value="insurance">التأمين</option>
+                                <option value="contract">العقد</option>
+                                <option value="maintenance">الصيانة</option>
+                                <option value="other">أخرى</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select" id="statusFilter">
+                                <option value="">جميع الحالات</option>
+                                <option value="active">نشط</option>
+                                <option value="expired">منتهي</option>
+                                <option value="pending_renewal">في انتظار التجديد</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select" id="itemsPerPage">
+                                <option value="10">10 عناصر</option>
+                                <option value="25" selected>25 عنصر</option>
+                                <option value="50">50 عنصر</option>
+                                <option value="100">100 عنصر</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-outline-secondary w-100" id="clearFilters">
+                                <i class="fas fa-times"></i> مسح الفلاتر
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Documents Table -->
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="documentsTable">
+                            <thead class="table-light">
+                                <tr>
+                                    <th width="40">
+                                        <input type="checkbox" id="selectAll" class="form-check-input">
+                                    </th>
+                                    <th class="sortable" data-sort="display_name" style="cursor: pointer;">
+                                        اسم الوثيقة <i class="fas fa-sort text-muted"></i>
+                                    </th>
+                                    <th class="sortable" data-sort="category" style="cursor: pointer;">
+                                        الفئة <i class="fas fa-sort text-muted"></i>
+                                    </th>
+                                    <th class="sortable" data-sort="size_bytes" style="cursor: pointer;">
+                                        الحجم <i class="fas fa-sort text-muted"></i>
+                                    </th>
+                                    <th class="sortable" data-sort="status" style="cursor: pointer;">
+                                        الحالة <i class="fas fa-sort text-muted"></i>
+                                    </th>
+                                    <th class="sortable" data-sort="created_at" style="cursor: pointer;">
+                                        تاريخ الرفع <i class="fas fa-sort text-muted"></i>
+                                    </th>
+                                    <th width="160">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="documentsTableBody">
+                                <!-- Documents will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <div class="text-muted">
+                            عرض <span id="showingFrom">0</span> إلى <span id="showingTo">0</span> من <span id="totalDocuments">0</span> وثيقة
+                        </div>
+                        <nav aria-label="تنقل الصفحات">
+                            <ul class="pagination mb-0" id="documentsPagination">
+                                <!-- Pagination will be generated here -->
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times"></i> إغلاق
+                    </button>
+                    <button type="button" class="btn btn-primary" id="refreshDocuments">
+                        <i class="fas fa-sync-alt"></i> تحديث
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div class="modal fade" id="uploadModal" tabindex="-1" dir="rtl">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-upload text-primary"></i>
+                        رفع وثيقة جديدة
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <!-- Upload Form -->
+                    <form id="uploadForm" enctype="multipart/form-data">
+                        <!-- Entity Info (Hidden) -->
+                        <input type="hidden" id="entityType" name="entity_type">
+                        <input type="hidden" id="entityId" name="entity_id">
+
+                        <!-- File Upload Area -->
+                        <div class="upload-area" id="uploadArea">
+                            <div class="upload-content">
+                                <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
+                                <h5>اسحب الملفات هنا أو انقر للاختيار</h5>
+                                <p class="text-muted">
+                                    الملفات المدعومة: PDF, JPG, PNG, DOCX, XLSX<br>
+                                    الحد الأقصى للحجم: 15 ميجابايت
+                                </p>
+                                <input type="file" id="fileInput" name="file" multiple
+                                       accept=".pdf,.jpg,.jpeg,.png,.webp,.docx,.xlsx" hidden>
+                                <button type="button" class="btn btn-primary" data-action="select-files">
+                                    <i class="fas fa-folder-open"></i> اختيار الملفات
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Selected Files Preview -->
+                        <div id="filesPreview" class="files-preview" style="display: none;">
+                            <h6 class="mb-3">الملفات المحددة:</h6>
+                            <div id="filesList" class="files-list">
+                                <!-- Files will be listed here -->
+                            </div>
+                        </div>
+
+                        <!-- Upload Progress -->
+                        <div id="uploadProgress" class="upload-progress" style="display: none;">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span>جاري الرفع...</span>
+                                <span id="progressPercent">0%</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                     id="progressBar" role="progressbar" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Metadata Form -->
+                        <div id="metadataForm" class="metadata-form" style="display: none;">
+                            <hr class="my-4">
+                            <h6 class="mb-3">معلومات الوثيقة:</h6>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="displayName" class="form-label">اسم الوثيقة *</label>
+                                        <input type="text" class="form-control" id="displayName" name="display_name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="category" class="form-label">الفئة *</label>
+                                        <select class="form-select" id="category" name="category" required>
+                                            <option value="">اختر الفئة</option>
+                                            <option value="id_copy">نسخة الهوية</option>
+                                            <option value="license">رخصة القيادة</option>
+                                            <option value="insurance">التأمين</option>
+                                            <option value="contract">العقد</option>
+                                            <option value="maintenance">الصيانة</option>
+                                            <option value="other">أخرى</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="status" class="form-label">الحالة</label>
+                                        <select class="form-select" id="status" name="status">
+                                            <option value="active" selected>نشط</option>
+                                            <option value="expired">منتهي</option>
+                                            <option value="pending_renewal">في انتظار التجديد</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="expiryDate" class="form-label">تاريخ الانتهاء</label>
+                                        <input type="date" class="form-control" id="expiryDate" name="expiry_date">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="notes" class="form-label">الملاحظات</label>
+                                <textarea class="form-control" id="notes" name="notes" rows="3"
+                                          placeholder="أضف أي ملاحظات إضافية..."></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times"></i> إلغاء
+                    </button>
+                    <button type="button" class="btn btn-primary" id="uploadBtn" disabled>
+                        <i class="fas fa-upload"></i> رفع الوثيقة
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/documents.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__context7__resolve-library-id",
+      "Bash(python:*)",
+      "Bash(set PYTHONIOENCODING=utf-8)",
+      "mcp__playwright-mcp__browser_navigate",
+      "mcp__playwright-mcp__browser_type",
+      "mcp__playwright-mcp__browser_install",
+      "mcp__zen__version",
+      "Bash(curl:*)",
+      "mcp__server-sequential-thinking__sequentialthinking",
+      "Bash(claude mcp:*)",
+      "Read(C:\\Users\\HP/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

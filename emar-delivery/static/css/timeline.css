@@ -1,0 +1,170 @@
+/* Timeline Styles for Driver History */
+.timeline {
+    position: relative;
+    padding: 20px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #e9ecef;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: 50px;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    background: #007bff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.timeline-marker i {
+    font-size: 8px;
+    color: white;
+}
+
+.timeline-content {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.timeline-header {
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.timeline-title {
+    margin: 0;
+    color: #495057;
+    font-size: 1.1rem;
+}
+
+.timeline-body p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.attachments {
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 10px;
+    border-left: 3px solid #007bff;
+}
+
+.attachment-link {
+    color: #007bff;
+    font-weight: 500;
+}
+
+.attachment-link:hover {
+    color: #0056b3;
+    text-decoration: underline !important;
+}
+
+/* Driver Photo Section */
+.driver-photo-section {
+    border: 2px dashed #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    transition: border-color 0.3s ease;
+}
+
+.driver-photo-section:hover {
+    border-color: #007bff;
+}
+
+.driver-photo-placeholder img {
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.driver-photo-placeholder img:hover {
+    transform: scale(1.05);
+}
+
+/* RTL Support */
+body[dir="rtl"] .timeline::before {
+    left: auto;
+    right: 20px;
+}
+
+body[dir="rtl"] .timeline-item {
+    padding-left: 0;
+    padding-right: 50px;
+}
+
+body[dir="rtl"] .timeline-marker {
+    left: auto;
+    right: 10px;
+}
+
+body[dir="rtl"] .attachments {
+    border-left: none;
+    border-right: 3px solid #007bff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 15px;
+    }
+    
+    .timeline-item {
+        padding-left: 40px;
+    }
+    
+    .timeline-marker {
+        left: 5px;
+        width: 18px;
+        height: 18px;
+    }
+    
+    body[dir="rtl"] .timeline::before {
+        right: 15px;
+    }
+    
+    body[dir="rtl"] .timeline-item {
+        padding-right: 40px;
+    }
+    
+    body[dir="rtl"] .timeline-marker {
+        right: 5px;
+    }
+}
+
+/* Animation for new items */
+.timeline-item {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

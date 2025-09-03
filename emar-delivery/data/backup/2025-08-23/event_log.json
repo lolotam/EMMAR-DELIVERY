@@ -1,0 +1,784 @@
+[
+  {
+    "id": "de437c56",
+    "timestamp": "2025-08-22T21:31:11.306414",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "2cb134ee",
+    "timestamp": "2025-08-22T21:31:11.552382",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "d519748e",
+    "timestamp": "2025-08-22T21:31:26.596102",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "055bef3c",
+    "timestamp": "2025-08-22T21:31:26.831309",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "cb551be3",
+    "timestamp": "2025-08-22T21:35:42.404736",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "5c56f6e3",
+    "timestamp": "2025-08-22T21:35:42.658650",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "7a0f5464",
+    "timestamp": "2025-08-22T21:39:28.375307",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "3b3bb53c",
+    "timestamp": "2025-08-22T21:39:28.599032",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "180cc227",
+    "timestamp": "2025-08-22T21:39:31.743252",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "7a8eef8f",
+    "timestamp": "2025-08-22T21:39:32.301691",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "33ad6a13",
+    "timestamp": "2025-08-22T21:40:09.454518",
+    "action": "search",
+    "entity_type": "global",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "query": "أحمد",
+      "results_count": 7
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "af76d7b3",
+    "timestamp": "2025-08-22T21:43:15.341742",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "0df5365e",
+    "timestamp": "2025-08-22T21:43:15.597678",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "0bbb7a01",
+    "timestamp": "2025-08-22T21:43:25.266739",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "3f310772",
+    "timestamp": "2025-08-22T21:43:25.511640",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "11446865",
+    "timestamp": "2025-08-22T21:43:55.057944",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "07fb5eb3",
+    "timestamp": "2025-08-22T21:43:55.323555",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "d2dbba68",
+    "timestamp": "2025-08-22T21:47:06.958521",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "5662b578",
+    "timestamp": "2025-08-22T21:47:07.554128",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "1133d632",
+    "timestamp": "2025-08-22T21:47:35.434109",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "8dedb719",
+    "timestamp": "2025-08-22T21:47:35.659698",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 1575.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "e145919e",
+    "timestamp": "2025-08-22T21:48:09.993468",
+    "action": "drill_through",
+    "entity_type": "unpaid_advances",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "total_drivers": 10,
+      "total_unpaid": 2005.0,
+      "total_advances": 14
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "af445dfc",
+    "timestamp": "2025-08-22T21:51:30.116567",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "343d624a",
+    "timestamp": "2025-08-22T21:51:30.352790",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "12410a5c",
+    "timestamp": "2025-08-22T21:51:36.269316",
+    "action": "search",
+    "entity_type": "global",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "query": "محم",
+      "results_count": 8
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "03470a45",
+    "timestamp": "2025-08-22T21:51:36.887203",
+    "action": "search",
+    "entity_type": "global",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "query": "محمد",
+      "results_count": 8
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "58fd5f87",
+    "timestamp": "2025-08-22T21:51:45.043408",
+    "action": "search",
+    "entity_type": "global",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "query": "abc",
+      "results_count": 1
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "4af96186",
+    "timestamp": "2025-08-22T21:53:08.506838",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "64550bd4",
+    "timestamp": "2025-08-22T21:53:08.738631",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "41de44ce",
+    "timestamp": "2025-08-22T22:11:09.046005",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "06677505",
+    "timestamp": "2025-08-22T22:11:09.281768",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "f3cdf078",
+    "timestamp": "2025-08-22T22:53:41.093681",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "3721e525",
+    "timestamp": "2025-08-22T22:53:41.322814",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "5466c38c",
+    "timestamp": "2025-08-22T22:54:39.259184",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "ca1ee631",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-document.pdf",
+      "size_bytes": 328,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "4ed2efd3",
+    "timestamp": "2025-08-22T23:02:39.544909",
+    "action": "update",
+    "entity_type": "document",
+    "entity_id": "ca1ee631",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "updated_fields": [
+        "display_name",
+        "category",
+        "notes",
+        "status"
+      ],
+      "entity_type": "other",
+      "entity_id": null
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "bfa15ddc",
+    "timestamp": "2025-08-22T23:02:39.599319",
+    "action": "update_status",
+    "entity_type": "document",
+    "entity_id": "ca1ee631",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "old_status": "active",
+      "new_status": "expired",
+      "entity_type": "other",
+      "entity_id": null
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "04d5f9d1",
+    "timestamp": "2025-08-22T23:02:39.871094",
+    "action": "delete",
+    "entity_type": "document",
+    "entity_id": "ca1ee631",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-document.pdf",
+      "display_name": "وثيقة اختبار محدثة"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "5c6fedc4",
+    "timestamp": "2025-08-22T23:03:06.146993",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "76865bd7",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-bulk-1.pdf",
+      "size_bytes": 41,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "4babfc6d",
+    "timestamp": "2025-08-22T23:03:06.470648",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "380f947f",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-bulk-2.pdf",
+      "size_bytes": 41,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "433c9577",
+    "timestamp": "2025-08-22T23:03:06.720363",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "ca47a133",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-bulk-3.pdf",
+      "size_bytes": 41,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "ec7a183c",
+    "timestamp": "2025-08-22T23:03:06.788177",
+    "action": "bulk_delete",
+    "entity_type": "document",
+    "entity_id": "76865bd7",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-bulk-1.pdf",
+      "display_name": "وثيقة اختبار 1 للحذف المتعدد"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "23633219",
+    "timestamp": "2025-08-22T23:03:06.805138",
+    "action": "bulk_delete",
+    "entity_type": "document",
+    "entity_id": "380f947f",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-bulk-2.pdf",
+      "display_name": "وثيقة اختبار 2 للحذف المتعدد"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "3b5cdc61",
+    "timestamp": "2025-08-22T23:03:06.821692",
+    "action": "bulk_delete",
+    "entity_type": "document",
+    "entity_id": "ca47a133",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-bulk-3.pdf",
+      "display_name": "وثيقة اختبار 3 للحذف المتعدد"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "c5fb13a4",
+    "timestamp": "2025-08-22T23:06:16.398626",
+    "action": "upload",
+    "entity_type": "document",
+    "entity_id": "4007b0fd",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-preview.pdf",
+      "size_bytes": 328,
+      "category": "other"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "cb95af4f",
+    "timestamp": "2025-08-22T23:06:16.734112",
+    "action": "download",
+    "entity_type": "document",
+    "entity_id": "4007b0fd",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-preview.pdf"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "6c10aecb",
+    "timestamp": "2025-08-22T23:06:16.874131",
+    "action": "preview",
+    "entity_type": "document",
+    "entity_id": "4007b0fd",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-preview.pdf"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "eecf594d",
+    "timestamp": "2025-08-22T23:06:17.187053",
+    "action": "delete",
+    "entity_type": "document",
+    "entity_id": "4007b0fd",
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "entity_type": "other",
+      "entity_id": null,
+      "filename": "test-preview.pdf",
+      "display_name": "وثيقة اختبار للمعاينة والتحميل"
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "dc283a88",
+    "timestamp": "2025-08-22T23:12:07.942249",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "2c9e9f1d",
+    "timestamp": "2025-08-22T23:12:08.171652",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 8,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 550.0
+    },
+    "session_id": "web_session"
+  }
+]

@@ -1,0 +1,311 @@
+[
+  {
+    "id": "574f7a4b",
+    "month": 8,
+    "year": 2025,
+    "driver_id": "d001",
+    "entries": [
+      {
+        "client_id": "c001",
+        "commission_per_order": 0.5,
+        "note": "عامل جيد حسن الخلص",
+        "periods": [
+          {
+            "date_from": "2025-08-01",
+            "date_to": "2025-08-15",
+            "num_orders": 75
+          },
+          {
+            "date_from": "2025-08-16",
+            "date_to": "2025-08-30",
+            "num_orders": 75
+          },
+          {
+            "date_from": "2025-09-01",
+            "date_to": "2025-09-10",
+            "num_orders": 25
+          }
+        ],
+        "total_orders": 175,
+        "total_amount": 87.5
+      },
+      {
+        "client_id": "c002",
+        "commission_per_order": 1,
+        "note": "",
+        "periods": [
+          {
+            "date_from": "2025-08-16",
+            "date_to": "2025-08-30",
+            "num_orders": 100
+          },
+          {
+            "date_from": "2025-08-01",
+            "date_to": "2025-08-15",
+            "num_orders": 50
+          }
+        ],
+        "total_orders": 150,
+        "total_amount": 150.0
+      }
+    ],
+    "totals": {
+      "total_orders": 325,
+      "total_amount": 237.5
+    },
+    "total_monthly_money": 237.5,
+    "created_at": "2025-08-22T13:57:26.953859",
+    "updated_at": "2025-08-22T14:50:54.242003"
+  },
+  {
+    "id": "9b956d56",
+    "month": 8,
+    "year": 2025,
+    "driver_id": "d003",
+    "entries": [
+      {
+        "client_id": "c002",
+        "commission_per_order": 0.5,
+        "note": "",
+        "periods": [
+          {
+            "date_from": "2025-08-01",
+            "date_to": "2025-08-30",
+            "num_orders": 150
+          }
+        ],
+        "total_orders": 150,
+        "total_amount": 75.0
+      }
+    ],
+    "totals": {
+      "total_orders": 150,
+      "total_amount": 75.0
+    },
+    "total_monthly_money": 75.0,
+    "created_at": "2025-08-22T14:10:32.402869",
+    "updated_at": "2025-08-22T14:39:47.114204"
+  },
+  {
+    "id": "52c674b7",
+    "month": 8,
+    "year": 2025,
+    "driver_id": "d001",
+    "entries": [
+      {
+        "client_id": "c002",
+        "commission_per_order": 0.5,
+        "note": "",
+        "periods": [
+          {
+            "date_from": "2025-08-01",
+            "date_to": "2025-08-15",
+            "num_orders": 100
+          },
+          {
+            "date_from": "2025-08-26",
+            "date_to": "2025-08-27",
+            "num_orders": 10
+          }
+        ],
+        "total_orders": 110,
+        "total_amount": 55.0
+      }
+    ],
+    "totals": {
+      "total_orders": 110,
+      "total_amount": 55.0
+    },
+    "total_monthly_money": 55.0,
+    "created_at": "2025-08-22T16:50:35.234072",
+    "updated_at": "2025-08-22T16:50:35.234076"
+  },
+  {
+    "id": "0f4ea021",
+    "month": 8,
+    "year": 2025,
+    "driver_id": "d004",
+    "entries": [
+      {
+        "client_id": "c003",
+        "commission_per_order": 0.7,
+        "note": "",
+        "periods": [
+          {
+            "date_from": "2025-08-01",
+            "date_to": "2025-08-10",
+            "num_orders": 120
+          }
+        ],
+        "total_orders": 120,
+        "total_amount": 84.0
+      },
+      {
+        "client_id": "c001",
+        "commission_per_order": 0.4,
+        "note": "",
+        "periods": [
+          {
+            "date_from": "2025-08-06",
+            "date_to": "2025-08-23",
+            "num_orders": 300
+          }
+        ],
+        "total_orders": 300,
+        "total_amount": 120.0
+      }
+    ],
+    "totals": {
+      "total_orders": 420,
+      "total_amount": 204.0
+    },
+    "total_monthly_money": 204.0,
+    "created_at": "2025-08-23T02:06:40.084933",
+    "updated_at": "2025-08-23T02:09:21.649890"
+  },
+  {
+    "id": "9e5090f9",
+    "month": 8,
+    "year": 2025,
+    "driver_id": "d006",
+    "entries": [
+      {
+        "client_id": "c005",
+        "commission_per_order": 0.5,
+        "note": "",
+        "periods": [
+          {
+            "date_from": "2025-08-01",
+            "date_to": "2025-08-30",
+            "num_orders": 150
+          }
+        ],
+        "total_orders": 150,
+        "total_amount": 75.0
+      }
+    ],
+    "totals": {
+      "total_orders": 150,
+      "total_amount": 75.0
+    },
+    "total_monthly_money": 75.0,
+    "created_at": "2025-08-23T02:07:14.513263",
+    "updated_at": "2025-08-23T02:07:14.513268"
+  },
+  {
+    "id": "798024e3",
+    "month": 8,
+    "year": 2025,
+    "driver_id": "d007",
+    "entries": [
+      {
+        "client_id": "c001",
+        "commission_per_order": 0.6,
+        "note": "",
+        "periods": [
+          {
+            "date_from": "2025-08-01",
+            "date_to": "2025-08-30",
+            "num_orders": 220
+          }
+        ],
+        "total_orders": 220,
+        "total_amount": 132.0
+      }
+    ],
+    "totals": {
+      "total_orders": 220,
+      "total_amount": 132.0
+    },
+    "total_monthly_money": 132.0,
+    "created_at": "2025-08-23T02:07:52.240224",
+    "updated_at": "2025-08-23T02:07:52.240228"
+  },
+  {
+    "id": "d359c03e",
+    "month": 8,
+    "year": 2025,
+    "driver_id": "d009",
+    "entries": [
+      {
+        "client_id": "c003",
+        "commission_per_order": 0.2,
+        "note": "",
+        "periods": [
+          {
+            "date_from": "2025-08-01",
+            "date_to": "2025-08-30",
+            "num_orders": 50
+          }
+        ],
+        "total_orders": 50,
+        "total_amount": 10.0
+      }
+    ],
+    "totals": {
+      "total_orders": 50,
+      "total_amount": 10.0
+    },
+    "total_monthly_money": 10.0,
+    "created_at": "2025-08-23T02:08:21.712345",
+    "updated_at": "2025-08-23T02:08:21.712348"
+  },
+  {
+    "id": "ed3b5f86",
+    "month": 8,
+    "year": 2025,
+    "driver_id": "d010",
+    "entries": [
+      {
+        "client_id": "c005",
+        "commission_per_order": 0.9,
+        "note": "",
+        "periods": [
+          {
+            "date_from": "2025-08-01",
+            "date_to": "2025-08-30",
+            "num_orders": 200
+          }
+        ],
+        "total_orders": 200,
+        "total_amount": 180.0
+      }
+    ],
+    "totals": {
+      "total_orders": 200,
+      "total_amount": 180.0
+    },
+    "total_monthly_money": 180.0,
+    "created_at": "2025-08-23T02:08:44.815764",
+    "updated_at": "2025-08-23T02:08:44.815767"
+  },
+  {
+    "id": "901548ac",
+    "month": 8,
+    "year": 2025,
+    "driver_id": "3175eb4f",
+    "entries": [
+      {
+        "client_id": "c001",
+        "commission_per_order": 0.5,
+        "note": "",
+        "periods": [
+          {
+            "date_from": "2025-08-01",
+            "date_to": "2025-08-31",
+            "num_orders": 150
+          }
+        ],
+        "total_orders": 150,
+        "total_amount": 75.0
+      }
+    ],
+    "totals": {
+      "total_orders": 150,
+      "total_amount": 75.0
+    },
+    "total_monthly_money": 75.0,
+    "created_at": "2025-08-23T11:47:58.824988",
+    "updated_at": "2025-08-23T11:47:58.824991"
+  }
+]

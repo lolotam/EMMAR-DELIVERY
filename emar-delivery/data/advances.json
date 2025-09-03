@@ -1,0 +1,20 @@
+[
+  {
+    "driver_id": "d001",
+    "amount": 150.0,
+    "paid_amount": 0,
+    "date_issued": "2025-01-23",
+    "date_due": "",
+    "status": "active",
+    "reason": "سُلفة لظروف طارئة",
+    "approved_by": "admin",
+    "payment_method": "",
+    "notes": "",
+    "advance_deduction_mode": "percentage",
+    "advance_deduction_value": 50.0,
+    "deduction_amount": 0,
+    "id": "29efe2ee",
+    "created_at": "2025-08-23T13:17:18.606641",
+    "updated_at": "2025-08-23T13:49:44.534514"
+  }
+]

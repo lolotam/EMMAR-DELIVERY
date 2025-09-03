@@ -1,0 +1,18 @@
+{
+  "app_name": "شركة إعمار لتوصيل الطلبات",
+  "version": "1.0.0",
+  "development_date": "أغسطس 2025",
+  "developer": "د/وليد محمد",
+  "last_update": "25‏/8‏/2025 م",
+  "currency": "KWD",
+  "global_commission_per_order": 0.250,
+  "admin": {
+    "username": "admin",
+    "password": "@Xx123456789xX@"
+  },
+  "settings": {
+    "default_commission_per_order": 0.300,
+    "payroll_approval_required": true,
+    "maintenance_alert_days": 30
+  }
+}
