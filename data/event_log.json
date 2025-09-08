@@ -9444,5 +9444,37 @@
       "unpaid_advances": 0
     },
     "session_id": "web_session"
+  },
+  {
+    "id": "886618c3",
+    "timestamp": "2025-09-08T23:38:42.347690",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 9,
+      "year": 2025,
+      "monthly_orders": 12,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "9dcfc2fe",
+    "timestamp": "2025-09-08T23:38:42.634712",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 9,
+      "year": 2025,
+      "monthly_orders": 12,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
   }
 ]
