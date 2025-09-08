@@ -9380,5 +9380,69 @@
       "filename": "472921812_626100799872042_7114336780088820610_n.jpg"
     },
     "session_id": "web_session"
+  },
+  {
+    "id": "1c65f14f",
+    "timestamp": "2025-09-08T23:10:03.405934",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 9,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "44bab83d",
+    "timestamp": "2025-09-08T23:10:03.667424",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 9,
+      "year": 2025,
+      "monthly_orders": 0,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "a5077b2f",
+    "timestamp": "2025-09-08T23:17:37.204103",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 9,
+      "year": 2025,
+      "monthly_orders": 5,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
+  },
+  {
+    "id": "08e04d34",
+    "timestamp": "2025-09-08T23:17:37.445620",
+    "action": "view",
+    "entity_type": "dashboard",
+    "entity_id": null,
+    "user": "admin",
+    "ip_address": null,
+    "details": {
+      "month": 9,
+      "year": 2025,
+      "monthly_orders": 5,
+      "unpaid_advances": 0
+    },
+    "session_id": "web_session"
   }
 ]

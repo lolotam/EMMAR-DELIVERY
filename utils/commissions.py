@@ -183,12 +183,15 @@ class CommissionCalculator:
             total_commission = 0
             total_orders = 0
             commission_details = []
+            found_monthly_data = False
 
             # Find all monthly order records for this driver and month/year
             for monthly_record in monthly_orders:
                 if (monthly_record.get('driver_id') == driver_id and
                     monthly_record.get('month') == month and
                     monthly_record.get('year') == year):
+
+                    found_monthly_data = True
 
                     # Process each client entry in this monthly record
                     for entry in monthly_record.get('entries', []):
@@ -235,6 +238,75 @@ class CommissionCalculator:
                                 'source': 'monthly_matrix'
                             })
 
+            # FALLBACK: If no monthly_orders data found, calculate from actual orders table
+            if not found_monthly_data:
+                orders = json_store.read_all('orders')
+                client_order_counts = {}
+
+                # Count orders for this driver in the specified month/year
+                for order in orders:
+                    if order.get('driver_id') == driver_id:
+                        order_date = order.get('order_date', order.get('created_at', ''))
+                        if order_date:
+                            try:
+                                # Handle both ISO datetime and date-only formats
+                                if 'T' in order_date:
+                                    order_date_obj = datetime.fromisoformat(order_date.replace('Z', '+00:00'))
+                                else:
+                                    order_date_obj = datetime.strptime(order_date, '%Y-%m-%d')
+
+                                # Check if order falls within the specified month/year
+                                if (order_date_obj.year == year and order_date_obj.month == month):
+                                    client_id = order.get('client_id')
+                                    if client_id:
+                                        if client_id not in client_order_counts:
+                                            client_order_counts[client_id] = 0
+                                        client_order_counts[client_id] += 1
+                                        total_orders += 1
+
+                                        # Add commission amount from order
+                                        commission_amount = float(order.get('commission_amount', 0))
+                                        total_commission += commission_amount
+
+                            except (ValueError, TypeError):
+                                continue
+
+                # Create commission details from actual orders
+                for client_id, order_count in client_order_counts.items():
+                    client = self.load_client(client_id)
+                    client_name = client.get('company_name', f'Client {client_id}') if client else f'Client {client_id}'
+
+                    # Calculate average commission per order for this client
+                    client_total_commission = 0
+                    client_order_count = 0
+                    for order in orders:
+                        if (order.get('driver_id') == driver_id and
+                            order.get('client_id') == client_id):
+                            order_date = order.get('order_date', order.get('created_at', ''))
+                            if order_date:
+                                try:
+                                    if 'T' in order_date:
+                                        order_date_obj = datetime.fromisoformat(order_date.replace('Z', '+00:00'))
+                                    else:
+                                        order_date_obj = datetime.strptime(order_date, '%Y-%m-%d')
+
+                                    if (order_date_obj.year == year and order_date_obj.month == month):
+                                        client_total_commission += float(order.get('commission_amount', 0))
+                                        client_order_count += 1
+                                except (ValueError, TypeError):
+                                    continue
+
+                    avg_commission = client_total_commission / client_order_count if client_order_count > 0 else 0
+
+                    commission_details.append({
+                        'client_id': client_id,
+                        'client_name': client_name,
+                        'commission_per_order': round(avg_commission, 3),
+                        'orders_count': order_count,
+                        'total_commission': round(client_total_commission, 3),
+                        'source': 'orders_fallback'
+                    })
+
             driver = self.load_driver(driver_id)
 
             return {
@@ -246,7 +318,8 @@ class CommissionCalculator:
                 'total_commission': round(total_commission, 3),
                 'order_count': total_orders,
                 'commission_details': commission_details,
-                'currency': self.load_config().get('currency', 'KWD')
+                'currency': self.load_config().get('currency', 'KWD'),
+                'data_source': 'monthly_matrix' if found_monthly_data else 'orders_fallback'
             }
 
         except Exception as e:
