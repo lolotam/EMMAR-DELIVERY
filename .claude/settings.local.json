@@ -27,7 +27,19 @@
       "mcp__filesystem-mcp__write_file",
       "mcp__filesystem-mcp__edit_file",
       "mcp__byterover-mcp__byterover-store-knowledge",
-      "mcp__filesystem-mcp__list_allowed_directories"
+      "mcp__filesystem-mcp__list_allowed_directories",
+      "mcp__zen__debug",
+      "mcp__playwright-mcp__browser_navigate",
+      "mcp__playwright-mcp__browser_type",
+      "mcp__playwright-mcp__browser_snapshot",
+      "mcp__playwright-mcp__browser_click",
+      "Bash(curl:*)",
+      "Bash(cat:*)",
+      "mcp__playwright-mcp__browser_evaluate",
+      "mcp__playwright-mcp__browser_network_requests",
+      "mcp__playwright-mcp__browser_wait_for",
+      "mcp__playwright-mcp__browser_fill_form",
+      "Bash(taskkill:*)"
     ],
     "deny": [],
     "ask": []

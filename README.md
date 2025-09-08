@@ -1,459 +1,437 @@
-# EMAR Delivery Management System
-## شركة إعمار لتوصيل الطلبات
+# EMAR Delivery Management System - Deployment Guide
 
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
-[![Flask](https://img.shields.io/badge/Flask-3.0.0-green.svg)](https://flask.palletsprojects.com/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+## 🚀 Production Deployment Guide
 
-A comprehensive, enterprise-grade delivery management system designed specifically for Emar Delivery Company. This system provides complete management capabilities for drivers, vehicles, orders, payroll, documents, and maintenance operations with full Arabic language support.
+This guide provides comprehensive instructions for deploying the EMAR Delivery Management System in a production environment.
 
-## 🌟 Key Features
+## 📋 Prerequisites
 
-### Core Management Modules
-- **👥 Driver Management** - Complete driver profiles, documentation, and performance tracking
-- **🚗 Vehicle Management** - Fleet tracking, maintenance schedules, and vehicle assignments
-- **📦 Order Management** - Order processing, tracking, and delivery management
-- **💰 Payroll System** - Automated salary calculations, advances, and commission management
-- **📄 Document Management** - Secure document storage with preview, download, and categorization
-- **🔧 Maintenance Tracking** - Preventive maintenance scheduling and breakdown management
-- **📊 Commission Calculations** - Flexible commission rules and automated calculations
+### System Requirements
+- **Operating System**: Ubuntu 20.04+ or CentOS 8+ (recommended)
+- **Python**: 3.9 or higher
+- **RAM**: 8GB minimum, 16GB recommended
+- **Storage**: 50GB+ SSD storage
+- **CPU**: 2+ cores, 4+ cores recommended
+- **Network**: Stable internet connection with SSL certificate
 
-### Advanced Features
-- **🔐 Multi-level Authentication** - Role-based access control with admin and user levels
-- **📱 Responsive Design** - Mobile-friendly interface for on-the-go management
-- **🌐 Arabic Language Support** - Full RTL support with Arabic interface
-- **📈 Analytics & Reporting** - Comprehensive reports and data export capabilities
-- **🔒 Security Features** - CSRF protection, rate limiting, and secure file uploads
-- **💾 Data Backup** - Automated backup system with data integrity checks
-- **📋 Event Logging** - Complete audit trail for all system operations
+### Required Software
+- Python 3.9+
+- pip (Python package manager)
+- Git
+- Nginx (web server)
+- Supervisor (process manager)
+- SSL certificate (Let's Encrypt recommended)
 
-#### 📦 إدارة الطلبات
-- إنشاء وتتبع الطلبات
-- حساب العمولات التلقائي
-- إدارة حالات الطلبات
-- ربط الطلبات بالسائقين والعملاء
+## 🔧 Server Setup
 
-#### 💰 النظام المالي
-- إدارة السُلف والمديونيات
-- حساب الرواتب التلقائي
-- خصم السُلف من الرواتب
-- تتبع الأرصدة والحدود
+### 1. Update System Packages
 
-#### 🔧 إدارة الصيانة
-- جدولة الصيانة الدورية
-- تتبع تكاليف الصيانة
-- تنبيهات الصيانة المستحقة
-- سجل الصيانة الكامل
-
-#### 📊 التقارير والإحصائيات
-- تقارير السائقين المفصلة
-- التقارير المالية
-- تقارير الصيانة
-- تصدير البيانات (CSV/Excel)
-
-### 🛠️ التقنيات المستخدمة
-
-- **Backend**: Python Flask
-- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **UI Framework**: Bootstrap 5 RTL
-- **Icons**: Font Awesome
-- **Fonts**: Tajawal (Google Fonts)
-- **Data Storage**: JSON Files
-- **Authentication**: Session-based
-
-### 📁 هيكل المشروع
-
-```
-EMMAR-DELIVERY/
-├── app.py                 # تطبيق Flask الرئيسي
-├── requirements.txt       # متطلبات Python
-├── README.md             # هذا الملف
-├── data/                 # ملفات البيانات JSON
-│   ├── config.json
-│   ├── drivers.json
-│   ├── vehicles.json
-│   ├── clients.json
-│   ├── orders.json
-│   ├── advances.json
-│   ├── payroll_runs.json
-│   └── maintenance_schedules.json
-├── static/               # الملفات الثابتة
-│   ├── css/
-│   │   └── style.css
-│   └── js/
-│       ├── app.js
-│       ├── api.js
-│       ├── utils.js
-│       └── components/
-│           ├── DataTable.js
-│           └── FormModal.js
-├── templates/            # قوالب HTML
-│   └── index.html
-├── utils/                # أدوات مساعدة
-│   ├── json_store.py
-│   ├── commissions.py
-│   └── payroll.py
-└── exports/              # ملفات التصدير
-```
-
-### 🚀 التثبيت والتشغيل
-
-#### المتطلبات
-- Python 3.8 أو أحدث
-- pip (مدير حزم Python)
-
-#### خطوات التثبيت
-
-1. **استنساخ المشروع**
 ```bash
-git clone [repository-url]
-cd emar-delivery
+# Ubuntu/Debian
+sudo apt update && sudo apt upgrade -y
+
+# CentOS/RHEL
+sudo yum update -y
 ```
 
-2. **إنشاء بيئة افتراضية (اختياري)**
+### 2. Install Required Packages
+
 ```bash
-python -m venv venv
-# Windows
-venv\Scripts\activate
-# Linux/Mac
-source venv/bin/activate
+# Ubuntu/Debian
+sudo apt install -y python3 python3-pip python3-venv git nginx supervisor certbot python3-certbot-nginx
+
+# CentOS/RHEL
+sudo yum install -y python3 python3-pip git nginx supervisor certbot python3-certbot-nginx
 ```
 
-3. **تثبيت المتطلبات**
+### 3. Create Application User
+
 ```bash
-pip install -r requirements.txt
+sudo useradd -m -s /bin/bash emar
+sudo usermod -aG sudo emar
 ```
 
-4. **تشغيل التطبيق**
+### 4. Set Up Application Directory
+
 ```bash
-python app.py
+sudo mkdir -p /opt/emar-delivery
+sudo chown emar:emar /opt/emar-delivery
 ```
 
-5. **فتح المتصفح**
+## 📦 Application Deployment
+
+### 1. Clone Repository
+
+```bash
+sudo -u emar git clone https://github.com/lolotam/EMAR-DELIVERY.git /opt/emar-delivery
+cd /opt/emar-delivery/emar-delivery
 ```
-http://localhost:1111
+
+### 2. Create Virtual Environment
+
+```bash
+sudo -u emar python3 -m venv /opt/emar-delivery/venv
+sudo -u emar /opt/emar-delivery/venv/bin/pip install --upgrade pip
 ```
 
-### 🔐 بيانات الدخول الافتراضية
+### 3. Install Dependencies
 
-- **اسم المستخدم**: admin
-- **كلمة المرور**: @Xx123456789xX@
+```bash
+sudo -u emar /opt/emar-delivery/venv/bin/pip install -r requirements.txt
+```
 
-### 📖 دليل الاستخدام
+### 4. Configure Environment Variables
 
-#### 1. لوحة التحكم
-- عرض الإحصائيات الشهرية
-- مراقبة الطلبات والرواتب
-- تنبيهات الصيانة المستحقة
+```bash
+sudo -u emar cp .env.example .env
+sudo -u emar nano .env
+```
 
-#### 2. إدارة السائقين
-- إضافة سائق جديد من زر "إضافة جديد"
-- تعديل بيانات السائق بالنقر على "تعديل"
-- تحديد نوع التوظيف وإعدادات العمولة
-- ضبط حدود السُلف وطريقة الخصم
+Update the following critical settings:
+```bash
+FLASK_ENV=production
+FLASK_SECRET_KEY=your-super-secure-secret-key-here
+FLASK_USE_HTTPS=True
+CSRF_SECRET_KEY=your-csrf-secret-key-here
+DEFAULT_ADMIN_PASSWORD=your-secure-admin-password
+```
 
-#### 3. إدارة الطلبات
-- إنشاء طلب جديد مع اختيار السائق والعميل
-- تحديد عناوين الاستلام والتسليم
-- متابعة حالة الطلب (في الانتظار، قيد التنفيذ، مكتمل)
-- عرض العمولة المحسوبة تلقائياً
+### 5. Set Up Directory Permissions
 
-#### 4. النظام المالي
-- إدارة السُلف: إضافة سُلفة جديدة للسائق
-- حساب الرواتب: اختيار الشهر والسنة وحساب الرواتب
-- اعتماد الرواتب ومعالجة خصم السُلف
-- إغلاق دفعة الرواتب
+```bash
+sudo -u emar mkdir -p /opt/emar-delivery/emar-delivery/{uploads,logs,backups}
+sudo chmod 755 /opt/emar-delivery/emar-delivery/uploads
+sudo chmod 755 /opt/emar-delivery/emar-delivery/logs
+sudo chmod 755 /opt/emar-delivery/emar-delivery/backups
+```
 
-#### 5. الصيانة
-- جدولة صيانة دورية للسيارات
-- تتبع تواريخ الاستحقاق
-- إدارة تكاليف الصيانة
-- عرض التنبيهات
+### 6. Initialize Application
 
-### 🔧 الإعدادات
+```bash
+cd /opt/emar-delivery/emar-delivery
+sudo -u emar /opt/emar-delivery/venv/bin/python setup_uploads.py
+```
 
-#### ملف config.json
-```json
-{
-  "app_name": "شركة إعمار لتوصيل الطلبات",
-  "currency": "KWD",
-  "global_commission_per_order": 0.250,
-  "admin": {
-    "username": "admin",
-    "password": "@Xx123456789xX@"
-  },
-  "settings": {
-    "default_advance_limit": 500,
-    "default_commission_per_order": 0.300,
-    "payroll_approval_required": true,
-    "maintenance_alert_days": 30
-  }
+## 🔒 Security Configuration
+
+### 1. Firewall Setup
+
+```bash
+# Ubuntu (UFW)
+sudo ufw allow ssh
+sudo ufw allow 80
+sudo ufw allow 443
+sudo ufw enable
+
+# CentOS (firewalld)
+sudo firewall-cmd --permanent --add-service=ssh
+sudo firewall-cmd --permanent --add-service=http
+sudo firewall-cmd --permanent --add-service=https
+sudo firewall-cmd --reload
+```
+
+### 2. SSL Certificate Setup
+
+```bash
+# Install SSL certificate using Let's Encrypt
+sudo certbot --nginx -d your-domain.com
+```
+
+### 3. Secure File Permissions
+
+```bash
+sudo chmod 600 /opt/emar-delivery/emar-delivery/.env
+sudo chown emar:emar /opt/emar-delivery/emar-delivery/.env
+```
+
+## 🌐 Web Server Configuration
+
+### 1. Nginx Configuration
+
+Create `/etc/nginx/sites-available/emar-delivery`:
+
+```nginx
+server {
+    listen 80;
+    server_name your-domain.com www.your-domain.com;
+    return 301 https://$server_name$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name your-domain.com www.your-domain.com;
+
+    ssl_certificate /etc/letsencrypt/live/your-domain.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/your-domain.com/privkey.pem;
+    
+    # SSL Security Headers
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384;
+    ssl_prefer_server_ciphers off;
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 10m;
+    
+    # Security Headers
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+    add_header X-Content-Type-Options nosniff;
+    add_header X-Frame-Options DENY;
+    add_header X-XSS-Protection "1; mode=block";
+    add_header Referrer-Policy "strict-origin-when-cross-origin";
+
+    # Main application
+    location / {
+        proxy_pass http://127.0.0.1:1111;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_redirect off;
+        
+        # Timeouts
+        proxy_connect_timeout 60s;
+        proxy_send_timeout 60s;
+        proxy_read_timeout 60s;
+    }
+
+    # Static files
+    location /static {
+        alias /opt/emar-delivery/emar-delivery/static;
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+        access_log off;
+    }
+
+    # Upload size limit
+    client_max_body_size 16M;
+    
+    # Logging
+    access_log /var/log/nginx/emar-delivery.access.log;
+    error_log /var/log/nginx/emar-delivery.error.log;
 }
 ```
 
-### 💡 نصائح الاستخدام
-
-1. **النسخ الاحتياطي**: انسخ مجلد `data/` بانتظام
-2. **الأمان**: غيّر كلمة مرور المدير الافتراضية
-3. **الصيانة**: راجع تنبيهات الصيانة أسبوعياً
-4. **الرواتب**: اعتمد الرواتب قبل معالجة الخصومات
-5. **التقارير**: استخدم التقارير لمراجعة الأداء الشهري
-
-### 🐛 استكشاف الأخطاء
-
-#### مشاكل شائعة:
-
-**خطأ في تحميل البيانات**
-- تأكد من وجود ملفات JSON في مجلد `data/`
-- تحقق من صحة تنسيق JSON
-
-**خطأ في حساب العمولات**
-- تأكد من وجود بيانات السائق والعميل
-- راجع إعدادات العمولة
-
-**مشاكل في الواجهة**
-- امسح ذاكرة التخزين المؤقت للمتصفح
-- تأكد من تحميل ملفات CSS و JavaScript
-
-### 📞 الدعم الفني
-
-للحصول على المساعدة أو الإبلاغ عن مشاكل:
-- راجع ملف الأخطاء في وحدة التحكم
-- تحقق من سجلات الخادم
-- تأكد من تحديث المتطلبات
-
-### 📄 الترخيص
-
-هذا المشروع مطور خصيصاً لشركة إعمار للتوصيل.
-
-### 🔄 التحديثات المستقبلية
-
-## 🚀 Deployment
-
-### Development Deployment
+### 2. Enable Nginx Site
 
 ```bash
-# Start development server
-python app.py
+sudo ln -s /etc/nginx/sites-available/emar-delivery /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl reload nginx
 ```
 
-The application will be available at `http://localhost:1111`
+## 🔄 Process Management
 
-### Production Deployment
+### 1. Gunicorn Configuration
 
-#### Using Gunicorn (Recommended)
+Create `/opt/emar-delivery/emar-delivery/gunicorn.conf.py`:
 
-1. **Install Gunicorn**
+```python
+# Gunicorn configuration file
+bind = "127.0.0.1:5000"
+workers = 4
+worker_class = "sync"
+worker_connections = 1000
+timeout = 30
+keepalive = 2
+max_requests = 1000
+max_requests_jitter = 100
+preload_app = True
+user = "emar"
+group = "emar"
+tmp_upload_dir = None
+errorlog = "/opt/emar-delivery/emar-delivery/logs/gunicorn_error.log"
+accesslog = "/opt/emar-delivery/emar-delivery/logs/gunicorn_access.log"
+loglevel = "info"
+access_log_format = '%(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"'
+```
+
+### 2. Supervisor Configuration
+
+Create `/etc/supervisor/conf.d/emar-delivery.conf`:
+
+```ini
+[program:emar-delivery]
+command=/opt/emar-delivery/venv/bin/gunicorn --config /opt/emar-delivery/emar-delivery/gunicorn.conf.py app:app
+directory=/opt/emar-delivery/emar-delivery
+user=emar
+autostart=true
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/opt/emar-delivery/emar-delivery/logs/supervisor.log
+stdout_logfile_maxbytes=10MB
+stdout_logfile_backups=5
+environment=PATH="/opt/emar-delivery/venv/bin"
+```
+
+### 3. Start Services
+
+```bash
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl start emar-delivery
+sudo systemctl enable supervisor
+sudo systemctl enable nginx
+```
+
+## 📊 Monitoring & Logging
+
+### 1. Log Rotation Setup
+
+Create `/etc/logrotate.d/emar-delivery`:
+
+```
+/opt/emar-delivery/emar-delivery/logs/*.log {
+    daily
+    missingok
+    rotate 30
+    compress
+    delaycompress
+    notifempty
+    create 644 emar emar
+    postrotate
+        supervisorctl restart emar-delivery
+    endscript
+}
+```
+
+### 2. System Monitoring
+
+```bash
+# Check application status
+sudo supervisorctl status emar-delivery
+
+# View application logs
+sudo tail -f /opt/emar-delivery/emar-delivery/logs/supervisor.log
+
+# Check Nginx status
+sudo systemctl status nginx
+
+# View Nginx logs
+sudo tail -f /var/log/nginx/emar-delivery.access.log
+```
+
+## 💾 Backup Configuration
+
+### 1. Create Backup Script
+
+Create `/opt/emar-delivery/backup.sh`:
+
+```bash
+#!/bin/bash
+BACKUP_DIR="/opt/emar-delivery/backups"
+DATE=$(date +%Y%m%d_%H%M%S)
+APP_DIR="/opt/emar-delivery/emar-delivery"
+
+# Create backup directory
+mkdir -p $BACKUP_DIR
+
+# Backup data directory
+tar -czf $BACKUP_DIR/data_backup_$DATE.tar.gz -C $APP_DIR data/
+
+# Backup uploads directory
+tar -czf $BACKUP_DIR/uploads_backup_$DATE.tar.gz -C $APP_DIR uploads/
+
+# Remove backups older than 30 days
+find $BACKUP_DIR -name "*.tar.gz" -mtime +30 -delete
+
+echo "Backup completed: $DATE"
+```
+
+### 2. Set Up Automated Backups
+
+```bash
+sudo chmod +x /opt/emar-delivery/backup.sh
+sudo chown emar:emar /opt/emar-delivery/backup.sh
+
+# Add to crontab for daily backups at 2 AM
+sudo -u emar crontab -e
+# Add this line:
+# 0 2 * * * /opt/emar-delivery/backup.sh >> /opt/emar-delivery/emar-delivery/logs/backup.log 2>&1
+```
+
+## 🔄 Updates & Maintenance
+
+### 1. Application Updates
+
+```bash
+# Stop the application
+sudo supervisorctl stop emar-delivery
+
+# Backup current version
+sudo -u emar cp -r /opt/emar-delivery/emar-delivery /opt/emar-delivery/emar-delivery.backup.$(date +%Y%m%d)
+
+# Pull latest changes
+cd /opt/emar-delivery
+sudo -u emar git pull origin main
+
+# Update dependencies
+sudo -u emar /opt/emar-delivery/venv/bin/pip install -r emar-delivery/requirements.txt
+
+# Restart the application
+sudo supervisorctl start emar-delivery
+```
+
+### 2. SSL Certificate Renewal
+
+```bash
+# Test renewal
+sudo certbot renew --dry-run
+
+# Set up automatic renewal
+sudo crontab -e
+# Add this line:
+# 0 12 * * * /usr/bin/certbot renew --quiet
+```
+
+## 🚨 Troubleshooting
+
+### Common Issues
+
+1. **Application won't start**
    ```bash
-   pip install gunicorn
-   ```
+sudo supervisorctl tail emar-delivery
+   sudo -u emar /opt/emar-delivery/venv/bin/python /opt/emar-delivery/emar-delivery/app.py
+```
 
-2. **Create Gunicorn configuration**
-   ```python
-   # gunicorn.conf.py
-   bind = "0.0.0.0:1111"
-   workers = 4
-   worker_class = "sync"
-   worker_connections = 1000
-   timeout = 30
-   keepalive = 2
-   max_requests = 1000
-   max_requests_jitter = 100
-   preload_app = True
-   ```
-
-3. **Start with Gunicorn**
+2. **Permission errors**
    ```bash
-   gunicorn --config gunicorn.conf.py app:app
-   ```
+sudo chown -R emar:emar /opt/emar-delivery
+   sudo chmod -R 755 /opt/emar-delivery/emar-delivery/uploads
+```
 
-#### Using Docker
-
-1. **Create Dockerfile**
-   ```dockerfile
-   FROM python:3.9-slim
-   WORKDIR /app
-   COPY requirements.txt .
-   RUN pip install -r requirements.txt
-   COPY . .
-   EXPOSE 1111
-   CMD ["gunicorn", "--bind", "0.0.0.0:1111", "app:app"]
-   ```
-
-2. **Build and run**
+3. **Database issues**
    ```bash
-   docker build -t emar-delivery .
-   docker run -p 1111:1111 emar-delivery
-   ```
+# Check data directory permissions
+   ls -la /opt/emar-delivery/emar-delivery/data/
+```
 
-## 🔒 Security Considerations
-
-### Authentication & Authorization
-- Multi-level user authentication system
-- Role-based access control (Admin, Manager, User)
-- Session management with automatic timeout
-- Password hashing using bcrypt
-
-### Data Protection
-- CSRF protection on all forms
-- Rate limiting to prevent abuse
-- Secure file upload with type validation
-- Input sanitization and validation
-- SQL injection prevention (using parameterized queries)
-
-### File Security
-- Secure filename handling
-- File type validation
-- Size limitations
-- Virus scanning (recommended for production)
-- Secure upload directory configuration
-
-### Network Security
-- HTTPS enforcement in production
-- Security headers (CSP, HSTS, etc.)
-- CORS configuration
-- Request size limitations
-
-## 📊 Usage Guide
-
-### Initial Setup
-
-1. **First Login**
-   - Use default credentials: `admin` / `admin123`
-   - Change password immediately after first login
-
-2. **System Configuration**
-   - Configure company information
-   - Set up commission rules
-   - Define user roles and permissions
-
-3. **Data Import**
-   - Import existing driver data
-   - Add vehicle information
-   - Set up client database
-
-### Daily Operations
-
-1. **Driver Management**
-   - Add new drivers with complete profiles
-   - Upload required documents (license, ID, etc.)
-   - Track driver performance and status
-
-2. **Order Processing**
-   - Create new delivery orders
-   - Assign orders to drivers
-   - Track order status and completion
-
-3. **Payroll Management**
-   - Process monthly payroll
-   - Calculate commissions automatically
-   - Generate salary reports
-
-## 🛠️ Maintenance & Backup
-
-### Regular Maintenance
-
-1. **Daily Tasks**
-   - Monitor system logs
-   - Check disk space
-   - Verify backup completion
-
-2. **Weekly Tasks**
-   - Review security logs
-   - Update system dependencies
-   - Performance monitoring
-
-3. **Monthly Tasks**
-   - Full system backup
-   - Security audit
-   - Performance optimization
-
-### Backup Procedures
-
-1. **Automatic Backups**
+4. **SSL certificate issues**
    ```bash
-   # Set up cron job for daily backups
-   0 2 * * * /path/to/backup_script.sh
-   ```
+sudo certbot certificates
+   sudo nginx -t
+```
 
-2. **Manual Backup**
+### Performance Optimization
+
+1. **Increase worker processes**
+   - Edit `gunicorn.conf.py` and increase `workers` based on CPU cores
+
+2. **Enable Nginx caching**
+   - Add caching directives to Nginx configuration
+
+3. **Monitor resource usage**
    ```bash
-   # Backup data directory
-   tar -czf backup_$(date +%Y%m%d).tar.gz data/
-
-   # Backup uploads
-   tar -czf uploads_backup_$(date +%Y%m%d).tar.gz uploads/
-   ```
-
-3. **Restore Procedures**
-   ```bash
-   # Restore data
-   tar -xzf backup_YYYYMMDD.tar.gz
-
-   # Restart application
-   systemctl restart emar-delivery
-   ```
-
-## 🤝 Contributing
-
-We welcome contributions to improve the EMAR Delivery Management System!
-
-### Development Setup
-
-1. **Fork the repository**
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-
-3. **Make your changes**
-4. **Run tests**
-   ```bash
-   python -m pytest tests/
-   ```
-
-5. **Submit a pull request**
-
-### Coding Standards
-
-- Follow PEP 8 for Python code
-- Use meaningful variable and function names
-- Add comments for complex logic
-- Write unit tests for new features
-- Update documentation as needed
-
-### Bug Reports
-
-When reporting bugs, please include:
-- System information (OS, Python version)
-- Steps to reproduce the issue
-- Expected vs actual behavior
-- Error messages or logs
-- Screenshots if applicable
+htop
+   df -h
+   free -m
+```
 
 ## 📞 Support
 
-### Documentation
-- **API Reference**: `/docs/API_REFERENCE.md`
-- **User Manual**: `/docs/USER_MANUAL_AR.md` (Arabic)
-- **Technical Documentation**: `/docs/TECHNICAL_DOCUMENTATION.md`
-
-### Contact Information
-- **Project Repository**: https://github.com/lolotam/EMAR-DELIVERY
-- **Issues**: https://github.com/lolotam/EMAR-DELIVERY/issues
-- **Email**: support@emar-delivery.com
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Flask framework and its excellent ecosystem
-- Bootstrap for responsive UI components
-- Font Awesome for icons
-- All contributors and testers
+For deployment issues or questions:
+- Check the logs first: `/opt/emar-delivery/emar-delivery/logs/`
+- Review Nginx logs: `/var/log/nginx/`
+- Contact support: support@emar-delivery.com
 
 ---
 
-**شركة إعمار لتوصيل الطلبات** - Delivering Excellence, Managing Success
+**EMAR Delivery Management System** - Production Deployment Guide

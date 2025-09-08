@@ -42,16 +42,18 @@ class AuthManager:
             with open(self.config_file, 'r', encoding='utf-8') as f:
                 return json.load(f)
         except (FileNotFoundError, json.JSONDecodeError):
-            # Return default config if file doesn't exist or is invalid
+            # SECURITY WARNING: Default credentials - CHANGE IN PRODUCTION!
+            # Use environment variables ADMIN_USERNAME and ADMIN_PASSWORD_HASH instead
             return {
                 'admin': {
                     'username': 'admin',
-                    'password': '@Xx123456789xX@'
+                    'password': 'admin123'  # Default password for testing - CHANGE IN PRODUCTION!
                 }
             }
     
     def validate_credentials(self, username: str, password: str) -> bool:
         """Validate user credentials using bcrypt hashing"""
+        # Always reload config to get latest changes
         config = self.load_config()
         admin_config = config.get('admin', {})
 
@@ -109,6 +111,46 @@ class AuthManager:
             'login_time': session.get('login_time'),
             'role': 'admin'  # Default role for authenticated users
         }
+
+    def update_admin_password(self, password_hash: str) -> bool:
+        """Update admin password with bcrypt hash"""
+        try:
+            print(f"[DEBUG] update_admin_password called with hash: {password_hash[:20]}...")
+
+            # Load current config
+            config = self.load_config()
+            print(f"[DEBUG] Current config loaded: {config}")
+
+            # Update admin password hash and remove plain password
+            if 'admin' not in config:
+                config['admin'] = {}
+
+            config['admin']['password_hash'] = password_hash
+
+            # Remove plain text password if it exists
+            if 'password' in config['admin']:
+                print(f"[DEBUG] Removing plain text password")
+                del config['admin']['password']
+
+            # Update last_update timestamp
+            config['last_update'] = datetime.now().strftime('%d‏/%m‏/%Y م')
+
+            print(f"[DEBUG] Updated config: {config}")
+            print(f"[DEBUG] Saving to file: {self.config_file}")
+
+            # Save to config.json
+            os.makedirs(self.data_dir, exist_ok=True)
+            with open(self.config_file, 'w', encoding='utf-8') as f:
+                json.dump(config, f, ensure_ascii=False, indent=2)
+
+            print(f"[DEBUG] Config file saved successfully")
+            return True
+
+        except Exception as e:
+            print(f"Error updating admin password: {e}")
+            import traceback
+            traceback.print_exc()
+            return False
 
 # Global instance
 auth_manager = AuthManager()

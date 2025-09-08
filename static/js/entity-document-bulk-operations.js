@@ -346,7 +346,7 @@ Object.assign(EntityDocumentManager.prototype, {
             console.error('Failed to get CSRF token:', error);
             return null;
         }
-    }
+    },
 
     /**
      * Save document changes

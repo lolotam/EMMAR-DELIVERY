@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Settings Page Fix</title>
+    <style>
+        body {
+            font-family: 'Tajawal', Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid;
+        }
+        .success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        .info {
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+            color: #0c5460;
+        }
+        .test-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background-color: #0056b3;
+        }
+        #console-output {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔧 Settings Page JavaScript Error Fix Test</h1>
+        
+        <div class="test-result info">
+            <strong>Test Purpose:</strong> Verify that the Settings page loads without JavaScript errors after implementing null checks for password change functionality.
+        </div>
+
+        <h2>Test Instructions:</h2>
+        <ol>
+            <li>Open the EMAR-DELIVERY application at <a href="http://localhost:1111" target="_blank">http://localhost:1111</a></li>
+            <li>Login with admin credentials (admin/admin123)</li>
+            <li>Navigate to the Settings page (الإعدادات)</li>
+            <li>Open browser Developer Tools (F12) and check the Console tab</li>
+            <li>Look for the Security Settings section (إعدادات الأمان)</li>
+            <li>Test the password change form functionality</li>
+        </ol>
+
+        <h2>Expected Results:</h2>
+        <div class="test-result success">
+            <strong>✅ No JavaScript Errors:</strong> The console should not show any "Cannot read properties of null" errors
+        </div>
+        <div class="test-result success">
+            <strong>✅ Password Form Visible:</strong> The password change form should be visible in the Security Settings section
+        </div>
+        <div class="test-result success">
+            <strong>✅ Event Listeners Working:</strong> Password visibility toggles and strength indicator should work
+        </div>
+
+        <h2>Test Actions:</h2>
+        <button class="test-button" onclick="testPasswordStrength()">Test Password Strength</button>
+        <button class="test-button" onclick="testPasswordVisibility()">Test Password Visibility</button>
+        <button class="test-button" onclick="testFormValidation()">Test Form Validation</button>
+        <button class="test-button" onclick="clearConsole()">Clear Console</button>
+
+        <h2>Console Output:</h2>
+        <div id="console-output">Console messages will appear here...</div>
+
+        <h2>Fix Summary:</h2>
+        <div class="test-result info">
+            <strong>Changes Made:</strong>
+            <ul>
+                <li>Added null checks to all password change event listeners</li>
+                <li>Moved setupPasswordChangeEventListeners() call to after DOM rendering</li>
+                <li>Added setTimeout delay to ensure DOM elements are available</li>
+                <li>Enhanced error handling with console warnings</li>
+                <li>Made all password functions defensive against missing elements</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Capture console messages
+        const originalLog = console.log;
+        const originalError = console.error;
+        const originalWarn = console.warn;
+        const consoleOutput = document.getElementById('console-output');
+
+        function addToConsole(type, message) {
+            const timestamp = new Date().toLocaleTimeString();
+            consoleOutput.textContent += `[${timestamp}] ${type.toUpperCase()}: ${message}\n`;
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            addToConsole('log', args.join(' '));
+        };
+
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            addToConsole('error', args.join(' '));
+        };
+
+        console.warn = function(...args) {
+            originalWarn.apply(console, args);
+            addToConsole('warn', args.join(' '));
+        };
+
+        // Test functions
+        function testPasswordStrength() {
+            console.log('Testing password strength validation...');
+            const newPasswordField = document.getElementById('newPassword');
+            if (newPasswordField) {
+                console.log('✅ New password field found');
+                // Simulate typing
+                newPasswordField.value = 'TestPass123!';
+                newPasswordField.dispatchEvent(new Event('input'));
+                console.log('✅ Password strength test completed');
+            } else {
+                console.warn('❌ New password field not found - this is expected on this test page');
+            }
+        }
+
+        function testPasswordVisibility() {
+            console.log('Testing password visibility toggles...');
+            const toggleBtn = document.getElementById('toggleNewPassword');
+            if (toggleBtn) {
+                console.log('✅ Password toggle button found');
+                toggleBtn.click();
+                console.log('✅ Password visibility test completed');
+            } else {
+                console.warn('❌ Password toggle button not found - this is expected on this test page');
+            }
+        }
+
+        function testFormValidation() {
+            console.log('Testing form validation...');
+            const passwordForm = document.getElementById('passwordChangeForm');
+            if (passwordForm) {
+                console.log('✅ Password change form found');
+                // Test form submission
+                passwordForm.dispatchEvent(new Event('submit'));
+                console.log('✅ Form validation test completed');
+            } else {
+                console.warn('❌ Password change form not found - this is expected on this test page');
+            }
+        }
+
+        function clearConsole() {
+            consoleOutput.textContent = '';
+            console.log('Console cleared');
+        }
+
+        // Initial message
+        console.log('Settings Page Fix Test initialized');
+        console.log('Navigate to http://localhost:1111 and test the Settings page');
+    </script>
+</body>
+</html>

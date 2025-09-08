@@ -181,11 +181,11 @@ class JSONStore:
             # Only create backup if it doesn't exist for today
             if not os.path.exists(backup_path):
                 shutil.copy2(file_path, backup_path)
-                print(f"✅ Daily backup created: {backup_path}")
+                print(f"[SUCCESS] Daily backup created: {backup_path}")
 
             return True
         except Exception as e:
-            print(f"⚠️ Backup failed for {file_path}: {e}")
+            print(f"[WARNING] Backup failed for {file_path}: {e}")
             return False
 
     def _cleanup_old_backups(self, days_to_keep: int = 30) -> None:
@@ -202,9 +202,9 @@ class JSONStore:
                     # Check if directory is older than cutoff
                     if os.path.getctime(backup_path) < cutoff_date:
                         shutil.rmtree(backup_path)
-                        print(f"🗑️ Cleaned up old backup: {backup_dir}")
+                        print(f"[CLEANUP] Cleaned up old backup: {backup_dir}")
         except Exception as e:
-            print(f"⚠️ Backup cleanup failed: {e}")
+            print(f"[WARNING] Backup cleanup failed: {e}")
 
     def create_full_backup(self) -> str:
         """Create a full backup of all data files"""
@@ -222,10 +222,10 @@ class JSONStore:
                     shutil.copy2(source_path, dest_path)
                     backup_count += 1
 
-            print(f"✅ Full backup created: {backup_dir} ({backup_count} files)")
+            print(f"[SUCCESS] Full backup created: {backup_dir} ({backup_count} files)")
             return backup_dir
         except Exception as e:
-            print(f"❌ Full backup failed: {e}")
+            print(f"[ERROR] Full backup failed: {e}")
             raise e
 
     def read_all(self, collection: str) -> List[Dict]:
@@ -338,15 +338,15 @@ class JSONStore:
             today_backup_dir = os.path.join(self.backup_root, today)
 
             if not os.path.exists(today_backup_dir):
-                print("🔄 Creating initial daily backup...")
+                print("[INFO] Creating initial daily backup...")
                 for filename in os.listdir(self.data_dir):
                     if filename.endswith('.json'):
                         file_path = os.path.join(self.data_dir, filename)
                         self._create_daily_backup(file_path)
-                print("✅ Initial daily backup completed")
+                print("[SUCCESS] Initial daily backup completed")
 
         except Exception as e:
-            print(f"⚠️ Backup system initialization failed: {e}")
+            print(f"[WARNING] Backup system initialization failed: {e}")
 
 # Global instance
 json_store = JSONStore()

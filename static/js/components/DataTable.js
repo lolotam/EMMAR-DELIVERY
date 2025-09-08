@@ -1006,6 +1006,9 @@ class DataTable {
         this.filterData();
         this.currentPage = 1;
         this.updateTable();
+
+        // Force refresh of dynamic columns that depend on external data
+        this.refreshDynamicColumns();
     }
 
     /**
@@ -1013,6 +1016,25 @@ class DataTable {
      */
     refresh() {
         this.updateTable();
+        this.refreshDynamicColumns();
+    }
+
+    /**
+     * Refresh dynamic columns that depend on external data
+     * This is particularly important for vehicle_info columns that change based on car_ownership
+     */
+    refreshDynamicColumns() {
+        // Check if we have dynamic columns that need refreshing
+        const hasDynamicColumns = this.options.columns.some(col =>
+            col.type === 'vehicle_info' || col.type === 'assigned_driver'
+        );
+
+        if (hasDynamicColumns) {
+            // Small delay to ensure external data (like window.vehiclesData) is updated
+            setTimeout(() => {
+                this.renderTableRows();
+            }, 50);
+        }
     }
 
     /**

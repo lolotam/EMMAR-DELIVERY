@@ -92,6 +92,14 @@ const App = {
             loginForm.addEventListener('submit', this.handleLogin.bind(this));
         }
 
+        // Login password visibility toggle
+        const toggleLoginPassword = document.getElementById('toggleLoginPassword');
+        if (toggleLoginPassword) {
+            toggleLoginPassword.addEventListener('click', () => {
+                this.togglePasswordVisibility('password', 'toggleLoginPassword');
+            });
+        }
+
         // Logout button
         const logoutBtn = document.getElementById('logoutBtn');
         if (logoutBtn) {
@@ -2607,11 +2615,20 @@ const App = {
             // Make vehicles data available globally for DataTable
             window.vehiclesData = vehicles;
 
+            // Also make drivers data available globally for cross-referencing
+            window.driversData = drivers;
+
             // Find the existing DataTable instance and update its data
             const driversContainer = document.getElementById('driversContainer');
             if (driversContainer && window.driversTable) {
                 // Update the data in the existing table
                 window.driversTable.updateData(drivers);
+
+                // Force a complete refresh to ensure vehicle_info columns are updated correctly
+                // This is especially important when car_ownership changes
+                setTimeout(() => {
+                    window.driversTable.refresh();
+                }, 100);
             } else {
                 // If table doesn't exist, reinitialize the page
                 await this.initializeDriversPage();
@@ -7334,6 +7351,97 @@ const App = {
                                         </div>
                                     </div>
 
+                                    <!-- Security Settings Section -->
+                                    <div class="row mt-4">
+                                        <div class="col-12">
+                                            <h6><i class="fas fa-shield-alt me-2"></i>إعدادات الأمان</h6>
+
+                                            <div class="card border-warning">
+                                                <div class="card-header bg-warning bg-opacity-10">
+                                                    <h6 class="mb-0"><i class="fas fa-key me-2"></i>تغيير كلمة مرور المدير</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <form id="passwordChangeForm">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">كلمة المرور الحالية</label>
+                                                                    <div class="input-group">
+                                                                        <input type="password" class="form-control" id="currentPassword"
+                                                                               placeholder="أدخل كلمة المرور الحالية" required>
+                                                                        <button class="btn btn-outline-secondary" type="button" id="toggleCurrentPassword">
+                                                                            <i class="fas fa-eye"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">كلمة المرور الجديدة</label>
+                                                                    <div class="input-group">
+                                                                        <input type="password" class="form-control" id="newPassword"
+                                                                               placeholder="أدخل كلمة المرور الجديدة" required>
+                                                                        <button class="btn btn-outline-secondary" type="button" id="toggleNewPassword">
+                                                                            <i class="fas fa-eye"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="form-text">
+                                                                        يجب أن تحتوي على 8 أحرف على الأقل مع أرقام وأحرف كبيرة وصغيرة
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">تأكيد كلمة المرور الجديدة</label>
+                                                                    <div class="input-group">
+                                                                        <input type="password" class="form-control" id="confirmPassword"
+                                                                               placeholder="أعد إدخال كلمة المرور الجديدة" required>
+                                                                        <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword">
+                                                                            <i class="fas fa-eye"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <!-- Password Strength Indicator -->
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">قوة كلمة المرور</label>
+                                                                    <div class="progress" style="height: 8px;">
+                                                                        <div class="progress-bar" id="passwordStrengthBar" role="progressbar"
+                                                                             style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                    </div>
+                                                                    <small id="passwordStrengthText" class="form-text text-muted">أدخل كلمة مرور لتقييم قوتها</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Validation Messages -->
+                                                        <div id="passwordValidationMessages" class="mb-3" style="display: none;">
+                                                            <div class="alert alert-danger" role="alert">
+                                                                <ul id="passwordValidationList" class="mb-0"></ul>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Success/Error Messages -->
+                                                        <div id="passwordChangeMessages" class="mb-3" style="display: none;"></div>
+
+                                                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                            <button type="button" class="btn btn-secondary me-md-2" id="resetPasswordFormBtn">
+                                                                <i class="fas fa-undo me-2"></i>إعادة تعيين
+                                                            </button>
+                                                            <button type="submit" class="btn btn-warning" id="changePasswordBtn">
+                                                                <i class="fas fa-key me-2"></i>تغيير كلمة المرور
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                         <button type="button" class="btn btn-secondary me-md-2" id="resetSettingsBtn">
                                             <i class="fas fa-undo me-2"></i>إعادة تعيين
@@ -7536,6 +7644,11 @@ const App = {
             this.loadEventStats();
             this.loadRecentEvents();
 
+            // Setup password change event listeners after DOM is fully rendered
+            setTimeout(() => {
+                this.setupPasswordChangeEventListeners();
+            }, 100);
+
         } catch (error) {
             console.error('Error initializing settings page:', error);
             document.getElementById('settingsContainer').innerHTML = `
@@ -7612,6 +7725,98 @@ const App = {
         document.getElementById('cleanupEventsBtn').addEventListener('click', () => {
             this.cleanupOldEvents();
         });
+
+        // Password change button direct click event (bypasses form nesting issue)
+        const changePasswordBtn = document.getElementById('changePasswordBtn');
+        if (changePasswordBtn) {
+            changePasswordBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('🔐 Password change button clicked via direct event listener');
+                this.changeAdminPassword();
+            });
+        }
+
+        // Reset password form button
+        const resetPasswordFormBtn = document.getElementById('resetPasswordFormBtn');
+        if (resetPasswordFormBtn) {
+            resetPasswordFormBtn.addEventListener('click', () => {
+                console.log('🔄 Reset password form button clicked');
+                this.resetPasswordForm();
+            });
+        }
+    },
+
+    /**
+     * Setup password change event listeners
+     */
+    setupPasswordChangeEventListeners() {
+        console.log('🔧 Setting up password change event listeners...');
+
+        // Check if any password toggle buttons exist before proceeding
+        const toggleCurrentPassword = document.getElementById('toggleCurrentPassword');
+        const toggleNewPassword = document.getElementById('toggleNewPassword');
+        const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+
+        if (!toggleCurrentPassword && !toggleNewPassword && !toggleConfirmPassword) {
+            console.warn('❌ No password toggle buttons found, skipping event listeners setup');
+            return;
+        }
+
+        console.log('✅ Found password toggle buttons, proceeding with event listener setup');
+
+        // Note: Password change form submission and reset button event listeners
+        // are handled elsewhere in the application. This method focuses only on
+        // password visibility toggle functionality.
+
+        // Password visibility toggles - using variables defined above
+        if (toggleCurrentPassword) {
+            console.log('✅ Found toggleCurrentPassword button, adding event listener');
+            toggleCurrentPassword.addEventListener('click', () => {
+                console.log('🔄 toggleCurrentPassword clicked');
+                this.togglePasswordVisibility('currentPassword', 'toggleCurrentPassword');
+            });
+        } else {
+            console.warn('❌ toggleCurrentPassword button not found');
+        }
+
+        if (toggleNewPassword) {
+            console.log('✅ Found toggleNewPassword button, adding event listener');
+            toggleNewPassword.addEventListener('click', () => {
+                console.log('🔄 toggleNewPassword clicked');
+                this.togglePasswordVisibility('newPassword', 'toggleNewPassword');
+            });
+        } else {
+            console.warn('❌ toggleNewPassword button not found');
+        }
+
+        if (toggleConfirmPassword) {
+            console.log('✅ Found toggleConfirmPassword button, adding event listener');
+            toggleConfirmPassword.addEventListener('click', () => {
+                console.log('🔄 toggleConfirmPassword clicked');
+                this.togglePasswordVisibility('confirmPassword', 'toggleConfirmPassword');
+            });
+        } else {
+            console.warn('❌ toggleConfirmPassword button not found');
+        }
+
+        // Real-time password validation
+        const newPasswordField = document.getElementById('newPassword');
+        if (newPasswordField) {
+            newPasswordField.addEventListener('input', () => {
+                this.validatePasswordStrength();
+                this.validatePasswordMatch();
+            });
+        }
+
+        const confirmPasswordField = document.getElementById('confirmPassword');
+        if (confirmPasswordField) {
+            confirmPasswordField.addEventListener('input', () => {
+                this.validatePasswordMatch();
+            });
+        }
+
+        console.log('Password change event listeners setup completed');
     },
 
     /**
@@ -8185,6 +8390,351 @@ const App = {
         } catch (error) {
             hideLoading();
             showError(`حدث خطأ أثناء حذف الأحداث القديمة: ${error.message}`);
+        }
+    },
+
+    // ==================== PASSWORD CHANGE FUNCTIONS ====================
+
+    /**
+     * Change admin password
+     */
+    async changeAdminPassword() {
+        try {
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Clear previous messages
+            this.hidePasswordMessages();
+
+            // Validate form
+            if (!this.validatePasswordForm(currentPassword, newPassword, confirmPassword)) {
+                return;
+            }
+
+            showLoading('جاري تغيير كلمة المرور...');
+
+            const response = await fetch('/api/admin/change-password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    current_password: currentPassword,
+                    new_password: newPassword,
+                    confirm_password: confirmPassword
+                })
+            });
+
+            hideLoading();
+
+            if (response.ok) {
+                const data = await response.json();
+                this.showPasswordMessage('success', data.message || 'تم تغيير كلمة المرور بنجاح');
+                this.resetPasswordForm();
+
+                // Show success notification
+                showSuccess('تم تغيير كلمة المرور بنجاح!\n\nسيتم تسجيل خروجك خلال 5 ثوانٍ لتسجيل الدخول بكلمة المرور الجديدة.');
+
+                // Auto logout after 5 seconds
+                setTimeout(() => {
+                    this.logout();
+                }, 5000);
+            } else {
+                const error = await response.json();
+                this.showPasswordMessage('error', error.error || 'فشل في تغيير كلمة المرور');
+            }
+        } catch (error) {
+            hideLoading();
+            this.showPasswordMessage('error', `حدث خطأ أثناء تغيير كلمة المرور: ${error.message}`);
+        }
+    },
+
+    /**
+     * Validate password form
+     */
+    validatePasswordForm(currentPassword, newPassword, confirmPassword) {
+        const errors = [];
+
+        // Check if all fields are filled
+        if (!currentPassword) {
+            errors.push('يجب إدخال كلمة المرور الحالية');
+        }
+
+        if (!newPassword) {
+            errors.push('يجب إدخال كلمة المرور الجديدة');
+        }
+
+        if (!confirmPassword) {
+            errors.push('يجب تأكيد كلمة المرور الجديدة');
+        }
+
+        // Check password strength
+        if (newPassword) {
+            const strengthResult = this.checkPasswordStrength(newPassword);
+            if (strengthResult.score < 3) {
+                errors.push('كلمة المرور ضعيفة جداً. يجب أن تحتوي على 8 أحرف على الأقل مع أرقام وأحرف كبيرة وصغيرة');
+            }
+        }
+
+        // Check password match
+        if (newPassword && confirmPassword && newPassword !== confirmPassword) {
+            errors.push('كلمة المرور الجديدة وتأكيدها غير متطابقتين');
+        }
+
+        // Check if new password is different from current
+        if (currentPassword && newPassword && currentPassword === newPassword) {
+            errors.push('كلمة المرور الجديدة يجب أن تكون مختلفة عن الحالية');
+        }
+
+        if (errors.length > 0) {
+            this.showPasswordValidationErrors(errors);
+            return false;
+        }
+
+        return true;
+    },
+
+    /**
+     * Show password validation errors
+     */
+    showPasswordValidationErrors(errors) {
+        const messagesContainer = document.getElementById('passwordValidationMessages');
+        const errorsList = document.getElementById('passwordValidationList');
+
+        errorsList.innerHTML = errors.map(error => `<li>${error}</li>`).join('');
+        messagesContainer.style.display = 'block';
+    },
+
+    /**
+     * Show password change message
+     */
+    showPasswordMessage(type, message) {
+        const messagesContainer = document.getElementById('passwordChangeMessages');
+        const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+        const icon = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-triangle';
+
+        messagesContainer.innerHTML = `
+            <div class="alert ${alertClass}" role="alert">
+                <i class="${icon} me-2"></i>${message}
+            </div>
+        `;
+        messagesContainer.style.display = 'block';
+    },
+
+    /**
+     * Hide password messages
+     */
+    hidePasswordMessages() {
+        const validationMessages = document.getElementById('passwordValidationMessages');
+        const changeMessages = document.getElementById('passwordChangeMessages');
+
+        if (validationMessages) {
+            validationMessages.style.display = 'none';
+        }
+
+        if (changeMessages) {
+            changeMessages.style.display = 'none';
+        }
+    },
+
+    /**
+     * Reset password form
+     */
+    resetPasswordForm() {
+        const passwordChangeForm = document.getElementById('passwordChangeForm');
+        if (!passwordChangeForm) {
+            console.warn('Password change form not found, skipping reset');
+            return;
+        }
+
+        passwordChangeForm.reset();
+        this.hidePasswordMessages();
+        this.updatePasswordStrengthIndicator(0, 'أدخل كلمة مرور لتقييم قوتها', 'text-muted');
+    },
+
+    /**
+     * Toggle password visibility
+     */
+    togglePasswordVisibility(inputId, buttonId) {
+        console.log(`🔄 togglePasswordVisibility called: input=${inputId}, button=${buttonId}`);
+
+        const input = document.getElementById(inputId);
+        const button = document.getElementById(buttonId);
+
+        if (!input || !button) {
+            console.warn(`❌ Password visibility toggle failed: input(${inputId}) or button(${buttonId}) not found`);
+            console.log(`   input found: ${!!input}, button found: ${!!button}`);
+            return;
+        }
+
+        const icon = button.querySelector('i');
+        if (!icon) {
+            console.warn(`❌ Password visibility toggle failed: icon not found in button(${buttonId})`);
+            return;
+        }
+
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.className = 'fas fa-eye-slash';
+            console.log(`✅ Password visibility: SHOWN (${inputId})`);
+        } else {
+            input.type = 'password';
+            icon.className = 'fas fa-eye';
+            console.log(`✅ Password visibility: HIDDEN (${inputId})`);
+        }
+    },
+
+    /**
+     * Validate password strength
+     */
+    validatePasswordStrength() {
+        const passwordField = document.getElementById('newPassword');
+        if (!passwordField) {
+            console.warn('New password field not found, skipping strength validation');
+            return;
+        }
+
+        const password = passwordField.value;
+        const result = this.checkPasswordStrength(password);
+
+        this.updatePasswordStrengthIndicator(result.score, result.message, result.class);
+    },
+
+    /**
+     * Check password strength
+     */
+    checkPasswordStrength(password) {
+        if (!password) {
+            return { score: 0, message: 'أدخل كلمة مرور لتقييم قوتها', class: 'text-muted' };
+        }
+
+        let score = 0;
+        let feedback = [];
+
+        // Length check
+        if (password.length >= 8) {
+            score += 1;
+        } else {
+            feedback.push('8 أحرف على الأقل');
+        }
+
+        // Uppercase check
+        if (/[A-Z]/.test(password)) {
+            score += 1;
+        } else {
+            feedback.push('حرف كبير واحد على الأقل');
+        }
+
+        // Lowercase check
+        if (/[a-z]/.test(password)) {
+            score += 1;
+        } else {
+            feedback.push('حرف صغير واحد على الأقل');
+        }
+
+        // Number check
+        if (/\d/.test(password)) {
+            score += 1;
+        } else {
+            feedback.push('رقم واحد على الأقل');
+        }
+
+        // Special character check
+        if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+            score += 1;
+        } else {
+            feedback.push('رمز خاص واحد على الأقل');
+        }
+
+        // Determine strength level
+        let message, className;
+        if (score === 0) {
+            message = 'أدخل كلمة مرور لتقييم قوتها';
+            className = 'text-muted';
+        } else if (score <= 2) {
+            message = `ضعيفة جداً - مطلوب: ${feedback.join(', ')}`;
+            className = 'text-danger';
+        } else if (score === 3) {
+            message = `ضعيفة - مطلوب: ${feedback.join(', ')}`;
+            className = 'text-warning';
+        } else if (score === 4) {
+            message = 'متوسطة - جيدة ولكن يمكن تحسينها';
+            className = 'text-info';
+        } else {
+            message = 'قوية - ممتازة!';
+            className = 'text-success';
+        }
+
+        return { score, message, class: className };
+    },
+
+    /**
+     * Update password strength indicator
+     */
+    updatePasswordStrengthIndicator(score, message, className) {
+        const progressBar = document.getElementById('passwordStrengthBar');
+        const textElement = document.getElementById('passwordStrengthText');
+
+        if (!progressBar || !textElement) {
+            console.warn('Password strength indicator elements not found, skipping update');
+            return;
+        }
+
+        // Update progress bar
+        const percentage = (score / 5) * 100;
+        progressBar.style.width = `${percentage}%`;
+        progressBar.setAttribute('aria-valuenow', percentage);
+
+        // Update progress bar color
+        progressBar.className = 'progress-bar';
+        if (score <= 2) {
+            progressBar.classList.add('bg-danger');
+        } else if (score === 3) {
+            progressBar.classList.add('bg-warning');
+        } else if (score === 4) {
+            progressBar.classList.add('bg-info');
+        } else if (score === 5) {
+            progressBar.classList.add('bg-success');
+        }
+
+        // Update text
+        textElement.textContent = message;
+        textElement.className = `form-text ${className}`;
+    },
+
+    /**
+     * Validate password match
+     */
+    validatePasswordMatch() {
+        const newPasswordField = document.getElementById('newPassword');
+        const confirmPasswordField = document.getElementById('confirmPassword');
+
+        if (!newPasswordField || !confirmPasswordField) {
+            console.warn('Password fields not found, skipping match validation');
+            return;
+        }
+
+        const newPassword = newPasswordField.value;
+        const confirmPassword = confirmPasswordField.value;
+
+        if (confirmPassword && newPassword !== confirmPassword) {
+            confirmPasswordField.classList.add('is-invalid');
+
+            // Add or update invalid feedback
+            let feedback = confirmPasswordField.parentNode.querySelector('.invalid-feedback');
+            if (!feedback) {
+                feedback = document.createElement('div');
+                feedback.className = 'invalid-feedback';
+                confirmPasswordField.parentNode.appendChild(feedback);
+            }
+            feedback.textContent = 'كلمة المرور غير متطابقة';
+        } else {
+            confirmPasswordField.classList.remove('is-invalid');
+            const feedback = confirmPasswordField.parentNode.querySelector('.invalid-feedback');
+            if (feedback) {
+                feedback.remove();
+            }
         }
     },
 
