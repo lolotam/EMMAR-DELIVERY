@@ -1,0 +1,102 @@
+[
+  {
+    "id": "comp_doc_001",
+    "name": "السجل التجاري",
+    "category": "وثائق قانونية",
+    "description": "السجل التجاري للشركة",
+    "required": true,
+    "has_expiry": true,
+    "created_at": "2025-09-09T19:30:00.000000",
+    "updated_at": "2025-09-09T19:30:00.000000"
+  },
+  {
+    "id": "comp_doc_002",
+    "name": "رخصة تشغيل",
+    "category": "تراخيص",
+    "description": "رخصة تشغيل الشركة",
+    "required": true,
+    "has_expiry": true,
+    "created_at": "2025-09-09T19:30:00.000000",
+    "updated_at": "2025-09-09T19:30:00.000000"
+  },
+  {
+    "id": "comp_doc_003",
+    "name": "عقد الإيجار",
+    "category": "عقود",
+    "description": "عقد إيجار مقر الشركة",
+    "required": false,
+    "has_expiry": true,
+    "created_at": "2025-09-09T19:30:00.000000",
+    "updated_at": "2025-09-09T19:30:00.000000"
+  },
+  {
+    "id": "comp_doc_004",
+    "name": "شهادة التأسيس",
+    "category": "وثائق قانونية",
+    "description": "شهادة تأسيس الشركة",
+    "required": true,
+    "has_expiry": false,
+    "created_at": "2025-09-09T19:30:00.000000",
+    "updated_at": "2025-09-09T19:30:00.000000"
+  },
+  {
+    "id": "comp_doc_005",
+    "name": "تأمين تجاري",
+    "category": "تأمينات",
+    "description": "وثيقة التأمين التجاري",
+    "required": false,
+    "has_expiry": true,
+    "created_at": "2025-09-09T19:30:00.000000",
+    "updated_at": "2025-09-09T19:30:00.000000"
+  },
+  {
+    "id": "comp_doc_006",
+    "name": "شهادة ضريبية",
+    "category": "ضرائب",
+    "description": "شهادة الخلو من الضرائب",
+    "required": true,
+    "has_expiry": true,
+    "created_at": "2025-09-09T19:30:00.000000",
+    "updated_at": "2025-09-09T19:30:00.000000"
+  },
+  {
+    "id": "comp_doc_007",
+    "name": "رخصة البلدية",
+    "category": "تراخيص",
+    "description": "رخصة البلدية للمحل",
+    "required": false,
+    "has_expiry": true,
+    "created_at": "2025-09-09T19:30:00.000000",
+    "updated_at": "2025-09-09T19:30:00.000000"
+  },
+  {
+    "id": "comp_doc_008",
+    "name": "عقد شراكة",
+    "category": "عقود",
+    "description": "عقود الشراكة مع الشركات الأخرى",
+    "required": false,
+    "has_expiry": false,
+    "created_at": "2025-09-09T19:30:00.000000",
+    "updated_at": "2025-09-09T19:30:00.000000"
+  },
+  {
+    "id": "comp_doc_009",
+    "name": "كشف حساب بنكي",
+    "category": "مالية",
+    "description": "كشوف الحساب البنكية للشركة",
+    "required": false,
+    "has_expiry": false,
+    "created_at": "2025-09-09T19:30:00.000000",
+    "updated_at": "2025-09-09T19:30:00.000000"
+  },
+  {
+    "id": "comp_doc_010",
+    "name": "ميزانية سنوية",
+    "category": "مالية",
+    "description": "الميزانية المالية السنوية",
+    "required": true,
+    "has_expiry": false,
+    "created_at": "2025-09-09T19:30:00.000000",
+    "updated_at": "2025-09-09T19:30:00.000000"
+  }
+]

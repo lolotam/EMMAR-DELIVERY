@@ -519,7 +519,7 @@ class EntityDocumentManager {
                     <div class="file-meta">
                         <small class="text-muted">
                             <i class="fas fa-calendar"></i>
-                            ${this.formatDocumentDate(document.created_at || document.upload_date)}
+                            ${this.formatDocumentDateInfo(document)}
                         </small>
                     </div>
                 </div>
@@ -551,7 +551,7 @@ class EntityDocumentManager {
                     <div class="item-details">
                         <span class="detail-item">${categoryName}</span>
                         <span class="detail-item">${sizeFormatted}</span>
-                        <span class="detail-item">${this.formatDocumentDate(document.created_at || document.upload_date)}</span>
+                        <span class="detail-item">${this.formatDocumentDateInfo(document)}</span>
                     </div>
                 </div>
                 <div class="item-status">
@@ -706,6 +706,41 @@ class EntityDocumentManager {
     }
 
     /**
+     * Format document date info - prioritizes expiry date over creation date
+     */
+    formatDocumentDateInfo(document) {
+        // Priority 1: Show expiry date if it exists
+        if (document.expiry_date) {
+            const expiryFormatted = this.formatDocumentDate(document.expiry_date);
+            
+            // Check if expired or expiring soon
+            try {
+                const expiryDate = new Date(document.expiry_date);
+                const now = new Date();
+                const daysUntilExpiry = Math.ceil((expiryDate - now) / (1000 * 60 * 60 * 24));
+                
+                if (daysUntilExpiry < 0) {
+                    return `<span class="text-danger"><i class="fas fa-exclamation-triangle"></i> انتهى: ${expiryFormatted}</span>`;
+                } else if (daysUntilExpiry <= 30) {
+                    return `<span class="text-warning"><i class="fas fa-clock"></i> ينتهي: ${expiryFormatted}</span>`;
+                } else {
+                    return `<span class="text-success"><i class="fas fa-calendar-check"></i> ينتهي: ${expiryFormatted}</span>`;
+                }
+            } catch (error) {
+                return `<span><i class="fas fa-calendar-alt"></i> ينتهي: ${expiryFormatted}</span>`;
+            }
+        }
+        
+        // Priority 2: Show creation/upload date if no expiry date
+        const creationDate = document.created_at || document.upload_date;
+        if (creationDate) {
+            return `<span><i class="fas fa-upload"></i> رُفع: ${this.formatDocumentDate(creationDate)}</span>`;
+        }
+        
+        return 'غير محدد';
+    }
+
+    /**
      * Setup card interactions for grid view
      */
     setupCardInteractions() {
@@ -815,12 +850,21 @@ class EntityDocumentManager {
                     const result = await response.json();
                     showSuccess(result.message || 'تم حذف الوثيقة بنجاح');
 
+                    // Immediately remove the document element from DOM to prevent ghost artifacts
+                    const documentElements = document.querySelectorAll(`[data-document-id="${documentId}"]`);
+                    documentElements.forEach(element => {
+                        element.remove();
+                    });
+
                     // Remove from local documents array
                     this.documents = this.documents.filter(doc => doc.id !== documentId);
 
                     // Clear cache to force fresh data on next load
                     const cacheKey = `${this.entityType}_${this.entityId}_documents`;
                     this.cache.delete(cacheKey);
+
+                    // Clear any existing timers or event listeners for this document
+                    this.cleanupDocumentReferences(documentId);
 
                     // Re-render the documents
                     this.applyFilters();
@@ -835,6 +879,31 @@ class EntityDocumentManager {
                 console.error('❌ Delete error:', error);
                 showError('خطأ في حذف الوثيقة: ' + error.message);
             }
+        }
+    }
+
+    /**
+     * Clean up references and event listeners for deleted document
+     * تنظيف المراجع ومستمعي الأحداث للوثيقة المحذوفة
+     */
+    cleanupDocumentReferences(documentId) {
+        try {
+            // Remove from selected documents if present
+            if (this.selectedDocuments && this.selectedDocuments.has) {
+                this.selectedDocuments.delete(documentId);
+            }
+
+            // Clear any intervals or timeouts that might reference this document
+            // (This is a placeholder for any future cleanup needs)
+            
+            // Emit a cleanup event that other parts of the system can listen to
+            document.dispatchEvent(new CustomEvent('documentDeleted', {
+                detail: { documentId: documentId }
+            }));
+
+            console.log('🧹 Cleaned up references for document:', documentId);
+        } catch (error) {
+            console.error('Error cleaning up document references:', error);
         }
     }
 

@@ -1485,7 +1485,7 @@ class DocumentsManager {
                             <i class="fas fa-info-circle"></i> ${statusBadge}
                         </div>
                         <div class="entity-details">
-                            <i class="fas fa-calendar-plus"></i> ${this.formatDocumentDate(document.created_at || document.upload_date)}
+                            ${this.formatDocumentDateInfo(document)}
                         </div>
                         <div class="entity-details">
                             <i class="fas fa-user"></i> ${document.uploaded_by || document.uploader || 'غير محدد'}
@@ -1583,6 +1583,41 @@ class DocumentsManager {
         } catch (error) {
             return dateString;
         }
+    }
+
+    /**
+     * Format document date info - prioritizes expiry date over creation date
+     */
+    formatDocumentDateInfo(document) {
+        // Priority 1: Show expiry date if it exists
+        if (document.expiry_date) {
+            const expiryFormatted = this.formatDocumentDate(document.expiry_date);
+            
+            // Check if expired or expiring soon
+            try {
+                const expiryDate = new Date(document.expiry_date);
+                const now = new Date();
+                const daysUntilExpiry = Math.ceil((expiryDate - now) / (1000 * 60 * 60 * 24));
+                
+                if (daysUntilExpiry < 0) {
+                    return `<span class="text-danger"><i class="fas fa-exclamation-triangle"></i> انتهى: ${expiryFormatted}</span>`;
+                } else if (daysUntilExpiry <= 30) {
+                    return `<span class="text-warning"><i class="fas fa-clock"></i> ينتهي: ${expiryFormatted}</span>`;
+                } else {
+                    return `<span class="text-success"><i class="fas fa-calendar-check"></i> ينتهي: ${expiryFormatted}</span>`;
+                }
+            } catch (error) {
+                return `<span><i class="fas fa-calendar-alt"></i> ينتهي: ${expiryFormatted}</span>`;
+            }
+        }
+        
+        // Priority 2: Show creation/upload date if no expiry date
+        const creationDate = document.created_at || document.upload_date;
+        if (creationDate) {
+            return `<span><i class="fas fa-upload"></i> رُفع: ${this.formatDocumentDate(creationDate)}</span>`;
+        }
+        
+        return 'غير محدد';
     }
 
     /**
@@ -1827,9 +1862,172 @@ class DocumentsManager {
     /**
      * Show document details
      */
-    showDocumentDetails(documentId) {
-        // For other documents, we can show a simple info modal
-        this.showDocumentInfo(documentId);
+    async showDocumentDetails(documentId) {
+        try {
+            // Show the modal first
+            const modal = new bootstrap.Modal(document.getElementById('documentDetailsModal'));
+            modal.show();
+            
+            // Load document details
+            const response = await fetch(`/api/documents/${documentId}/info`);
+            if (!response.ok) {
+                throw new Error('Failed to load document info');
+            }
+            
+            const doc = await response.json();
+            this.currentDocumentId = documentId;
+            
+            // Create document details HTML
+            const detailsHTML = this.createDocumentDetailsHTML(doc);
+            
+            // Update modal content
+            document.getElementById('documentDetailsContent').innerHTML = detailsHTML;
+            
+            // Setup action button handlers
+            this.setupDocumentActionHandlers(documentId);
+            
+        } catch (error) {
+            console.error('Error loading document details:', error);
+            showError('خطأ في تحميل تفاصيل الوثيقة');
+        }
+    }
+
+    /**
+     * Create document details HTML
+     */
+    createDocumentDetailsHTML(doc) {
+        const formattedDate = this.formatDate(doc.uploaded_at);
+        const formattedSize = this.formatFileSize(doc.size_bytes);
+        const categoryName = this.getCategoryName(doc.category);
+        const statusBadge = this.getDocumentStatusBadge(doc.status);
+        
+        return `
+            <div class="document-details">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-header bg-light">
+                                <h6 class="mb-0">
+                                    <i class="fas fa-info-circle text-primary"></i>
+                                    المعلومات الأساسية
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <strong>اسم الوثيقة:</strong>
+                                    <div class="text-muted">${doc.display_name}</div>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>اسم الملف:</strong>
+                                    <div class="text-muted">${doc.original_filename}</div>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>الفئة:</strong>
+                                    <div class="text-muted">${categoryName}</div>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>الحالة:</strong>
+                                    <div>${statusBadge}</div>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>الحجم:</strong>
+                                    <div class="text-muted">${formattedSize}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-header bg-light">
+                                <h6 class="mb-0">
+                                    <i class="fas fa-clock text-primary"></i>
+                                    معلومات إضافية
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <strong>تاريخ الرفع:</strong>
+                                    <div class="text-muted">${formattedDate}</div>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>رفع بواسطة:</strong>
+                                    <div class="text-muted">${doc.uploaded_by || 'admin'}</div>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>عدد مرات التحميل:</strong>
+                                    <div class="text-muted">${doc.downloads || 0}</div>
+                                </div>
+                                ${doc.expiry_date ? `
+                                    <div class="mb-3">
+                                        <strong>تاريخ الانتهاء:</strong>
+                                        <div class="text-muted">${doc.expiry_date}</div>
+                                    </div>
+                                ` : ''}
+                                ${doc.notes ? `
+                                    <div class="mb-3">
+                                        <strong>الملاحظات:</strong>
+                                        <div class="text-muted">${doc.notes}</div>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    /**
+     * Setup document action button handlers
+     */
+    setupDocumentActionHandlers(documentId) {
+        // Preview button
+        const previewBtn = document.getElementById('previewDocumentBtn');
+        if (previewBtn) {
+            previewBtn.onclick = () => {
+                if (window.documentModal && typeof window.documentModal.previewDocument === 'function') {
+                    window.documentModal.previewDocument(documentId);
+                } else {
+                    window.open(`/api/documents/preview/${documentId}`, '_blank');
+                }
+            };
+        }
+
+        // Download button
+        const downloadBtn = document.getElementById('downloadDocumentBtn');
+        if (downloadBtn) {
+            downloadBtn.onclick = () => {
+                if (window.documentModal && typeof window.documentModal.downloadDocument === 'function') {
+                    window.documentModal.downloadDocument(documentId);
+                } else {
+                    window.open(`/api/documents/download/${documentId}`, '_blank');
+                }
+            };
+        }
+
+        // Edit button
+        const editBtn = document.getElementById('editDocumentBtn');
+        if (editBtn) {
+            editBtn.onclick = () => {
+                if (window.documentModal && typeof window.documentModal.editDocument === 'function') {
+                    window.documentModal.editDocument(documentId);
+                } else {
+                    showInfo('تعديل الوثيقة غير متاح حالياً');
+                }
+            };
+        }
+
+        // Delete button
+        const deleteBtn = document.getElementById('deleteDocumentBtn');
+        if (deleteBtn) {
+            deleteBtn.onclick = () => {
+                if (window.documentModal && typeof window.documentModal.deleteDocument === 'function') {
+                    window.documentModal.deleteDocument(documentId);
+                } else {
+                    showError('حذف الوثيقة غير متاح حالياً');
+                }
+            };
+        }
     }
 
     /**
@@ -2072,17 +2270,20 @@ class DocumentModal {
         });
 
         // Document checkboxes (delegated event)
-        document.getElementById('documentsTableBody').addEventListener('change', (e) => {
-            if (e.target.classList.contains('document-checkbox')) {
-                const docId = e.target.getAttribute('data-doc-id');
-                if (e.target.checked) {
-                    this.selectedDocuments.add(docId);
-                } else {
-                    this.selectedDocuments.delete(docId);
+        const documentsTableBodyForCheckboxes = document.getElementById('documentsTableBody');
+        if (documentsTableBodyForCheckboxes) {
+            documentsTableBodyForCheckboxes.addEventListener('change', (e) => {
+                if (e.target.classList.contains('document-checkbox')) {
+                    const docId = e.target.getAttribute('data-doc-id');
+                    if (e.target.checked) {
+                        this.selectedDocuments.add(docId);
+                    } else {
+                        this.selectedDocuments.delete(docId);
+                    }
+                    this.updateSelectionUI();
                 }
-                this.updateSelectionUI();
-            }
-        });
+            });
+        }
 
         // Document action buttons (delegated event)
         const documentTableBody = document.getElementById('documentsTableBody');
@@ -2448,7 +2649,107 @@ class DocumentModal {
      * Action methods
      */
     async previewDocument(documentId) {
-        window.open(`/api/documents/preview/${documentId}`, '_blank');
+        try {
+            // Get document info first
+            const response = await fetch(`/api/documents/${documentId}/info`);
+            if (!response.ok) {
+                throw new Error('Failed to load document info');
+            }
+            
+            const doc = await response.json();
+            
+            // Show preview modal
+            const previewModal = new bootstrap.Modal(document.getElementById('documentPreviewModal'));
+            
+            // Set modal title
+            document.getElementById('previewModalTitle').innerHTML = `
+                <i class="fas fa-eye text-primary"></i>
+                معاينة: ${doc.display_name}
+            `;
+            
+            // Create preview content based on file type
+            const previewContent = this.createPreviewContent(documentId, doc);
+            document.getElementById('documentPreviewContent').innerHTML = previewContent;
+            
+            // Setup download button in preview
+            const downloadFromPreviewBtn = document.getElementById('downloadFromPreviewBtn');
+            if (downloadFromPreviewBtn) {
+                downloadFromPreviewBtn.onclick = () => this.downloadDocument(documentId);
+            }
+            
+            // Show the modal
+            previewModal.show();
+            
+        } catch (error) {
+            console.error('Error previewing document:', error);
+            // Fallback to opening in new tab
+            window.open(`/api/documents/preview/${documentId}`, '_blank');
+        }
+    }
+
+    /**
+     * Create preview content based on file type
+     */
+    createPreviewContent(documentId, doc) {
+        const fileExtension = doc.original_filename.split('.').pop().toLowerCase();
+        const previewUrl = `/api/documents/preview/${documentId}`;
+        
+        switch (fileExtension) {
+            case 'pdf':
+                return `
+                    <div class="pdf-preview">
+                        <iframe src="${previewUrl}" 
+                                style="width: 100%; height: 500px; border: none;">
+                        </iframe>
+                        <div class="text-center mt-2">
+                            <small class="text-muted">PDF - ${doc.original_filename}</small>
+                        </div>
+                    </div>
+                `;
+            
+            case 'jpg':
+            case 'jpeg':
+            case 'png':
+            case 'gif':
+                return `
+                    <div class="image-preview text-center">
+                        <img src="${previewUrl}" 
+                             alt="${doc.display_name}"
+                             class="img-fluid rounded shadow-sm"
+                             style="max-height: 500px;">
+                        <div class="mt-2">
+                            <small class="text-muted">صورة - ${doc.original_filename}</small>
+                        </div>
+                    </div>
+                `;
+            
+            case 'txt':
+            case 'csv':
+                return `
+                    <div class="text-preview">
+                        <iframe src="${previewUrl}" 
+                                style="width: 100%; height: 500px; border: 1px solid #ddd; border-radius: 4px;">
+                        </iframe>
+                        <div class="text-center mt-2">
+                            <small class="text-muted">ملف نصي - ${doc.original_filename}</small>
+                        </div>
+                    </div>
+                `;
+            
+            default:
+                return `
+                    <div class="unsupported-preview text-center py-5">
+                        <div class="mb-4">
+                            <i class="fas fa-file-alt fa-4x text-muted"></i>
+                        </div>
+                        <h5>لا يمكن معاينة هذا النوع من الملفات</h5>
+                        <p class="text-muted">${doc.original_filename}</p>
+                        <button type="button" class="btn btn-primary" onclick="window.documentsManager.downloadDocument('${documentId}')">
+                            <i class="fas fa-download"></i> تحميل الملف
+                        </button>
+                    </div>
+                `;
+        }
     }
 
     async downloadDocument(documentId) {
@@ -2456,8 +2757,123 @@ class DocumentModal {
     }
 
     async editDocument(documentId) {
-        // This will be implemented in T10 - Upload Interface
-        showInfo('تعديل الوثيقة\n\nسيتم تنفيذ هذه الميزة في المرحلة التالية.');
+        try {
+            // Get document info first
+            const response = await fetch(`/api/documents/${documentId}/info`);
+            if (!response.ok) {
+                throw new Error('Failed to load document info');
+            }
+            
+            const doc = await response.json();
+            
+            // Populate edit form
+            document.getElementById('editDocumentId').value = documentId;
+            document.getElementById('editDisplayName').value = doc.display_name || '';
+            
+            // Set category if exists
+            const categorySelect = document.getElementById('editCategory');
+            if (categorySelect) {
+                categorySelect.value = doc.category || 'other';
+            }
+            
+            // Set status if exists
+            const statusSelect = document.getElementById('editStatus');
+            if (statusSelect) {
+                statusSelect.value = doc.status || 'active';
+            }
+            
+            // Set expiry date if exists
+            const expiryDateInput = document.getElementById('editExpiryDate');
+            if (expiryDateInput && doc.expiry_date) {
+                expiryDateInput.value = doc.expiry_date;
+            }
+            
+            // Set notes if exists
+            const notesInput = document.getElementById('editNotes');
+            if (notesInput) {
+                notesInput.value = doc.notes || '';
+            }
+            
+            // Show edit modal
+            const editModal = new bootstrap.Modal(document.getElementById('editDocumentModal'));
+            editModal.show();
+            
+            // Setup form submit handler
+            this.setupEditFormHandler();
+            
+        } catch (error) {
+            console.error('Error loading document for edit:', error);
+            showError('خطأ في تحميل بيانات الوثيقة للتعديل');
+        }
+    }
+
+    /**
+     * Setup edit form submit handler
+     */
+    setupEditFormHandler() {
+        const form = document.getElementById('editDocumentForm');
+        if (!form) return;
+        
+        // Remove existing handlers to prevent duplicates
+        const newForm = form.cloneNode(true);
+        form.parentNode.replaceChild(newForm, form);
+        
+        newForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(newForm);
+            const documentId = formData.get('document_id');
+            
+            if (!documentId) {
+                showError('معرف الوثيقة غير صحيح');
+                return;
+            }
+            
+            try {
+                const updateData = {
+                    display_name: formData.get('display_name'),
+                    category: formData.get('category'),
+                    status: formData.get('status'),
+                    expiry_date: formData.get('expiry_date'),
+                    notes: formData.get('notes')
+                };
+                
+                const response = await fetch(`/api/documents/${documentId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': document.querySelector('meta[name=csrf-token]')?.getAttribute('content')
+                    },
+                    body: JSON.stringify(updateData)
+                });
+                
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Failed to update document');
+                }
+                
+                const result = await response.json();
+                showSuccess(result.message || 'تم تحديث الوثيقة بنجاح');
+                
+                // Close edit modal
+                bootstrap.Modal.getInstance(document.getElementById('editDocumentModal')).hide();
+                
+                // Refresh documents display
+                if (window.documentsManager && typeof window.documentsManager.loadDocuments === 'function') {
+                    await window.documentsManager.loadDocuments();
+                }
+                
+                // If document details modal is open, refresh it
+                const detailsModal = document.getElementById('documentDetailsModal');
+                if (detailsModal && detailsModal.classList.contains('show')) {
+                    await this.showDocumentDetails(documentId);
+                }
+                
+            } catch (error) {
+                console.error('Error updating document:', error);
+                showError('خطأ في تحديث الوثيقة: ' + error.message);
+            }
+        });
     }
 
     async deleteDocument(documentId) {
@@ -2468,7 +2884,27 @@ class DocumentModal {
                 if (response.ok) {
                     const result = await response.json();
                     showSuccess(result.message || 'تم حذف الوثيقة بنجاح');
+                    
+                    // Immediately remove from DOM to prevent ghost artifacts
+                    const documentElements = document.querySelectorAll(`[data-document-id="${documentId}"]`);
+                    documentElements.forEach(element => {
+                        element.remove();
+                    });
+                    
+                    // Clean up references
                     this.selectedDocuments.delete(documentId);
+                    
+                    // Emit cleanup event
+                    document.dispatchEvent(new CustomEvent('documentDeleted', {
+                        detail: { documentId: documentId }
+                    }));
+                    
+                    // Close details modal if open
+                    const detailsModal = document.getElementById('documentDetailsModal');
+                    if (detailsModal && detailsModal.classList.contains('show')) {
+                        bootstrap.Modal.getInstance(detailsModal).hide();
+                    }
+                    
                     this.loadDocuments(); // Reload documents
 
                     // Refresh main page counts
@@ -2636,6 +3072,12 @@ class UploadModal {
         const uploadArea = document.getElementById('uploadArea');
         const fileInput = document.getElementById('fileInput');
 
+        // Check if elements exist before adding event listeners
+        if (!uploadArea || !fileInput) {
+            console.warn('Upload elements not found in DOM, deferring initialization...');
+            return;
+        }
+
         // Drag and drop events
         uploadArea.addEventListener('dragover', (e) => {
             e.preventDefault();
@@ -2685,16 +3127,28 @@ class UploadModal {
         this.currentEntityType = entityType;
         this.currentEntityId = entityId;
 
+        // Try to reinitialize upload functionality now that modal exists
+        this.initializeUpload();
+
         // Set entity info
-        document.getElementById('entityType').value = entityType || 'other';
-        document.getElementById('entityId').value = entityId || '';
+        const entityTypeInput = document.getElementById('entityType');
+        const entityIdInput = document.getElementById('entityId');
+        
+        if (entityTypeInput) entityTypeInput.value = entityType || 'other';
+        if (entityIdInput) entityIdInput.value = entityId || '';
 
         // Reset form
         this.resetForm();
 
         // Show modal
-        const modal = new bootstrap.Modal(document.getElementById('uploadModal'));
-        modal.show();
+        const modalElement = document.getElementById('uploadModal');
+        if (modalElement) {
+            const modal = new bootstrap.Modal(modalElement);
+            modal.show();
+        } else {
+            console.error('Upload modal element not found');
+            showError('خطأ في تهيئة نافذة الرفع');
+        }
     }
 
     /**
@@ -2705,22 +3159,58 @@ class UploadModal {
         this.isUploading = false;
 
         // Reset file input
-        document.getElementById('fileInput').value = '';
+        const fileInput = document.getElementById('fileInput');
+        if (fileInput) {
+            fileInput.value = '';
+        }
 
         // Hide sections
-        document.getElementById('filesPreview').style.display = 'none';
-        document.getElementById('uploadProgress').style.display = 'none';
-        document.getElementById('metadataForm').style.display = 'none';
+        const filesPreview = document.getElementById('filesPreview');
+        if (filesPreview) {
+            filesPreview.style.display = 'none';
+        }
+        
+        const uploadProgress = document.getElementById('uploadProgress');
+        if (uploadProgress) {
+            uploadProgress.style.display = 'none';
+        }
+        
+        const metadataForm = document.getElementById('metadataForm');
+        if (metadataForm) {
+            metadataForm.style.display = 'none';
+        }
 
-        // Reset form fields
-        document.getElementById('displayName').value = '';
-        document.getElementById('category').value = '';
-        document.getElementById('status').value = 'active';
-        document.getElementById('expiryDate').value = '';
-        document.getElementById('notes').value = '';
+        // Reset form fields with null checks
+        const displayName = document.getElementById('displayName');
+        if (displayName) {
+            displayName.value = '';
+        }
+        
+        const category = document.getElementById('category');
+        if (category) {
+            category.value = '';
+        }
+        
+        const status = document.getElementById('status');
+        if (status) {
+            status.value = 'active';
+        }
+        
+        const expiryDate = document.getElementById('expiryDate');
+        if (expiryDate) {
+            expiryDate.value = '';
+        }
+        
+        const notes = document.getElementById('notes');
+        if (notes) {
+            notes.value = '';
+        }
 
         // Reset upload button
-        document.getElementById('uploadBtn').disabled = true;
+        const uploadBtn = document.getElementById('uploadBtn');
+        if (uploadBtn) {
+            uploadBtn.disabled = true;
+        }
 
         // Remove validation classes
         document.querySelectorAll('.is-invalid, .is-valid').forEach(el => {
@@ -2940,13 +3430,24 @@ class UploadModal {
         this.showProgress();
 
         try {
+            const uploadedDocuments = [];
             for (let i = 0; i < validFiles.length; i++) {
                 const fileObj = validFiles[i];
-                await this.uploadSingleFile(fileObj.file, i + 1, validFiles.length);
+                const uploadResponse = await this.uploadSingleFile(fileObj.file, i + 1, validFiles.length);
+                if (uploadResponse && uploadResponse.document) {
+                    uploadedDocuments.push(uploadResponse.document);
+                }
             }
 
             showSuccess(`تم رفع ${validFiles.length} وثيقة بنجاح`);
             this.closeModal();
+
+            // Auto-redirect to edit form for the last uploaded document if single file upload
+            if (uploadedDocuments.length === 1) {
+                setTimeout(() => {
+                    this.showEditFormForDocument(uploadedDocuments[0]);
+                }, 500); // Small delay to ensure modal is closed
+            }
 
             // Refresh parent modal/page
             if (documentModal && documentModal.currentEntityType) {
@@ -3101,6 +3602,37 @@ class UploadModal {
     updateProgress(percent) {
         document.getElementById('progressBar').style.width = percent + '%';
         document.getElementById('progressPercent').textContent = Math.round(percent) + '%';
+    }
+
+    /**
+     * Show edit form for uploaded document
+     * عرض نموذج التحرير للوثيقة المرفوعة
+     */
+    showEditFormForDocument(document) {
+        try {
+            // Check if we have the document edit functionality available
+            if (window.entityDocumentManager && window.entityDocumentManager.showEditForm) {
+                // Use entity document manager to show edit form
+                window.entityDocumentManager.showEditForm(document.id, document);
+            } else if (window.documentModal && window.documentModal.showEditForm) {
+                // Use document modal to show edit form
+                window.documentModal.showEditForm(document.id, document);
+            } else {
+                // Fallback: show document details
+                console.log('Edit form not available, showing document info:', document);
+                showInfo(
+                    `تم رفع الوثيقة بنجاح:\n\n` +
+                    `الاسم: ${document.display_name}\n` +
+                    `الفئة: ${document.category}\n` +
+                    `الحجم: ${this.formatFileSize(document.size_bytes)}\n` +
+                    `تاريخ الرفع: ${document.uploaded_at}`,
+                    'تفاصيل الوثيقة المرفوعة'
+                );
+            }
+        } catch (error) {
+            console.error('Error showing edit form:', error);
+            showError('خطأ في فتح نموذج التحرير: ' + error.message);
+        }
     }
 
     /**

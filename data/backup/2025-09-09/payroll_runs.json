@@ -1,0 +1,263 @@
+[
+  {
+    "year": 2025,
+    "month": 8,
+    "status": "pending",
+    "driver_count": 9,
+    "failed_count": 0,
+    "payroll_results": [
+      {
+        "success": true,
+        "driver_id": "d001",
+        "driver_name": "أحمد محمد علي",
+        "employment_type": "commission",
+        "year": 2025,
+        "month": 8,
+        "base_salary": 0.0,
+        "commission_total": 0,
+        "order_count": 0,
+        "gross_salary": 0.0,
+        "advance_deduction": 50.0,
+        "net_salary": -50.0,
+        "currency": "KWD",
+        "commission_details": [],
+        "advance_details": [
+          {
+            "advance_id": "adv001",
+            "advance_amount": 200,
+            "remaining_balance": 150.0,
+            "deduction_amount": 50.0,
+            "reason": "سلفة شخصية"
+          }
+        ],
+        "calculation_date": "2025-08-22T12:35:59.532341"
+      },
+      {
+        "success": true,
+        "driver_id": "d002",
+        "driver_name": "محمد أحمد سالم",
+        "employment_type": "salary",
+        "year": 2025,
+        "month": 8,
+        "base_salary": 400.0,
+        "commission_total": 0,
+        "order_count": 0,
+        "gross_salary": 400.0,
+        "advance_deduction": 140.0,
+        "net_salary": 260.0,
+        "currency": "KWD",
+        "commission_details": [],
+        "advance_details": [
+          {
+            "advance_id": "adv003",
+            "advance_amount": 100,
+            "remaining_balance": 60.0,
+            "deduction_amount": 60.0,
+            "reason": "مصاريف طبية"
+          },
+          {
+            "advance_id": "adv004",
+            "advance_amount": 250,
+            "remaining_balance": 250.0,
+            "deduction_amount": 80.0,
+            "reason": "سلفة عاجلة"
+          }
+        ],
+        "calculation_date": "2025-08-22T12:35:59.539195"
+      },
+      {
+        "success": true,
+        "driver_id": "d003",
+        "driver_name": "سالم خالد محمد",
+        "employment_type": "mixed",
+        "year": 2025,
+        "month": 8,
+        "base_salary": 200.0,
+        "commission_total": 0,
+        "order_count": 0,
+        "gross_salary": 200.0,
+        "advance_deduction": 40.0,
+        "net_salary": 160.0,
+        "currency": "KWD",
+        "commission_details": [],
+        "advance_details": [
+          {
+            "advance_id": "adv006",
+            "advance_amount": 120,
+            "remaining_balance": 60.0,
+            "deduction_amount": 40.0,
+            "reason": "صيانة السيارة الشخصية"
+          }
+        ],
+        "calculation_date": "2025-08-22T12:35:59.541865"
+      },
+      {
+        "success": true,
+        "driver_id": "d004",
+        "driver_name": "وليد محمد أحمد",
+        "employment_type": "commission",
+        "year": 2025,
+        "month": 8,
+        "base_salary": 0.0,
+        "commission_total": 0,
+        "order_count": 0,
+        "gross_salary": 0.0,
+        "advance_deduction": 0,
+        "net_salary": 0.0,
+        "currency": "KWD",
+        "commission_details": [],
+        "advance_details": [],
+        "calculation_date": "2025-08-22T12:35:59.545040"
+      },
+      {
+        "success": true,
+        "driver_id": "d005",
+        "driver_name": "عبدالله سعد علي",
+        "employment_type": "salary",
+        "year": 2025,
+        "month": 8,
+        "base_salary": 450.0,
+        "commission_total": 0,
+        "order_count": 0,
+        "gross_salary": 450.0,
+        "advance_deduction": 120.0,
+        "net_salary": 330.0,
+        "currency": "KWD",
+        "commission_details": [],
+        "advance_details": [
+          {
+            "advance_id": "adv009",
+            "advance_amount": 220,
+            "remaining_balance": 220.0,
+            "deduction_amount": 60.0,
+            "reason": "مصاريف إيجار"
+          },
+          {
+            "advance_id": "adv010",
+            "advance_amount": 90,
+            "remaining_balance": 60.0,
+            "deduction_amount": 60.0,
+            "reason": "مصاريف شخصية"
+          }
+        ],
+        "calculation_date": "2025-08-22T12:35:59.547219"
+      },
+      {
+        "success": true,
+        "driver_id": "d006",
+        "driver_name": "يوسف عبدالرحمن محمد",
+        "employment_type": "mixed",
+        "year": 2025,
+        "month": 8,
+        "base_salary": 250.0,
+        "commission_total": 0,
+        "order_count": 0,
+        "gross_salary": 250.0,
+        "advance_deduction": 62.5,
+        "net_salary": 187.5,
+        "currency": "KWD",
+        "commission_details": [],
+        "advance_details": [
+          {
+            "advance_id": "adv011",
+            "advance_amount": 160.0,
+            "remaining_balance": 110.0,
+            "deduction_amount": 62.5,
+            "reason": "مصاريف زواج"
+          }
+        ],
+        "calculation_date": "2025-08-22T12:35:59.549952"
+      },
+      {
+        "success": true,
+        "driver_id": "d007",
+        "driver_name": "خالد أحمد عبدالله",
+        "employment_type": "commission",
+        "year": 2025,
+        "month": 8,
+        "base_salary": 0.0,
+        "commission_total": 0,
+        "order_count": 0,
+        "gross_salary": 0.0,
+        "advance_deduction": 90.0,
+        "net_salary": -90.0,
+        "currency": "KWD",
+        "commission_details": [],
+        "advance_details": [
+          {
+            "advance_id": "adv013",
+            "advance_amount": 280.0,
+            "remaining_balance": 160.0,
+            "deduction_amount": 45.0,
+            "reason": "سلفة شهرية"
+          },
+          {
+            "advance_id": "adv014",
+            "advance_amount": 95.0,
+            "remaining_balance": 95.0,
+            "deduction_amount": 45.0,
+            "reason": "مصاريف طوارئ"
+          }
+        ],
+        "calculation_date": "2025-08-22T12:35:59.551714"
+      },
+      {
+        "success": true,
+        "driver_id": "d008",
+        "driver_name": "عمر سالم يوسف",
+        "employment_type": "salary",
+        "year": 2025,
+        "month": 8,
+        "base_salary": 380.0,
+        "commission_total": 0,
+        "order_count": 0,
+        "gross_salary": 380.0,
+        "advance_deduction": 83.6,
+        "net_salary": 296.4,
+        "currency": "KWD",
+        "commission_details": [],
+        "advance_details": [
+          {
+            "advance_id": "adv016",
+            "advance_amount": 200.0,
+            "remaining_balance": 120.0,
+            "deduction_amount": 83.6,
+            "reason": "سلفة عاجلة"
+          }
+        ],
+        "calculation_date": "2025-08-22T12:35:59.553527"
+      },
+      {
+        "success": true,
+        "driver_id": "d010",
+        "driver_name": "فيصل عبدالعزيز أحمد",
+        "employment_type": "commission",
+        "year": 2025,
+        "month": 8,
+        "base_salary": 0.0,
+        "commission_total": 0,
+        "order_count": 0,
+        "gross_salary": 0.0,
+        "advance_deduction": 0,
+        "net_salary": 0.0,
+        "currency": "KWD",
+        "commission_details": [],
+        "advance_details": [],
+        "calculation_date": "2025-08-22T12:35:59.555683"
+      }
+    ],
+    "totals": {
+      "base_salary": 1680.0,
+      "commission": 0,
+      "gross_salary": 1680.0,
+      "deductions": 586.1,
+      "net_salary": 1093.9
+    },
+    "currency": "KWD",
+    "created_by": "admin",
+    "advance_deductions_processed": false,
+    "id": "84fd6839",
+    "created_at": "2025-08-22T12:35:59.555956",
+    "updated_at": "2025-08-22T12:35:59.555959"
+  }
+]

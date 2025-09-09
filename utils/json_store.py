@@ -13,6 +13,7 @@ import shutil
 from datetime import datetime
 from typing import List, Dict, Any, Optional
 import uuid
+from auto_increment import get_next_row_number, add_row_number
 
 # Import file locking based on platform
 try:
@@ -253,6 +254,10 @@ class JSONStore:
         # Generate ID if not provided
         if 'id' not in record:
             record['id'] = str(uuid.uuid4())[:8]
+
+        # Add auto-incrementing row number if not provided
+        if 'row_number' not in record:
+            record['row_number'] = get_next_row_number(data)
 
         # Add timestamps
         record['created_at'] = datetime.now().isoformat()

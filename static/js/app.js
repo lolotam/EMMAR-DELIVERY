@@ -184,13 +184,14 @@ const App = {
     setupHashRouting() {
         // Listen for hash changes
         window.addEventListener('hashchange', () => {
-            this.handleHashRoute();
+            // Only handle hash routes if user is authenticated
+            if (this.currentUser) {
+                this.handleHashRoute();
+            }
         });
 
-        // Handle initial hash on page load
-        if (window.location.hash) {
-            this.handleHashRoute();
-        }
+        // Note: Initial hash handling is now done in handleInitialRoute() 
+        // after authentication check, not immediately here
     },
 
     /**
@@ -209,6 +210,12 @@ const App = {
      */
     handleHashRoute() {
         const hash = window.location.hash.substring(1); // Remove #
+
+        // If user is not authenticated, ignore hash routes and show login
+        if (!this.currentUser) {
+            console.log('Hash route ignored - user not authenticated:', hash);
+            return;
+        }
 
         if (!hash) {
             this.loadPage('dashboard');
@@ -2148,7 +2155,7 @@ const App = {
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="other-tab" data-bs-toggle="tab" data-bs-target="#other-content" type="button" role="tab">
                             <i class="fas fa-folder"></i>
-                            وثائق أخرى
+                            وثائق الشركة
                             <span class="badge bg-primary ms-2" id="otherCount">0</span>
                         </button>
                     </li>
@@ -2230,36 +2237,325 @@ const App = {
 
                     <!-- Other Documents Tab -->
                     <div class="tab-pane fade" id="other-content" role="tabpanel">
-                        <!-- Search Controls -->
-                        <div class="search-controls">
-                            <div class="row align-items-center">
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-search"></i>
-                                        </span>
-                                        <input type="text" class="form-control search-input" id="otherSearch" placeholder="البحث في الوثائق...">
+                        <!-- Company Documents Section -->
+                        <div class="company-documents-section">
+                            <div class="section-header">
+                                <h5 class="section-title">
+                                    <i class="fas fa-building text-primary"></i>
+                                    الشركات المسجلة
+                                </h5>
+                                <p class="section-description">إدارة وثائق الشركات والمؤسسات</p>
+                            </div>
+                            
+                            <!-- Company Cards Grid -->
+                            <div class="companies-grid">
+                                <!-- Emmar Company Card -->
+                                <div class="company-card" data-company-id="emmar" onclick="app.openCompanyDocuments('emmar')">
+                                    <div class="company-card-header">
+                                        <div class="company-logo">
+                                            <i class="fas fa-building text-primary"></i>
+                                        </div>
+                                        <div class="company-info">
+                                            <h6 class="company-name">شركة إعمار</h6>
+                                            <p class="company-type">شركة توصيل</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="filter-buttons">
-                                        <button class="btn btn-outline-success filter-btn active" data-filter="all">الكل</button>
-                                        <button class="btn btn-outline-success filter-btn" data-filter="complete">مكتملة</button>
-                                        <button class="btn btn-outline-warning filter-btn" data-filter="expiring">تنتهي قريباً</button>
-                                        <button class="btn btn-outline-danger filter-btn" data-filter="expired">منتهية</button>
-                                        <button class="btn btn-outline-secondary filter-btn" data-filter="missing">ناقصة</button>
+                                    <div class="company-card-body">
+                                        <div class="document-stats">
+                                            <div class="stat-item">
+                                                <span class="stat-value" id="emmarDocCount">0</span>
+                                                <span class="stat-label">الوثائق</span>
+                                            </div>
+                                            <div class="stat-item">
+                                                <span class="stat-value" id="emmarExpiring">0</span>
+                                                <span class="stat-label">تنتهي قريباً</span>
+                                            </div>
+                                            <div class="stat-item">
+                                                <span class="stat-value" id="emmarExpired">0</span>
+                                                <span class="stat-label">منتهية</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="company-card-footer">
+                                        <span class="last-updated">آخر تحديث: اليوم</span>
+                                        <i class="fas fa-chevron-left"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
 
-                        <!-- Other Documents Grid -->
-                        <div class="entities-grid" id="otherGrid">
-                            <div class="loading-state">
-                                <div class="spinner-border text-primary" role="status">
-                                    <span class="visually-hidden">جاري التحميل...</span>
+                <!-- Upload Modal -->
+                <div class="modal fade" id="uploadModal" tabindex="-1" dir="rtl">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h5 class="modal-title">
+                                    <i class="fas fa-upload text-primary"></i>
+                                    رفع وثيقة جديدة
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+                            </div>
+
+                            <!-- Modal Body -->
+                            <div class="modal-body">
+                                <!-- Upload Form -->
+                                <form id="uploadForm" enctype="multipart/form-data">
+                                    <!-- Entity Info (Hidden) -->
+                                    <input type="hidden" id="entityType" name="entity_type">
+                                    <input type="hidden" id="entityId" name="entity_id">
+
+                                    <!-- File Upload Area -->
+                                    <div class="upload-area" id="uploadArea">
+                                        <div class="upload-content">
+                                            <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
+                                            <h5>اسحب الملفات هنا أو انقر للاختيار</h5>
+                                            <p class="text-muted">
+                                                الملفات المدعومة: PDF, JPG, PNG, DOCX, XLSX<br>
+                                                الحد الأقصى للحجم: 15 ميجابايت
+                                            </p>
+                                            <input type="file" id="fileInput" name="file" multiple
+                                                   accept=".pdf,.jpg,.jpeg,.png,.webp,.docx,.xlsx" hidden>
+                                            <button type="button" class="btn btn-primary" data-action="select-files">
+                                                <i class="fas fa-folder-open"></i> اختيار الملفات
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Selected Files Preview -->
+                                    <div id="filesPreview" class="files-preview" style="display: none;">
+                                        <h6 class="mb-3">الملفات المحددة:</h6>
+                                        <div id="filesList" class="files-list">
+                                            <!-- Files will be listed here -->
+                                        </div>
+                                    </div>
+
+                                    <!-- Upload Progress -->
+                                    <div id="uploadProgress" class="upload-progress" style="display: none;">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span>جاري الرفع...</span>
+                                            <span id="progressPercent">0%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                 id="progressBar" role="progressbar" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Metadata Form -->
+                                    <div id="metadataForm" class="metadata-form" style="display: none;">
+                                        <hr class="my-4">
+                                        <h6 class="mb-3">معلومات الوثيقة:</h6>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label for="displayName" class="form-label">اسم الوثيقة *</label>
+                                                    <input type="text" class="form-control" id="displayName" name="display_name" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label for="category" class="form-label">الفئة *</label>
+                                                    <select class="form-select" id="category" name="category" required>
+                                                        <option value="">اختر الفئة</option>
+                                                        <option value="id_copy">نسخة الهوية</option>
+                                                        <option value="license">رخصة القيادة</option>
+                                                        <option value="insurance">التأمين</option>
+                                                        <option value="contract">العقد</option>
+                                                        <option value="maintenance">الصيانة</option>
+                                                        <option value="other">أخرى</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label for="status" class="form-label">الحالة</label>
+                                                    <select class="form-select" id="status" name="status">
+                                                        <option value="active" selected>نشط</option>
+                                                        <option value="expired">منتهي</option>
+                                                        <option value="pending_renewal">في انتظار التجديد</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label for="expiryDate" class="form-label">تاريخ الانتهاء</label>
+                                                    <input type="date" class="form-control" id="expiryDate" name="expiry_date">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="description" class="form-label">الوصف</label>
+                                            <textarea class="form-control" id="description" name="description" rows="3" placeholder="وصف اختياري للوثيقة..."></textarea>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="tags" class="form-label">الكلمات المفتاحية</label>
+                                            <input type="text" class="form-control" id="tags" name="tags" placeholder="مثال: مهم، عقد، تجديد (مفصولة بفاصلة)">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Modal Footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                                <button type="button" class="btn btn-primary" id="startUploadBtn" disabled>
+                                    <i class="fas fa-upload"></i> رفع الوثيقة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Document Preview Modal -->
+                <div class="modal fade" id="documentPreviewModal" tabindex="-1" dir="rtl">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="previewModalTitle">
+                                    <i class="fas fa-eye text-primary"></i>
+                                    معاينة الوثيقة
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+                            </div>
+                            <div class="modal-body p-0">
+                                <div id="documentPreviewContent" class="document-preview-container">
+                                    <!-- Preview content will be loaded here -->
                                 </div>
-                                <div class="loading-text">جاري تحميل الوثائق الأخرى...</div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                                <button type="button" class="btn btn-primary" id="downloadFromPreviewBtn">
+                                    <i class="fas fa-download"></i> تحميل
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Document Details Modal -->
+                <div class="modal fade" id="documentDetailsModal" tabindex="-1" dir="rtl">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">
+                                    <i class="fas fa-file-alt text-primary"></i>
+                                    تفاصيل الوثيقة
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="documentDetailsContent">
+                                    <!-- Document details will be loaded here -->
+                                    <div class="text-center">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">جاري التحميل...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="btn-group me-auto" role="group">
+                                    <button type="button" class="btn btn-outline-primary" id="previewDocumentBtn">
+                                        <i class="fas fa-eye"></i> معاينة
+                                    </button>
+                                    <button type="button" class="btn btn-outline-success" id="downloadDocumentBtn">
+                                        <i class="fas fa-download"></i> تحميل
+                                    </button>
+                                    <button type="button" class="btn btn-outline-warning" id="editDocumentBtn">
+                                        <i class="fas fa-edit"></i> تعديل
+                                    </button>
+                                    <button type="button" class="btn btn-outline-danger" id="deleteDocumentBtn">
+                                        <i class="fas fa-trash"></i> حذف
+                                    </button>
+                                </div>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit Document Modal -->
+                <div class="modal fade" id="editDocumentModal" tabindex="-1" dir="rtl">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">
+                                    <i class="fas fa-edit text-primary"></i>
+                                    تحرير الوثيقة
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="editDocumentForm">
+                                    <input type="hidden" id="editDocumentId" name="document_id">
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="editDisplayName" class="form-label">اسم الوثيقة *</label>
+                                                <input type="text" class="form-control" id="editDisplayName" name="display_name" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="editCategory" class="form-label">الفئة *</label>
+                                                <select class="form-select" id="editCategory" name="category" required>
+                                                    <option value="">اختر الفئة</option>
+                                                    <option value="id_copy">نسخة الهوية</option>
+                                                    <option value="license">رخصة القيادة</option>
+                                                    <option value="insurance">التأمين</option>
+                                                    <option value="contract">العقد</option>
+                                                    <option value="maintenance">الصيانة</option>
+                                                    <option value="other">أخرى</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="editStatus" class="form-label">الحالة</label>
+                                                <select class="form-select" id="editStatus" name="status">
+                                                    <option value="active">نشط</option>
+                                                    <option value="expired">منتهي</option>
+                                                    <option value="pending_renewal">في انتظار التجديد</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="editExpiryDate" class="form-label">تاريخ الانتهاء</label>
+                                                <input type="date" class="form-control" id="editExpiryDate" name="expiry_date">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="editDescription" class="form-label">الوصف</label>
+                                        <textarea class="form-control" id="editDescription" name="description" rows="3"></textarea>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="editTags" class="form-label">الكلمات المفتاحية</label>
+                                        <input type="text" class="form-control" id="editTags" name="tags">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                                <button type="button" class="btn btn-primary" id="saveDocumentBtn">
+                                    <i class="fas fa-save"></i> حفظ التغييرات
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -2888,6 +3184,7 @@ const App = {
 
             // Define table columns
             const columns = [
+                { field: 'row_number', label: 'م', type: 'number' },
                 { field: 'license_plate', label: 'رقم اللوحة', type: 'text' },
                 { field: 'make', label: 'الماركة', type: 'text' },
                 { field: 'model', label: 'الموديل', type: 'text' },
@@ -3078,6 +3375,7 @@ const App = {
 
             // Define table columns
             const columns = [
+                { field: 'row_number', label: 'م', type: 'number' },
                 { field: 'company_name', label: 'اسم الشركة', type: 'text' },
                 { field: 'contact_person', label: 'الشخص المسؤول', type: 'text' },
                 { field: 'phone', label: 'رقم الهاتف', type: 'phone' },
@@ -4812,6 +5110,7 @@ const App = {
 
             // Define table columns
             const columns = [
+                { field: 'row_number', label: 'م', type: 'number' },
                 { field: 'id', label: 'رقم السُلفة', type: 'text' },
                 { field: 'driver_name', label: 'السائق', type: 'text' },
                 { field: 'amount', label: 'المبلغ', type: 'currency' },
@@ -5280,6 +5579,7 @@ const App = {
 
             // Create table for payroll runs
             const columns = [
+                { field: 'row_number', label: 'م', type: 'number' },
                 { field: 'id', label: 'رقم الدفعة', type: 'text' },
                 { field: 'month', label: 'الشهر', type: 'text' },
                 { field: 'year', label: 'السنة', type: 'text' },
@@ -5645,6 +5945,7 @@ const App = {
             const schedules = await api.getMaintenanceSchedules();
 
             const columns = [
+                { field: 'row_number', label: 'م', type: 'number' },
                 { field: 'vehicle_info', label: 'السيارة', type: 'text' },
                 { field: 'maintenance_type', label: 'نوع الصيانة', type: 'text' },
                 { field: 'due_date', label: 'تاريخ الاستحقاق', type: 'date' },
@@ -6531,6 +6832,12 @@ const App = {
      */
     async initializeDocumentsPage() {
         try {
+            // Check authentication before initializing documents page
+            if (!this.currentUser) {
+                console.log('Documents page initialization skipped - user not authenticated');
+                return;
+            }
+
             // Load and initialize the documents management system
             await this.loadDocumentsAssets();
 
@@ -6581,6 +6888,483 @@ const App = {
 
             document.head.appendChild(script);
         });
+    },
+
+    /**
+     * Open company documents page
+     */
+    async openCompanyDocuments(companyId) {
+        try {
+            // Show loading
+            const mainContent = document.getElementById('mainContent');
+            mainContent.innerHTML = `
+                <div class="loading-container">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">جاري التحميل...</span>
+                    </div>
+                    <div class="loading-text">جاري تحميل وثائق الشركة...</div>
+                </div>
+            `;
+
+            // Get company info
+            const companyInfo = this.getCompanyInfo(companyId);
+            
+            // Load company documents
+            const documents = await this.loadCompanyDocuments(companyId);
+            
+            // Render company documents page
+            mainContent.innerHTML = this.getCompanyDocumentsPageHTML(companyInfo, documents);
+            
+            // Initialize company document functionality
+            this.initializeCompanyDocuments(companyId);
+            
+        } catch (error) {
+            console.error('Error opening company documents:', error);
+            showError('خطأ في فتح صفحة وثائق الشركة: ' + error.message);
+        }
+    },
+
+    /**
+     * Get company information
+     */
+    getCompanyInfo(companyId) {
+        const companies = {
+            'emmar': {
+                id: 'emmar',
+                name: 'شركة إعمار',
+                type: 'شركة توصيل',
+                description: 'شركة إعمار لخدمات التوصيل والنقل'
+            }
+        };
+        return companies[companyId] || null;
+    },
+
+    /**
+     * Load company documents from API
+     */
+    async loadCompanyDocuments(companyId) {
+        try {
+            // Filter documents by company_id
+            const response = await api.getDocuments();
+            return response.filter(doc => doc.company_id === companyId);
+        } catch (error) {
+            console.error('Error loading company documents:', error);
+            return [];
+        }
+    },
+
+    /**
+     * Generate HTML for company documents page
+     */
+    getCompanyDocumentsPageHTML(company, documents) {
+        return `
+            <div class="company-documents-page">
+                <!-- Back Button -->
+                <a href="#" onclick="app.showSection('documents')" class="back-button">
+                    <i class="fas fa-arrow-right"></i>
+                    العودة للوثائق
+                </a>
+
+                <!-- Company Header -->
+                <div class="company-header">
+                    <div class="d-flex align-items-center">
+                        <div class="company-logo me-3">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div>
+                            <h1 class="company-title">${company.name}</h1>
+                            <p class="company-subtitle">${company.description}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upload Section -->
+                <div class="upload-section mb-4">
+                    <button class="btn btn-primary btn-lg" onclick="app.openCompanyUploadModal('${company.id}')">
+                        <i class="fas fa-upload me-2"></i>
+                        رفع وثيقة جديدة
+                    </button>
+                </div>
+
+                <!-- Documents Grid -->
+                <div class="row" id="companyDocumentsGrid">
+                    ${documents.length > 0 ? this.generateCompanyDocumentCards(documents) : 
+                        '<div class="col-12"><div class="alert alert-info text-center">لا توجد وثائق مرفوعة بعد</div></div>'}
+                </div>
+            </div>
+
+            <!-- Upload Modal -->
+            ${this.getCompanyUploadModalHTML(company.id)}
+
+            <!-- Edit Modal -->
+            ${this.getCompanyEditModalHTML(company.id)}
+        `;
+    },
+
+    /**
+     * Generate company document cards HTML
+     */
+    generateCompanyDocumentCards(documents) {
+        return documents.map(doc => `
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card document-card h-100">
+                    <div class="card-header">
+                        <h6 class="card-title mb-0">${doc.document_name}</h6>
+                        <small class="text-muted">${doc.category || 'غير محدد'}</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="document-info">
+                            <p><strong>النوع:</strong> ${doc.document_type || 'غير محدد'}</p>
+                            <p><strong>تاريخ الرفع:</strong> ${this.formatDate(doc.upload_date)}</p>
+                            ${doc.expiry_date ? `<p><strong>تاريخ الانتهاء:</strong> ${this.formatDate(doc.expiry_date)}</p>` : ''}
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="btn-group w-100">
+                            <button class="btn btn-outline-primary btn-sm" onclick="app.previewCompanyDocument('${doc.id}')">
+                                <i class="fas fa-eye"></i> عرض
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="app.editCompanyDocument('${doc.id}')">
+                                <i class="fas fa-edit"></i> تعديل
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm" onclick="app.deleteCompanyDocument('${doc.id}')">
+                                <i class="fas fa-trash"></i> حذف
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    },
+
+    /**
+     * Get company upload modal HTML
+     */
+    getCompanyUploadModalHTML(companyId) {
+        return `
+            <div class="modal fade" id="companyUploadModal" tabindex="-1" dir="rtl">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">رفع وثيقة جديدة</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="companyUploadForm" enctype="multipart/form-data">
+                                <input type="hidden" name="company_id" value="${companyId}">
+                                <div class="mb-3">
+                                    <label class="form-label">اسم الوثيقة</label>
+                                    <input type="text" class="form-control" name="document_name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">نوع الوثيقة</label>
+                                    <select class="form-select" name="document_type" required>
+                                        <option value="">اختر نوع الوثيقة</option>
+                                        <option value="السجل التجاري">السجل التجاري</option>
+                                        <option value="رخصة تشغيل">رخصة تشغيل</option>
+                                        <option value="عقد الإيجار">عقد الإيجار</option>
+                                        <option value="شهادة التأسيس">شهادة التأسيس</option>
+                                        <option value="تأمين تجاري">تأمين تجاري</option>
+                                        <option value="شهادة ضريبية">شهادة ضريبية</option>
+                                        <option value="رخصة البلدية">رخصة البلدية</option>
+                                        <option value="عقد شراكة">عقد شراكة</option>
+                                        <option value="كشف حساب بنكي">كشف حساب بنكي</option>
+                                        <option value="ميزانية سنوية">ميزانية سنوية</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">الفئة</label>
+                                    <select class="form-select" name="category">
+                                        <option value="">اختر الفئة</option>
+                                        <option value="وثائق قانونية">وثائق قانونية</option>
+                                        <option value="تراخيص">تراخيص</option>
+                                        <option value="عقود">عقود</option>
+                                        <option value="تأمينات">تأمينات</option>
+                                        <option value="ضرائب">ضرائب</option>
+                                        <option value="مالية">مالية</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">تاريخ الانتهاء (اختياري)</label>
+                                    <input type="date" class="form-control" name="expiry_date">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">الوصف</label>
+                                    <textarea class="form-control" name="description" rows="3"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">الملف</label>
+                                    <input type="file" class="form-control" name="file" required accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                            <button type="button" class="btn btn-primary" onclick="app.submitCompanyUpload()">رفع الوثيقة</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    },
+
+    /**
+     * Get company edit modal HTML
+     */
+    getCompanyEditModalHTML(companyId) {
+        return `
+            <div class="modal fade" id="companyEditModal" tabindex="-1" dir="rtl">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">تعديل الوثيقة</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="companyEditForm">
+                                <input type="hidden" name="document_id">
+                                <input type="hidden" name="company_id" value="${companyId}">
+                                <div class="mb-3">
+                                    <label class="form-label">اسم الوثيقة</label>
+                                    <input type="text" class="form-control" name="document_name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">نوع الوثيقة</label>
+                                    <select class="form-select" name="document_type" required>
+                                        <option value="">اختر نوع الوثيقة</option>
+                                        <option value="السجل التجاري">السجل التجاري</option>
+                                        <option value="رخصة تشغيل">رخصة تشغيل</option>
+                                        <option value="عقد الإيجار">عقد الإيجار</option>
+                                        <option value="شهادة التأسيس">شهادة التأسيس</option>
+                                        <option value="تأمين تجاري">تأمين تجاري</option>
+                                        <option value="شهادة ضريبية">شهادة ضريبية</option>
+                                        <option value="رخصة البلدية">رخصة البلدية</option>
+                                        <option value="عقد شراكة">عقد شراكة</option>
+                                        <option value="كشف حساب بنكي">كشف حساب بنكي</option>
+                                        <option value="ميزانية سنوية">ميزانية سنوية</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">الفئة</label>
+                                    <select class="form-select" name="category">
+                                        <option value="">اختر الفئة</option>
+                                        <option value="وثائق قانونية">وثائق قانونية</option>
+                                        <option value="تراخيص">تراخيص</option>
+                                        <option value="عقود">عقود</option>
+                                        <option value="تأمينات">تأمينات</option>
+                                        <option value="ضرائب">ضرائب</option>
+                                        <option value="مالية">مالية</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">تاريخ الانتهاء (اختياري)</label>
+                                    <input type="date" class="form-control" name="expiry_date">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">الوصف</label>
+                                    <textarea class="form-control" name="description" rows="3"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                            <button type="button" class="btn btn-primary" onclick="app.submitCompanyEdit()">حفظ التغييرات</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    },
+
+    /**
+     * Initialize company documents functionality
+     */
+    initializeCompanyDocuments(companyId) {
+        // Initialize any additional functionality for company documents
+        console.log('Company documents initialized for:', companyId);
+    },
+
+    /**
+     * Open company upload modal
+     */
+    openCompanyUploadModal(companyId) {
+        const modal = new bootstrap.Modal(document.getElementById('companyUploadModal'));
+        modal.show();
+    },
+
+    /**
+     * Submit company upload form
+     */
+    async submitCompanyUpload() {
+        try {
+            const form = document.getElementById('companyUploadForm');
+            const formData = new FormData(form);
+            
+            // Show loading
+            const submitBtn = document.querySelector('#companyUploadModal .btn-primary');
+            const originalText = submitBtn.textContent;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>جاري الرفع...';
+            submitBtn.disabled = true;
+
+            // Submit to API
+            const response = await fetch('/api/documents', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                showSuccess('تم رفع الوثيقة بنجاح');
+                
+                // Close modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('companyUploadModal'));
+                modal.hide();
+                
+                // Refresh the page
+                const companyId = formData.get('company_id');
+                this.openCompanyDocuments(companyId);
+                
+            } else {
+                const error = await response.json();
+                throw new Error(error.error || 'خطأ في رفع الوثيقة');
+            }
+
+        } catch (error) {
+            console.error('Error uploading document:', error);
+            showError('خطأ في رفع الوثيقة: ' + error.message);
+        } finally {
+            // Restore button
+            const submitBtn = document.querySelector('#companyUploadModal .btn-primary');
+            if (submitBtn) {
+                submitBtn.textContent = 'رفع الوثيقة';
+                submitBtn.disabled = false;
+            }
+        }
+    },
+
+    /**
+     * Edit company document
+     */
+    async editCompanyDocument(documentId) {
+        try {
+            // Get document details
+            const response = await fetch(`/api/documents/${documentId}`);
+            if (!response.ok) throw new Error('خطأ في تحميل بيانات الوثيقة');
+            
+            const document = await response.json();
+            
+            // Fill form
+            const form = document.getElementById('companyEditForm');
+            form.document_id.value = document.id;
+            form.document_name.value = document.document_name || '';
+            form.document_type.value = document.document_type || '';
+            form.category.value = document.category || '';
+            form.expiry_date.value = document.expiry_date || '';
+            form.description.value = document.description || '';
+            
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('companyEditModal'));
+            modal.show();
+            
+        } catch (error) {
+            console.error('Error loading document for edit:', error);
+            showError('خطأ في تحميل بيانات الوثيقة: ' + error.message);
+        }
+    },
+
+    /**
+     * Submit company edit form
+     */
+    async submitCompanyEdit() {
+        try {
+            const form = document.getElementById('companyEditForm');
+            const formData = new FormData(form);
+            const documentId = formData.get('document_id');
+            
+            // Show loading
+            const submitBtn = document.querySelector('#companyEditModal .btn-primary');
+            const originalText = submitBtn.textContent;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>جاري الحفظ...';
+            submitBtn.disabled = true;
+
+            // Submit to API
+            const response = await fetch(`/api/documents/${documentId}`, {
+                method: 'PUT',
+                body: formData
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                showSuccess('تم تحديث الوثيقة بنجاح');
+                
+                // Close modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('companyEditModal'));
+                modal.hide();
+                
+                // Refresh the page
+                const companyId = formData.get('company_id');
+                this.openCompanyDocuments(companyId);
+                
+            } else {
+                const error = await response.json();
+                throw new Error(error.error || 'خطأ في تحديث الوثيقة');
+            }
+
+        } catch (error) {
+            console.error('Error updating document:', error);
+            showError('خطأ في تحديث الوثيقة: ' + error.message);
+        } finally {
+            // Restore button
+            const submitBtn = document.querySelector('#companyEditModal .btn-primary');
+            if (submitBtn) {
+                submitBtn.textContent = 'حفظ التغييرات';
+                submitBtn.disabled = false;
+            }
+        }
+    },
+
+    /**
+     * Preview company document
+     */
+    previewCompanyDocument(documentId) {
+        window.open(`/api/documents/${documentId}/preview`, '_blank');
+    },
+
+    /**
+     * Delete company document
+     */
+    async deleteCompanyDocument(documentId) {
+        try {
+            const result = await Swal.fire({
+                title: 'تأكيد الحذف',
+                text: 'هل أنت متأكد من حذف هذه الوثيقة؟',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'حذف',
+                cancelButtonText: 'إلغاء'
+            });
+
+            if (result.isConfirmed) {
+                const response = await fetch(`/api/documents/${documentId}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    showSuccess('تم حذف الوثيقة بنجاح');
+                    // Refresh current page
+                    location.reload();
+                } else {
+                    const error = await response.json();
+                    throw new Error(error.error || 'خطأ في حذف الوثيقة');
+                }
+            }
+
+        } catch (error) {
+            console.error('Error deleting document:', error);
+            showError('خطأ في حذف الوثيقة: ' + error.message);
+        }
     },
 
     /**

@@ -452,6 +452,31 @@ class API {
     async deleteDriverHistory(driverId, historyId) {
         return await this.request('DELETE', `/drivers/${driverId}/history/${historyId}`);
     }
+
+    // Document Management Methods
+    async getDocuments(entityType = null, entityId = null) {
+        let endpoint = '/documents';
+        if (entityType && entityId) {
+            endpoint += `/entity/${entityType}/${entityId}`;
+        }
+        return await this.request('GET', endpoint);
+    }
+
+    async getDocument(id) {
+        return await this.request('GET', `/documents/${id}`);
+    }
+
+    async updateDocument(id, data) {
+        return await this.request('PUT', `/documents/${id}`, data);
+    }
+
+    async deleteDocument(id) {
+        return await this.request('DELETE', `/documents/${id}`);
+    }
+
+    async getDocumentStats() {
+        return await this.request('GET', '/documents/stats');
+    }
 }
 
 // Global API instance

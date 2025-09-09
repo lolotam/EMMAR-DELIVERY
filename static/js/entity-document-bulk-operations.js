@@ -317,6 +317,56 @@ Object.assign(EntityDocumentManager.prototype, {
         // Show modal
         const modal = new bootstrap.Modal(document.getElementById('editDocumentModal'));
         modal.show();
+
+        // Initialize date picker after modal is shown
+        modal._element.addEventListener('shown.bs.modal', () => {
+            this.initializeDatePicker('editExpiryDate');
+        });
+    },
+
+    /**
+     * Initialize date picker for expiry date fields
+     * تهيئة منتقي التاريخ لحقول تاريخ الانتهاء
+     */
+    initializeDatePicker(fieldId) {
+        try {
+            const dateField = document.getElementById(fieldId);
+            if (dateField) {
+                // Ensure the field is focusable and properly initialized
+                dateField.setAttribute('autocomplete', 'off');
+                dateField.addEventListener('focus', function() {
+                    // Force show date picker on focus (helps with some browsers)
+                    this.showPicker && this.showPicker();
+                });
+
+                // Add validation
+                dateField.addEventListener('change', function() {
+                    const value = this.value;
+                    if (value) {
+                        const date = new Date(value);
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        
+                        // Add visual indicator for expired dates
+                        if (date < today) {
+                            this.classList.add('date-expired');
+                            this.classList.remove('date-valid');
+                        } else {
+                            this.classList.add('date-valid');
+                            this.classList.remove('date-expired');
+                        }
+                    } else {
+                        this.classList.remove('date-expired', 'date-valid');
+                    }
+                });
+
+                // Trigger validation for existing values
+                const changeEvent = new Event('change');
+                dateField.dispatchEvent(changeEvent);
+            }
+        } catch (error) {
+            console.error('Error initializing date picker:', error);
+        }
     },
 
     /**

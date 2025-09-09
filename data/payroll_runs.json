@@ -1,5 +1,6 @@
 [
   {
+    "row_number": 1,
     "year": 2025,
     "month": 8,
     "status": "pending",
@@ -259,5 +260,598 @@
     "id": "84fd6839",
     "created_at": "2025-08-22T12:35:59.555956",
     "updated_at": "2025-08-22T12:35:59.555959"
+  },
+  {
+    "row_number": 2,
+    "year": 2025,
+    "month": 8,
+    "status": "pending",
+    "driver_count": 11,
+    "failed_count": 0,
+    "payroll_results": [
+      {
+        "success": true,
+        "driver_id": "d001",
+        "driver_name": "أحمد محمد علي",
+        "employment_type": "commission",
+        "year": 2025,
+        "month": 8,
+        "base_salary": 0.0,
+        "commission_total": 285.5,
+        "order_count": 410,
+        "gross_salary": 285.5,
+        "advance_deduction": 142.75,
+        "net_salary": 142.75,
+        "currency": "KWD",
+        "commission_details": [
+          {
+            "client_id": "c001",
+            "client_name": "طلبات",
+            "commission_per_order": 0.5,
+            "orders_count": 150,
+            "total_commission": 75.0,
+            "source": "monthly_matrix"
+          },
+          {
+            "client_id": "c002",
+            "client_name": "ديليفاروا",
+            "commission_per_order": 1.0,
+            "orders_count": 150,
+            "total_commission": 150.0,
+            "source": "monthly_matrix"
+          },
+          {
+            "client_id": "c002",
+            "client_name": "ديليفاروا",
+            "commission_per_order": 0.55,
+            "orders_count": 110,
+            "total_commission": 60.5,
+            "source": "monthly_matrix"
+          }
+        ],
+        "advance_details": [
+          {
+            "advance_id": "29efe2ee",
+            "advance_amount": 150.0,
+            "remaining_balance": 150.0,
+            "deduction_amount": 142.75,
+            "reason": "سُلفة لظروف طارئة",
+            "deduction_mode": "percentage",
+            "deduction_value": 50.0
+          }
+        ],
+        "calculation_date": "2025-09-09T20:38:46.667347"
+      },
+      {
+        "success": true,
+        "driver_id": "d002",
+        "driver_name": "محمد أحمد سالم",
+        "employment_type": "salary",
+        "year": 2025,
+        "month": 8,
+        "base_salary": 400.0,
+        "commission_total": 0,
+        "order_count": 0,
+        "gross_salary": 400.0,
+        "advance_deduction": 0,
+        "net_salary": 400.0,
+        "currency": "KWD",
+        "commission_details": [],
+        "advance_details": [],
+        "calculation_date": "2025-09-09T20:38:46.668840"
+      },
+      {
+        "success": true,
+        "driver_id": "d003",
+        "driver_name": "سالم خالد محمد",
+        "employment_type": "mixed",
+        "year": 2025,
+        "month": 8,
+        "base_salary": 200.0,
+        "commission_total": 75.0,
+        "order_count": 150,
+        "gross_salary": 275.0,
+        "advance_deduction": 0,
+        "net_salary": 275.0,
+        "currency": "KWD",
+        "commission_details": [
+          {
+            "client_id": "c002",
+            "client_name": "ديليفاروا",
+            "commission_per_order": 0.5,
+            "orders_count": 150,
+            "total_commission": 75.0,
+            "source": "monthly_matrix"
+          }
+        ],
+        "advance_details": [],
+        "calculation_date": "2025-09-09T20:38:46.670434"
+      },
+      {
+        "success": true,
+        "driver_id": "d004",
+        "driver_name": "وليد محمد أحمد",
+        "employment_type": "commission",
+        "year": 2025,
+        "month": 8,
+        "base_salary": 0.0,
+        "commission_total": 204.0,
+        "order_count": 420,
+        "gross_salary": 204.0,
+        "advance_deduction": 0,
+        "net_salary": 204.0,
+        "currency": "KWD",
+        "commission_details": [
+          {
+            "client_id": "c003",
+            "client_name": "لاباجت",
+            "commission_per_order": 0.7,
+            "orders_count": 120,
+            "total_commission": 84.0,
+            "source": "monthly_matrix"
+          },
+          {
+            "client_id": "c001",
+            "client_name": "طلبات",
+            "commission_per_order": 0.4,
+            "orders_count": 300,
+            "total_commission": 120.0,
+            "source": "monthly_matrix"
+          }
+        ],
+        "advance_details": [],
+        "calculation_date": "2025-09-09T20:38:46.672059"
+      },
+      {
+        "success": true,
+        "driver_id": "d005",
+        "driver_name": "عبدالله سعد علي",
+        "employment_type": "salary",
+        "year": 2025,
+        "month": 8,
+        "base_salary": 450.0,
+        "commission_total": 0,
+        "order_count": 0,
+        "gross_salary": 450.0,
+        "advance_deduction": 0,
+        "net_salary": 450.0,
+        "currency": "KWD",
+        "commission_details": [],
+        "advance_details": [],
+        "calculation_date": "2025-09-09T20:38:46.673497"
+      },
+      {
+        "success": true,
+        "driver_id": "d006",
+        "driver_name": "يوسف عبدالرحمن محمد",
+        "employment_type": "mixed",
+        "year": 2025,
+        "month": 8,
+        "base_salary": 250.0,
+        "commission_total": 75.0,
+        "order_count": 150,
+        "gross_salary": 325.0,
+        "advance_deduction": 0,
+        "net_salary": 325.0,
+        "currency": "KWD",
+        "commission_details": [
+          {
+            "client_id": "c005",
+            "client_name": "بوتيكات",
+            "commission_per_order": 0.5,
+            "orders_count": 150,
+            "total_commission": 75.0,
+            "source": "monthly_matrix"
+          }
+        ],
+        "advance_details": [],
+        "calculation_date": "2025-09-09T20:38:46.674879"
+      },
+      {
+        "success": true,
+        "driver_id": "d007",
+        "driver_name": "خالد أحمد عبدالله",
+        "employment_type": "commission",
+        "year": 2025,
+        "month": 8,
+        "base_salary": 0.0,
+        "commission_total": 132.0,
+        "order_count": 220,
+        "gross_salary": 132.0,
+        "advance_deduction": 0,
+        "net_salary": 132.0,
+        "currency": "KWD",
+        "commission_details": [
+          {
+            "client_id": "c001",
+            "client_name": "طلبات",
+            "commission_per_order": 0.6,
+            "orders_count": 220,
+            "total_commission": 132.0,
+            "source": "monthly_matrix"
+          }
+        ],
+        "advance_details": [],
+        "calculation_date": "2025-09-09T20:38:46.676235"
+      },
+      {
+        "success": true,
+        "driver_id": "d008",
+        "driver_name": "عمر سالم يوسف",
+        "employment_type": "salary",
+        "year": 2025,
+        "month": 8,
+        "base_salary": 380.0,
+        "commission_total": 0,
+        "order_count": 0,
+        "gross_salary": 380.0,
+        "advance_deduction": 0,
+        "net_salary": 380.0,
+        "currency": "KWD",
+        "commission_details": [],
+        "advance_details": [],
+        "calculation_date": "2025-09-09T20:38:46.677636"
+      },
+      {
+        "success": true,
+        "driver_id": "d009",
+        "driver_name": "حسن علي محمد",
+        "employment_type": "mixed",
+        "year": 2025,
+        "month": 8,
+        "base_salary": 300.0,
+        "commission_total": 10.0,
+        "order_count": 50,
+        "gross_salary": 310.0,
+        "advance_deduction": 0,
+        "net_salary": 310.0,
+        "currency": "KWD",
+        "commission_details": [
+          {
+            "client_id": "c003",
+            "client_name": "لاباجت",
+            "commission_per_order": 0.2,
+            "orders_count": 50,
+            "total_commission": 10.0,
+            "source": "monthly_matrix"
+          }
+        ],
+        "advance_details": [],
+        "calculation_date": "2025-09-09T20:38:46.679057"
+      },
+      {
+        "success": true,
+        "driver_id": "d010",
+        "driver_name": "فيصل عبدالعزيز أحمد",
+        "employment_type": "commission",
+        "year": 2025,
+        "month": 8,
+        "base_salary": 0.0,
+        "commission_total": 180.0,
+        "order_count": 200,
+        "gross_salary": 180.0,
+        "advance_deduction": 0,
+        "net_salary": 180.0,
+        "currency": "KWD",
+        "commission_details": [
+          {
+            "client_id": "c005",
+            "client_name": "بوتيكات",
+            "commission_per_order": 0.9,
+            "orders_count": 200,
+            "total_commission": 180.0,
+            "source": "monthly_matrix"
+          }
+        ],
+        "advance_details": [],
+        "calculation_date": "2025-09-09T20:38:46.680523"
+      },
+      {
+        "success": true,
+        "driver_id": "3175eb4f",
+        "driver_name": "هنا وليد محمد",
+        "employment_type": "mixed",
+        "year": 2025,
+        "month": 8,
+        "base_salary": 600.0,
+        "commission_total": 100.0,
+        "order_count": 200,
+        "gross_salary": 700.0,
+        "advance_deduction": 0,
+        "net_salary": 700.0,
+        "currency": "KWD",
+        "commission_details": [
+          {
+            "client_id": "c001",
+            "client_name": "طلبات",
+            "commission_per_order": 0.5,
+            "orders_count": 200,
+            "total_commission": 100.0,
+            "source": "monthly_matrix"
+          }
+        ],
+        "advance_details": [],
+        "calculation_date": "2025-09-09T20:38:46.681981"
+      }
+    ],
+    "totals": {
+      "base_salary": 2580.0,
+      "commission": 1061.5,
+      "gross_salary": 3641.5,
+      "deductions": 142.75,
+      "net_salary": 3498.75
+    },
+    "currency": "KWD",
+    "created_by": "admin",
+    "advance_deductions_processed": false,
+    "id": "7e637f2c",
+    "created_at": "2025-09-09T20:38:46.683085",
+    "updated_at": "2025-09-09T20:38:46.683089"
+  },
+  {
+    "row_number": 3,
+    "year": 2025,
+    "month": 9,
+    "status": "pending",
+    "driver_count": 10,
+    "failed_count": 0,
+    "payroll_results": [
+      {
+        "success": true,
+        "driver_id": "d002",
+        "driver_name": "محمد أحمد سالم",
+        "employment_type": "salary",
+        "year": 2025,
+        "month": 9,
+        "base_salary": 400.0,
+        "commission_total": 0,
+        "order_count": 0,
+        "gross_salary": 400.0,
+        "advance_deduction": 0,
+        "net_salary": 400.0,
+        "currency": "KWD",
+        "commission_details": [],
+        "advance_details": [],
+        "calculation_date": "2025-09-09T21:18:36.204445"
+      },
+      {
+        "success": true,
+        "driver_id": "d003",
+        "driver_name": "سالم خالد محمد",
+        "employment_type": "mixed",
+        "year": 2025,
+        "month": 9,
+        "base_salary": 200.0,
+        "commission_total": 12.5,
+        "order_count": 25,
+        "gross_salary": 212.5,
+        "advance_deduction": 0,
+        "net_salary": 212.5,
+        "currency": "KWD",
+        "commission_details": [
+          {
+            "client_id": "c001",
+            "client_name": "طلبات",
+            "commission_per_order": 0.5,
+            "orders_count": 25,
+            "total_commission": 12.5,
+            "source": "monthly_matrix"
+          }
+        ],
+        "advance_details": [],
+        "calculation_date": "2025-09-09T21:18:36.204476"
+      },
+      {
+        "success": true,
+        "driver_id": "d004",
+        "driver_name": "وليد محمد أحمد",
+        "employment_type": "commission",
+        "year": 2025,
+        "month": 9,
+        "base_salary": 0.0,
+        "commission_total": 24.3,
+        "order_count": 27,
+        "gross_salary": 24.3,
+        "advance_deduction": 0,
+        "net_salary": 24.3,
+        "currency": "KWD",
+        "commission_details": [
+          {
+            "client_id": "c002",
+            "client_name": "ديليفاروا",
+            "commission_per_order": 0.9,
+            "orders_count": 27,
+            "total_commission": 24.3,
+            "source": "monthly_matrix"
+          }
+        ],
+        "advance_details": [],
+        "calculation_date": "2025-09-09T21:18:36.204484"
+      },
+      {
+        "success": true,
+        "driver_id": "d005",
+        "driver_name": "عبدالله سعد علي",
+        "employment_type": "salary",
+        "year": 2025,
+        "month": 9,
+        "base_salary": 450.0,
+        "commission_total": 0,
+        "order_count": 0,
+        "gross_salary": 450.0,
+        "advance_deduction": 0,
+        "net_salary": 450.0,
+        "currency": "KWD",
+        "commission_details": [],
+        "advance_details": [],
+        "calculation_date": "2025-09-09T21:18:36.204489"
+      },
+      {
+        "success": true,
+        "driver_id": "d006",
+        "driver_name": "يوسف عبدالرحمن محمد",
+        "employment_type": "mixed",
+        "year": 2025,
+        "month": 9,
+        "base_salary": 250.0,
+        "commission_total": 33.75,
+        "order_count": 75,
+        "gross_salary": 283.75,
+        "advance_deduction": 0,
+        "net_salary": 283.75,
+        "currency": "KWD",
+        "commission_details": [
+          {
+            "client_id": "c003",
+            "client_name": "لاباجت",
+            "commission_per_order": 0.45,
+            "orders_count": 75,
+            "total_commission": 33.75,
+            "source": "monthly_matrix"
+          }
+        ],
+        "advance_details": [],
+        "calculation_date": "2025-09-09T21:18:36.204498"
+      },
+      {
+        "success": true,
+        "driver_id": "d007",
+        "driver_name": "خالد أحمد عبدالله",
+        "employment_type": "commission",
+        "year": 2025,
+        "month": 9,
+        "base_salary": 0.0,
+        "commission_total": 38.1,
+        "order_count": 150,
+        "gross_salary": 38.1,
+        "advance_deduction": 0,
+        "net_salary": 38.1,
+        "currency": "KWD",
+        "commission_details": [
+          {
+            "client_id": "c005",
+            "client_name": "بوتيكات",
+            "commission_per_order": 0.254,
+            "orders_count": 150,
+            "total_commission": 38.1,
+            "source": "monthly_matrix"
+          }
+        ],
+        "advance_details": [],
+        "calculation_date": "2025-09-09T21:18:36.204503"
+      },
+      {
+        "success": true,
+        "driver_id": "d008",
+        "driver_name": "عمر سالم يوسف",
+        "employment_type": "salary",
+        "year": 2025,
+        "month": 9,
+        "base_salary": 380.0,
+        "commission_total": 0,
+        "order_count": 0,
+        "gross_salary": 380.0,
+        "advance_deduction": 0,
+        "net_salary": 380.0,
+        "currency": "KWD",
+        "commission_details": [],
+        "advance_details": [],
+        "calculation_date": "2025-09-09T21:18:36.204507"
+      },
+      {
+        "success": true,
+        "driver_id": "d009",
+        "driver_name": "حسن علي محمد",
+        "employment_type": "mixed",
+        "year": 2025,
+        "month": 9,
+        "base_salary": 300.0,
+        "commission_total": 105.0,
+        "order_count": 150,
+        "gross_salary": 405.0,
+        "advance_deduction": 0,
+        "net_salary": 405.0,
+        "currency": "KWD",
+        "commission_details": [
+          {
+            "client_id": "c001",
+            "client_name": "طلبات",
+            "commission_per_order": 0.7,
+            "orders_count": 150,
+            "total_commission": 105.0,
+            "source": "monthly_matrix"
+          }
+        ],
+        "advance_details": [],
+        "calculation_date": "2025-09-09T21:18:36.204512"
+      },
+      {
+        "success": true,
+        "driver_id": "d010",
+        "driver_name": "فيصل عبدالعزيز أحمد",
+        "employment_type": "commission",
+        "year": 2025,
+        "month": 9,
+        "base_salary": 0.0,
+        "commission_total": 96.0,
+        "order_count": 120,
+        "gross_salary": 96.0,
+        "advance_deduction": 0,
+        "net_salary": 96.0,
+        "currency": "KWD",
+        "commission_details": [
+          {
+            "client_id": "c002",
+            "client_name": "ديليفاروا",
+            "commission_per_order": 0.8,
+            "orders_count": 120,
+            "total_commission": 96.0,
+            "source": "monthly_matrix"
+          }
+        ],
+        "advance_details": [],
+        "calculation_date": "2025-09-09T21:18:36.204517"
+      },
+      {
+        "success": true,
+        "driver_id": "3175eb4f",
+        "driver_name": "هنا وليد محمد",
+        "employment_type": "mixed",
+        "year": 2025,
+        "month": 9,
+        "base_salary": 600.0,
+        "commission_total": 65.0,
+        "order_count": 130,
+        "gross_salary": 665.0,
+        "advance_deduction": 0,
+        "net_salary": 665.0,
+        "currency": "KWD",
+        "commission_details": [
+          {
+            "client_id": "c002",
+            "client_name": "ديليفاروا",
+            "commission_per_order": 0.5,
+            "orders_count": 130,
+            "total_commission": 65.0,
+            "source": "monthly_matrix"
+          }
+        ],
+        "advance_details": [],
+        "calculation_date": "2025-09-09T21:18:36.204524"
+      }
+    ],
+    "totals": {
+      "base_salary": 2580.0,
+      "commission": 374.65,
+      "gross_salary": 2954.65,
+      "deductions": 0,
+      "net_salary": 2954.65
+    },
+    "currency": "KWD",
+    "created_by": "admin",
+    "advance_deductions_processed": false,
+    "id": "a691a232",
+    "created_at": "2025-09-09T21:18:36.204560",
+    "updated_at": "2025-09-09T21:18:36.204562"
   }
 ]

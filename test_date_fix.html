@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار إصلاح التاريخ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .test-document-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 10px;
+            max-width: 300px;
+        }
+        .text-danger { color: #dc3545 !important; }
+        .text-warning { color: #ffc107 !important; }
+        .text-success { color: #198754 !important; }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>اختبار إصلاح عرض التاريخ في الوثائق</h2>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <h4>وثيقة بتاريخ انتهاء (30 سبتمبر 2025)</h4>
+                <div id="testCard1" class="test-document-card"></div>
+            </div>
+            <div class="col-md-6">
+                <h4>وثيقة بدون تاريخ انتهاء</h4>
+                <div id="testCard2" class="test-document-card"></div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-12">
+                <h4>تحليل البيانات:</h4>
+                <div id="analysis"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock document data based on actual system data
+        const testDocument1 = {
+            id: "d608996d",
+            display_name: "btbtg",
+            expiry_date: "2025-09-30",
+            created_at: "2025-09-09T22:02:58.098710",
+            category: "contract"
+        };
+
+        const testDocument2 = {
+            id: "3c2089de",
+            display_name: "وثيقة اختبار شاملة",
+            expiry_date: null,
+            created_at: "2025-08-23T00:07:43.555326",
+            category: "other"
+        };
+
+        // Mock the formatDocumentDate function
+        function formatDocumentDate(dateString) {
+            if (!dateString) return 'غير محدد';
+            try {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('ar-KW', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    timeZone: 'Asia/Kuwait'
+                });
+            } catch (error) {
+                return dateString;
+            }
+        }
+
+        // Mock the new formatDocumentDateInfo function
+        function formatDocumentDateInfo(document) {
+            // Priority 1: Show expiry date if it exists
+            if (document.expiry_date) {
+                const expiryFormatted = formatDocumentDate(document.expiry_date);
+                
+                // Check if expired or expiring soon
+                try {
+                    const expiryDate = new Date(document.expiry_date);
+                    const now = new Date();
+                    const daysUntilExpiry = Math.ceil((expiryDate - now) / (1000 * 60 * 60 * 24));
+                    
+                    if (daysUntilExpiry < 0) {
+                        return `<span class="text-danger"><i class="fas fa-exclamation-triangle"></i> انتهى: ${expiryFormatted}</span>`;
+                    } else if (daysUntilExpiry <= 30) {
+                        return `<span class="text-warning"><i class="fas fa-clock"></i> ينتهي: ${expiryFormatted}</span>`;
+                    } else {
+                        return `<span class="text-success"><i class="fas fa-calendar-check"></i> ينتهي: ${expiryFormatted}</span>`;
+                    }
+                } catch (error) {
+                    return `<span><i class="fas fa-calendar-alt"></i> ينتهي: ${expiryFormatted}</span>`;
+                }
+            }
+            
+            // Priority 2: Show creation/upload date if no expiry date
+            const creationDate = document.created_at || document.upload_date;
+            if (creationDate) {
+                return `<span><i class="fas fa-upload"></i> رُفع: ${formatDocumentDate(creationDate)}</span>`;
+            }
+            
+            return 'غير محدد';
+        }
+
+        // Test the functions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Test document with expiry date
+            const card1 = document.getElementById('testCard1');
+            card1.innerHTML = `
+                <h5>${testDocument1.display_name}</h5>
+                <p><strong>التاريخ الجديد:</strong><br>${formatDocumentDateInfo(testDocument1)}</p>
+                <hr>
+                <p><strong>التاريخ القديم:</strong><br><i class="fas fa-calendar"></i> ${formatDocumentDate(testDocument1.created_at)}</p>
+            `;
+
+            // Test document without expiry date
+            const card2 = document.getElementById('testCard2');
+            card2.innerHTML = `
+                <h5>${testDocument2.display_name}</h5>
+                <p><strong>التاريخ الجديد:</strong><br>${formatDocumentDateInfo(testDocument2)}</p>
+                <hr>
+                <p><strong>التاريخ القديم:</strong><br><i class="fas fa-calendar"></i> ${formatDocumentDate(testDocument2.created_at)}</p>
+            `;
+
+            // Analysis
+            const analysisEl = document.getElementById('analysis');
+            analysisEl.innerHTML = `
+                <div class="alert alert-info">
+                    <h6>النتائج:</h6>
+                    <ul>
+                        <li><strong>الوثيقة الأولى:</strong> عرض تاريخ الانتهاء (30 سبتمبر 2025) بدلاً من تاريخ الرفع</li>
+                        <li><strong>الوثيقة الثانية:</strong> عرض تاريخ الرفع (23 أغسطس 2025) لعدم وجود تاريخ انتهاء</li>
+                        <li><strong>إصلاح المشكلة:</strong> الآن سيعرض النظام التاريخ المناسب حسب السياق</li>
+                        <li><strong>المشكلة المحلولة:</strong> عدم تطابق التاريخ بين البطاقة وصندوق التحرير</li>
+                    </ul>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>

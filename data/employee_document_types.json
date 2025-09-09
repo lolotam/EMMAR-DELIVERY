@@ -1,0 +1,82 @@
+[
+  {
+    "id": "emp_doc_001",
+    "name": "هوية مدنية",
+    "category": "وثائق شخصية",
+    "description": "البطاقة المدنية للموظف",
+    "required": true,
+    "has_expiry": true,
+    "created_at": "2025-09-09T19:30:00.000000",
+    "updated_at": "2025-09-09T19:30:00.000000"
+  },
+  {
+    "id": "emp_doc_002", 
+    "name": "جواز السفر",
+    "category": "وثائق شخصية",
+    "description": "جواز سفر الموظف",
+    "required": false,
+    "has_expiry": true,
+    "created_at": "2025-09-09T19:30:00.000000",
+    "updated_at": "2025-09-09T19:30:00.000000"
+  },
+  {
+    "id": "emp_doc_003",
+    "name": "الإقامة",
+    "category": "وثائق قانونية",
+    "description": "إقامة الموظف في الكويت",
+    "required": true,
+    "has_expiry": true,
+    "created_at": "2025-09-09T19:30:00.000000",
+    "updated_at": "2025-09-09T19:30:00.000000"
+  },
+  {
+    "id": "emp_doc_004",
+    "name": "رخصة القيادة",
+    "category": "رخص",
+    "description": "رخصة قيادة الموظف",
+    "required": true,
+    "has_expiry": true,
+    "created_at": "2025-09-09T19:30:00.000000",
+    "updated_at": "2025-09-09T19:30:00.000000"
+  },
+  {
+    "id": "emp_doc_005",
+    "name": "عقد العمل",
+    "category": "وثائق العمل",
+    "description": "عقد عمل الموظف مع الشركة",
+    "required": true,
+    "has_expiry": false,
+    "created_at": "2025-09-09T19:30:00.000000",
+    "updated_at": "2025-09-09T19:30:00.000000"
+  },
+  {
+    "id": "emp_doc_006",
+    "name": "شهادة التعليم",
+    "category": "وثائق شخصية",
+    "description": "الشهادة الدراسية للموظف",
+    "required": false,
+    "has_expiry": false,
+    "created_at": "2025-09-09T19:30:00.000000",
+    "updated_at": "2025-09-09T19:30:00.000000"
+  },
+  {
+    "id": "emp_doc_007",
+    "name": "شهادة صحية",
+    "category": "وثائق طبية",
+    "description": "الشهادة الصحية للموظف",
+    "required": false,
+    "has_expiry": true,
+    "created_at": "2025-09-09T19:30:00.000000",
+    "updated_at": "2025-09-09T19:30:00.000000"
+  },
+  {
+    "id": "emp_doc_008",
+    "name": "صورة شخصية",
+    "category": "وثائق شخصية",
+    "description": "صورة شخصية للموظف",
+    "required": false,
+    "has_expiry": false,
+    "created_at": "2025-09-09T19:30:00.000000",
+    "updated_at": "2025-09-09T19:30:00.000000"
+  }
+]

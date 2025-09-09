@@ -1,5 +1,6 @@
 [
   {
+    "row_number": 1,
     "id": "c001",
     "company_name": "طلبات",
     "contact_person": "أحمد محمد",
@@ -13,6 +14,7 @@
     "updated_at": "2025-08-22T14:16:03.719251"
   },
   {
+    "row_number": 2,
     "id": "c002",
     "company_name": "ديليفاروا",
     "contact_person": "فاطمة علي",
@@ -26,6 +28,7 @@
     "updated_at": "2025-08-22T14:15:13.799034"
   },
   {
+    "row_number": 3,
     "id": "c003",
     "company_name": "لاباجت",
     "contact_person": "محمد سالم",
@@ -39,6 +42,7 @@
     "updated_at": "2025-08-22T14:15:20.287950"
   },
   {
+    "row_number": 4,
     "id": "c004",
     "company_name": "توصيل",
     "contact_person": "عبدالله خالد",
@@ -52,6 +56,7 @@
     "updated_at": "2025-08-22T15:15:24.019680"
   },
   {
+    "row_number": 5,
     "id": "c005",
     "company_name": "بوتيكات",
     "contact_person": "سارة أحمد",
