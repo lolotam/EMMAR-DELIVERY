@@ -2150,6 +2150,7 @@ def validate_password_strength(password):
 # ========================================
 
 @app.route('/api/documents/upload', methods=['POST'])
+@csrf.exempt  # Exempt from automatic CSRF protection to handle manually
 @limiter.limit("10 per minute")  # Rate limiting for file uploads
 @login_required
 def upload_document():
@@ -2223,6 +2224,18 @@ def upload_document():
 
     try:
         from utils.json_store import json_store
+        from flask_wtf.csrf import validate_csrf
+
+        # Manual CSRF validation for file upload requests
+        csrf_token = request.headers.get('X-CSRFToken') or request.form.get('csrf_token')
+        print(f"[DEBUG] Upload request with CSRF token: {csrf_token}")
+        
+        try:
+            validate_csrf(csrf_token)
+            print(f"[OK] CSRF validation successful for upload")
+        except Exception as csrf_error:
+            print(f"[ERROR] CSRF validation failed: {csrf_error}")
+            return jsonify({'error': f'رمز الحماية غير صحيح'}), 400
 
         # Get form data
         file = request.files.get('file')

@@ -335,9 +335,19 @@ class BulkOperations {
             }
         });
 
+        // Get CSRF token for secure upload
+        const csrfToken = await DocumentsManager.prototype.getCSRFToken();
+        const headers = {};
+        
+        if (csrfToken) {
+            formData.append('csrf_token', csrfToken);
+            headers['X-CSRFToken'] = csrfToken;
+        }
+
         const response = await ErrorHandler.retryWithBackoff(async () => {
             return fetch('/api/documents/upload', {
                 method: 'POST',
+                headers: headers,
                 body: formData
             });
         });
@@ -1047,42 +1057,54 @@ class DocumentsManager {
      */
     async loadOtherDocuments() {
         try {
-            const grid = document.getElementById('otherGrid');
-            this.showEnhancedSkeletonCards(grid, 3);
-            UXUtils.announceToScreenReader('جاري تحميل الوثائق الأخرى');
-
-            const cacheKey = 'other_documents';
-
-            // Try cache first
-            let documentsData = apiCache.get(cacheKey);
-            if (documentsData) {
-                this.otherDocuments = documentsData.documents || [];
-                this.renderOtherDocuments();
-                UXUtils.announceToScreenReader(`تم تحميل ${this.otherDocuments.length} وثيقة أخرى من الذاكرة المؤقتة`);
-                return;
-            }
-
-            // Fetch other documents with retry logic
-            const response = await ErrorHandler.retryWithBackoff(async () => {
-                return fetch('/api/documents?entity_type=other');
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                this.otherDocuments = data.documents || [];
-
-                // Cache the complete data
-                apiCache.set(cacheKey, data);
-
-                this.renderOtherDocuments();
-                UXUtils.announceToScreenReader(`تم تحميل ${this.otherDocuments.length} وثيقة أخرى`);
-            } else {
-                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-            }
+            // Since we changed "وثائق أخرى" to company documents, 
+            // we now need to load company document stats instead
+            await this.loadCompanyDocumentStats();
+            UXUtils.announceToScreenReader('تم تحميل إحصائيات وثائق الشركة');
         } catch (error) {
-            await ErrorHandler.handleAPIError(error, 'Load Other Documents');
-            this.showError('خطأ في تحميل الوثائق الأخرى', 'otherGrid');
-            UXUtils.announceToScreenReader('خطأ في تحميل الوثائق الأخرى');
+            console.warn('Company documents stats loading skipped:', error.message);
+            // Don't show error for this since it's now handled by company system
+        }
+    }
+
+    async loadCompanyDocumentStats() {
+        try {
+            // Load documents for Emmar company to update stats
+            const response = await api.getDocuments();
+            const documents = response.documents || [];
+            
+            // Filter documents for Emmar company (company_id: 'emmar')
+            const emmarDocs = documents.filter(doc => doc.company_id === 'emmar');
+            
+            // Calculate stats
+            const now = new Date();
+            let expiringCount = 0;
+            let expiredCount = 0;
+            
+            emmarDocs.forEach(doc => {
+                if (doc.expiry_date) {
+                    const expiryDate = new Date(doc.expiry_date);
+                    const daysUntilExpiry = Math.ceil((expiryDate - now) / (1000 * 60 * 60 * 24));
+                    
+                    if (daysUntilExpiry < 0) {
+                        expiredCount++;
+                    } else if (daysUntilExpiry <= 30) {
+                        expiringCount++;
+                    }
+                }
+            });
+            
+            // Update stats in the UI
+            const docCountEl = document.getElementById('emmarDocCount');
+            const expiringEl = document.getElementById('emmarExpiring');
+            const expiredEl = document.getElementById('emmarExpired');
+            
+            if (docCountEl) docCountEl.textContent = emmarDocs.length;
+            if (expiringEl) expiringEl.textContent = expiringCount;
+            if (expiredEl) expiredEl.textContent = expiredCount;
+            
+        } catch (error) {
+            console.warn('Failed to load company document stats:', error);
         }
     }
 
@@ -1138,24 +1160,9 @@ class DocumentsManager {
      * Render other documents with enhanced UX
      */
     renderOtherDocuments() {
-        const grid = document.getElementById('otherGrid');
-
-        if (this.otherDocuments.length === 0) {
-            grid.innerHTML = this.getEmptyState('لا توجد وثائق أخرى', 'fas fa-folder-open', 'other');
-            return;
-        }
-
-        const html = this.otherDocuments.map(doc => this.createDocumentCard(doc)).join('');
-        grid.innerHTML = html;
-
-        // Add enhanced animations and effects
-        UXUtils.addFadeInAnimation(grid);
-
-        // Add enhanced card effects
-        grid.querySelectorAll('.entity-card').forEach(card => {
-            card.classList.add('entity-card-enhanced');
-            UXUtils.addRippleEffect(card);
-        });
+        // This function is no longer needed since we changed to company documents system
+        // Company documents are handled by the app.js openCompanyDocuments function
+        console.log('renderOtherDocuments: Skipped - using company documents system');
     }
 
     /**
@@ -3079,6 +3086,11 @@ class UploadModal {
         }
 
         // Drag and drop events
+        uploadArea.addEventListener('dragenter', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
         uploadArea.addEventListener('dragover', (e) => {
             e.preventDefault();
             uploadArea.classList.add('dragover');
@@ -3118,6 +3130,17 @@ class UploadModal {
                 fileInput.click();
             }
         });
+
+        // Also handle selectFilesBtn for entity document forms
+        document.addEventListener('click', (e) => {
+            if (e.target.id === 'selectFilesBtn' || e.target.closest('#selectFilesBtn')) {
+                e.preventDefault();
+                const currentFileInput = document.getElementById('fileInput');
+                if (currentFileInput) {
+                    currentFileInput.click();
+                }
+            }
+        });
     }
 
     /**
@@ -3145,6 +3168,13 @@ class UploadModal {
         if (modalElement) {
             const modal = new bootstrap.Modal(modalElement);
             modal.show();
+            
+            // Initialize drag-and-drop functionality after modal is shown
+            setTimeout(() => {
+                if (window.app && window.app.initializeGeneralUploadDragDrop) {
+                    window.app.initializeGeneralUploadDragDrop();
+                }
+            }, 100);
         } else {
             console.error('Upload modal element not found');
             showError('خطأ في تهيئة نافذة الرفع');
@@ -3554,6 +3584,11 @@ class UploadModal {
 
         // Get CSRF token for secure upload
         const csrfToken = await this.getCSRFToken();
+        
+        // Add CSRF token to form data for multipart uploads
+        if (csrfToken) {
+            formData.append('csrf_token', csrfToken);
+        }
         const headers = {};
         if (csrfToken) {
             headers['X-CSRFToken'] = csrfToken;
