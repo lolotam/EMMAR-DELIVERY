@@ -16,6 +16,7 @@ class DataTable {
             exportable: options.exportable !== false,
             importable: options.importable !== false,
             pageSize: options.pageSize || 10,
+            selectable: options.selectable !== false, // Enable bulk selection by default
             ...options
         };
         this.currentPage = 1;
@@ -24,6 +25,7 @@ class DataTable {
         this.columnFilters = {};
         this.sortColumn = null;
         this.sortDirection = 'asc';
+        this.selectedItems = new Set(); // Track selected item IDs
     }
 
     /**
@@ -47,12 +49,13 @@ class DataTable {
     getTableHTML() {
         return `
             <div class="card table-container">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">
-                        <i class="${this.options.icon || 'fas fa-table'} me-2"></i>
-                        ${this.options.title}
-                    </h5>
-                    <div class="btn-group" role="group">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h5 class="mb-0">
+                            <i class="${this.options.icon || 'fas fa-table'} me-2"></i>
+                            ${this.options.title}
+                        </h5>
+                        <div class="btn-group" role="group">
                         ${this.options.addButton ? `
                             <button class="btn btn-success" id="${this.containerId}_addBtn">
                                 <i class="fas fa-plus me-2"></i>
@@ -88,7 +91,27 @@ class DataTable {
                             <input type="file" id="${this.containerId}_importFile"
                                    accept=".csv,.xlsx,.xls" style="display: none;">
                         ` : ''}
+                        </div>
                     </div>
+                    ${this.options.selectable ? `
+                        <div class="bulk-actions-toolbar d-none" id="${this.containerId}_bulkActions">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="badge bg-primary" id="${this.containerId}_selectionCount">0 محدد</span>
+                                <button class="btn btn-sm btn-danger" id="${this.containerId}_bulkDeleteBtn">
+                                    <i class="fas fa-trash me-1"></i>
+                                    حذف المحدد
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary" id="${this.containerId}_selectAllBtn">
+                                    <i class="fas fa-check-square me-1"></i>
+                                    تحديد الكل
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary" id="${this.containerId}_clearSelectionBtn">
+                                    <i class="fas fa-times me-1"></i>
+                                    إلغاء التحديد
+                                </button>
+                            </div>
+                        </div>
+                    ` : ''}
                 </div>
                 <div class="card-body">
                     ${this.options.searchable ? `
@@ -139,6 +162,11 @@ class DataTable {
                         <table class="table table-hover" id="${this.containerId}_table">
                             <thead>
                                 <tr>
+                                    ${this.options.selectable ? `
+                                        <th style="width: 40px;">
+                                            <input type="checkbox" class="form-check-input" id="${this.containerId}_selectAllCheckbox" title="تحديد الكل">
+                                        </th>
+                                    ` : ''}
                                     ${this.options.columns.map(col =>
                                         `<th class="sortable-header" data-column="${col.field}" style="cursor: pointer;">
                                             ${col.label}
@@ -274,6 +302,60 @@ class DataTable {
                 });
             }
         }
+
+        // Selection functionality
+        if (this.options.selectable) {
+            // "Select All" checkbox in header
+            const selectAllCheckbox = document.getElementById(`${this.containerId}_selectAllCheckbox`);
+            if (selectAllCheckbox) {
+                selectAllCheckbox.addEventListener('change', (e) => {
+                    if (e.target.checked) {
+                        this.selectAll();
+                    } else {
+                        this.clearSelection();
+                    }
+                });
+            }
+
+            // Individual row checkboxes (delegated event)
+            const tbody = document.getElementById(`${this.containerId}_tbody`);
+            if (tbody) {
+                tbody.addEventListener('change', (e) => {
+                    if (e.target.classList.contains('row-checkbox')) {
+                        const itemId = e.target.getAttribute('data-id');
+                        this.toggleSelection(itemId);
+                        this.renderTableRows();
+                    }
+                });
+            }
+
+            // Bulk delete button
+            const bulkDeleteBtn = document.getElementById(`${this.containerId}_bulkDeleteBtn`);
+            if (bulkDeleteBtn) {
+                bulkDeleteBtn.addEventListener('click', () => {
+                    if (this.options.onBulkDelete) {
+                        const selectedIds = this.getSelectedIds();
+                        this.options.onBulkDelete(selectedIds);
+                    }
+                });
+            }
+
+            // Select all button (in bulk actions toolbar)
+            const selectAllBtn = document.getElementById(`${this.containerId}_selectAllBtn`);
+            if (selectAllBtn) {
+                selectAllBtn.addEventListener('click', () => {
+                    this.selectAllInDataset();
+                });
+            }
+
+            // Clear selection button
+            const clearSelectionBtn = document.getElementById(`${this.containerId}_clearSelectionBtn`);
+            if (clearSelectionBtn) {
+                clearSelectionBtn.addEventListener('click', () => {
+                    this.clearSelection();
+                });
+            }
+        }
     }
 
     /**
@@ -352,6 +434,14 @@ class DataTable {
      * Render a single table row
      */
     renderTableRow(row, rowNumber = null) {
+        const isSelected = this.selectedItems.has(row.id);
+        const checkboxCell = this.options.selectable ? `
+            <td>
+                <input type="checkbox" class="form-check-input row-checkbox"
+                       data-id="${row.id}" ${isSelected ? 'checked' : ''}>
+            </td>
+        ` : '';
+
         const cells = this.options.columns.map(col => {
             if (col.field === 'row_number' && rowNumber !== null) {
                 return `<td class="text-center fw-bold">${rowNumber}</td>`;
@@ -369,7 +459,8 @@ class DataTable {
             </td>
         ` : '';
 
-        return `<tr data-id="${row.id}">${cells}${actions}</tr>`;
+        const rowClass = isSelected ? 'table-active' : '';
+        return `<tr data-id="${row.id}" class="${rowClass}">${checkboxCell}${cells}${actions}</tr>`;
     }
 
     /**
@@ -1299,5 +1390,95 @@ class DataTable {
             link.click();
             document.body.removeChild(link);
         }
+    }
+
+    // ==================== BULK SELECTION METHODS ====================
+
+    /**
+     * Toggle item selection
+     */
+    toggleSelection(itemId) {
+        if (this.selectedItems.has(itemId)) {
+            this.selectedItems.delete(itemId);
+        } else {
+            this.selectedItems.add(itemId);
+        }
+        this.updateSelectionUI();
+    }
+
+    /**
+     * Select all visible items on current page
+     */
+    selectAll() {
+        const startIndex = (this.currentPage - 1) * this.options.pageSize;
+        const endIndex = startIndex + this.options.pageSize;
+        const pageData = this.filteredData.slice(startIndex, endIndex);
+
+        pageData.forEach(row => {
+            this.selectedItems.add(row.id);
+        });
+
+        this.updateSelectionUI();
+        this.renderTableRows();
+    }
+
+    /**
+     * Select all items in the entire dataset
+     */
+    selectAllInDataset() {
+        this.filteredData.forEach(row => {
+            this.selectedItems.add(row.id);
+        });
+
+        this.updateSelectionUI();
+        this.renderTableRows();
+    }
+
+    /**
+     * Clear all selections
+     */
+    clearSelection() {
+        this.selectedItems.clear();
+        this.updateSelectionUI();
+        this.renderTableRows();
+    }
+
+    /**
+     * Update UI elements related to selection
+     */
+    updateSelectionUI() {
+        const bulkActions = document.getElementById(`${this.containerId}_bulkActions`);
+        const selectionCount = document.getElementById(`${this.containerId}_selectionCount`);
+        const selectAllCheckbox = document.getElementById(`${this.containerId}_selectAllCheckbox`);
+
+        if (!bulkActions) return;
+
+        const count = this.selectedItems.size;
+
+        // Show/hide bulk actions toolbar
+        if (count > 0) {
+            bulkActions.classList.remove('d-none');
+            if (selectionCount) {
+                selectionCount.textContent = `${count} محدد`;
+            }
+        } else {
+            bulkActions.classList.add('d-none');
+        }
+
+        // Update "select all" checkbox state
+        if (selectAllCheckbox) {
+            const startIndex = (this.currentPage - 1) * this.options.pageSize;
+            const endIndex = startIndex + this.options.pageSize;
+            const pageData = this.filteredData.slice(startIndex, endIndex);
+            const allPageItemsSelected = pageData.length > 0 && pageData.every(row => this.selectedItems.has(row.id));
+            selectAllCheckbox.checked = allPageItemsSelected;
+        }
+    }
+
+    /**
+     * Get array of selected item IDs
+     */
+    getSelectedIds() {
+        return Array.from(this.selectedItems);
     }
 }

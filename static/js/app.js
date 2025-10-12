@@ -2130,10 +2130,6 @@ const App = {
                         </h2>
                         <p class="text-muted mb-0">إدارة وثائق السائقين والمركبات والملفات الأخرى</p>
                     </div>
-                    <button class="btn btn-primary btn-lg btn-enhanced" id="uploadBtn">
-                        <i class="fas fa-upload icon-right"></i>
-                        رفع وثيقة جديدة
-                    </button>
                 </div>
 
                 <!-- Tab Navigation -->
@@ -2308,19 +2304,19 @@ const App = {
                                     <input type="hidden" id="entityId" name="entity_id">
 
                                     <!-- File Upload Area -->
-                                    <div class="upload-area" id="uploadArea">
-                                        <div class="upload-content">
-                                            <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
-                                            <h5>اسحب الملفات هنا أو انقر للاختيار</h5>
-                                            <p class="text-muted">
-                                                الملفات المدعومة: PDF, JPG, PNG, DOCX, XLSX<br>
-                                                الحد الأقصى للحجم: 15 ميجابايت
-                                            </p>
-                                            <input type="file" id="fileInput" name="file" multiple
-                                                   accept=".pdf,.jpg,.jpeg,.png,.webp,.docx,.xlsx" hidden>
-                                            <button type="button" class="btn btn-primary" data-action="select-files">
-                                                <i class="fas fa-folder-open"></i> اختيار الملفات
-                                            </button>
+                                    <div class="mb-3">
+                                        <label class="form-label">الملف</label>
+                                        <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+                                            <input type="file" id="fileInput" name="file" required accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="display: none;">
+                                            <div class="upload-content">
+                                                <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
+                                                <h5 class="text-muted">اسحب الملف هنا أو انقر للاختيار</h5>
+                                                <p class="text-muted small">الأنواع المدعومة: PDF, DOC, DOCX, JPG, PNG</p>
+                                                <p class="text-muted small">الحد الأقصى: 15 ميجابايت</p>
+                                            </div>
+                                            <div id="filePreview" class="files-preview" style="display: none;">
+                                                <!-- File preview will be shown here -->
+                                            </div>
                                         </div>
                                     </div>
 
@@ -2877,9 +2873,11 @@ const App = {
                 actions: ['edit', 'delete', 'history'],
                 exportable: true,
                 importable: true,
+                selectable: true,
                 onAdd: () => this.showDriverForm(),
                 onEdit: (driver) => this.showDriverForm(driver),
                 onDelete: (driver) => this.deleteDriver(driver),
+                onBulkDelete: (ids) => this.bulkDeleteDrivers(ids),
                 onHistory: (driver) => this.showDriverHistory(driver),
                 onImport: (data) => this.importDrivers(data)
             });
@@ -3168,6 +3166,43 @@ const App = {
         }
     },
 
+    /**
+     * Bulk delete drivers
+     */
+    async bulkDeleteDrivers(driverIds) {
+        if (!driverIds || driverIds.length === 0) {
+            showError('لم يتم تحديد أي سائقين');
+            return;
+        }
+
+        const result = await showConfirm(
+            `هل تريد حذف ${driverIds.length} سائق؟\nهذا الإجراء لا يمكن التراجع عنه.`,
+            'تأكيد الحذف المتعدد'
+        );
+
+        if (result.isConfirmed) {
+            try {
+                showLoading('جاري حذف السائقين...');
+                const response = await api.bulkDeleteDrivers(driverIds);
+                hideLoading();
+
+                if (response.success) {
+                    showSuccess(response.message);
+                    // Clear selection and refresh
+                    if (window.driversTable) {
+                        window.driversTable.clearSelection();
+                    }
+                    this.initializeDriversPage();
+                } else {
+                    showError(response.message || 'فشل في حذف السائقين');
+                }
+            } catch (error) {
+                hideLoading();
+                showError(error.message || 'حدث خطأ أثناء حذف السائقين');
+            }
+        }
+    },
+
 
 
     /**
@@ -3205,9 +3240,11 @@ const App = {
                 actions: ['edit', 'delete'],
                 exportable: true,
                 importable: true,
+                selectable: true,
                 onAdd: () => this.showVehicleForm(),
                 onEdit: (vehicle) => this.showVehicleForm(vehicle),
                 onDelete: (vehicle) => this.deleteVehicle(vehicle),
+                onBulkDelete: (ids) => this.bulkDeleteVehicles(ids),
                 onImport: (data) => this.importVehicles(data)
             });
 
@@ -3366,6 +3403,39 @@ const App = {
     },
 
     /**
+     * Bulk delete vehicles
+     */
+    async bulkDeleteVehicles(vehicleIds) {
+        if (!vehicleIds || vehicleIds.length === 0) {
+            showError('لم يتم تحديد أي سيارات');
+            return;
+        }
+
+        const result = await showConfirm(
+            `هل تريد حذف ${vehicleIds.length} سيارة؟\nهذا الإجراء لا يمكن التراجع عنه.`,
+            'تأكيد الحذف المتعدد'
+        );
+
+        if (result.isConfirmed) {
+            try {
+                showLoading('جاري حذف السيارات...');
+                const response = await api.bulkDeleteVehicles(vehicleIds);
+                hideLoading();
+
+                if (response.success) {
+                    showSuccess(response.message);
+                    this.initializeVehiclesPage();
+                } else {
+                    showError(response.message || 'فشل في حذف السيارات');
+                }
+            } catch (error) {
+                hideLoading();
+                showError(error.message || 'حدث خطأ أثناء حذف السيارات');
+            }
+        }
+    },
+
+    /**
      * Initialize clients page
      */
     async initializeClientsPage() {
@@ -3394,9 +3464,11 @@ const App = {
                 actions: ['edit', 'delete'],
                 exportable: true,
                 importable: true,
+                selectable: true,
                 onAdd: () => this.showClientForm(),
                 onEdit: (client) => this.showClientForm(client),
                 onDelete: (client) => this.deleteClient(client),
+                onBulkDelete: (ids) => this.bulkDeleteClients(ids),
                 onImport: (data) => this.importClients(data)
             });
 
@@ -3519,6 +3591,39 @@ const App = {
                 this.initializeClientsPage();
             } catch (error) {
                 showError(error.message || 'حدث خطأ أثناء حذف العميل');
+            }
+        }
+    },
+
+    /**
+     * Bulk delete clients
+     */
+    async bulkDeleteClients(clientIds) {
+        if (!clientIds || clientIds.length === 0) {
+            showError('لم يتم تحديد أي عملاء');
+            return;
+        }
+
+        const result = await showConfirm(
+            `هل تريد حذف ${clientIds.length} عميل؟\nهذا الإجراء لا يمكن التراجع عنه.`,
+            'تأكيد الحذف المتعدد'
+        );
+
+        if (result.isConfirmed) {
+            try {
+                showLoading('جاري حذف العملاء...');
+                const response = await api.bulkDeleteClients(clientIds);
+                hideLoading();
+
+                if (response.success) {
+                    showSuccess(response.message);
+                    this.initializeClientsPage();
+                } else {
+                    showError(response.message || 'فشل في حذف العملاء');
+                }
+            } catch (error) {
+                hideLoading();
+                showError(error.message || 'حدث خطأ أثناء حذف العملاء');
             }
         }
     },
@@ -5128,9 +5233,11 @@ const App = {
                 columns: columns,
                 data: advances,
                 actions: ['edit', 'delete'],
+                selectable: true,
                 onAdd: () => this.showAdvanceForm(),
                 onEdit: (advance) => this.showAdvanceForm(advance),
-                onDelete: (advance) => this.deleteAdvance(advance)
+                onDelete: (advance) => this.deleteAdvance(advance),
+                onBulkDelete: (ids) => this.bulkDeleteAdvances(ids)
             });
 
             advancesTable.render();
@@ -5298,6 +5405,39 @@ const App = {
                 this.initializeAdvancesPage();
             } catch (error) {
                 showError(error.message || 'حدث خطأ أثناء حذف السُلفة');
+            }
+        }
+    },
+
+    /**
+     * Bulk delete advances
+     */
+    async bulkDeleteAdvances(advanceIds) {
+        if (!advanceIds || advanceIds.length === 0) {
+            showError('لم يتم تحديد أي سُلف');
+            return;
+        }
+
+        const result = await showConfirm(
+            `هل تريد حذف ${advanceIds.length} سُلفة؟\nهذا الإجراء لا يمكن التراجع عنه.`,
+            'تأكيد الحذف المتعدد'
+        );
+
+        if (result.isConfirmed) {
+            try {
+                showLoading('جاري حذف السُلف...');
+                const response = await api.bulkDeleteAdvances(advanceIds);
+                hideLoading();
+
+                if (response.success) {
+                    showSuccess(response.message);
+                    this.initializeAdvancesPage();
+                } else {
+                    showError(response.message || 'فشل في حذف السُلف');
+                }
+            } catch (error) {
+                hideLoading();
+                showError(error.message || 'حدث خطأ أثناء حذف السُلف');
             }
         }
     },
@@ -5963,9 +6103,11 @@ const App = {
                 actions: ['edit', 'delete'],
                 exportable: true,
                 importable: true,
+                selectable: true,
                 onAdd: () => this.showMaintenanceScheduleForm(),
                 onEdit: (schedule) => this.showMaintenanceScheduleForm(schedule),
                 onDelete: (schedule) => this.deleteMaintenanceSchedule(schedule),
+                onBulkDelete: (ids) => this.bulkDeleteMaintenanceSchedules(ids),
                 onImport: (data) => this.importMaintenanceSchedules(data)
             });
 
@@ -6146,6 +6288,39 @@ const App = {
                 this.loadMaintenanceSchedules();
             } catch (error) {
                 showError(error.message || 'حدث خطأ أثناء حذف جدولة الصيانة');
+            }
+        }
+    },
+
+    /**
+     * Bulk delete maintenance schedules
+     */
+    async bulkDeleteMaintenanceSchedules(scheduleIds) {
+        if (!scheduleIds || scheduleIds.length === 0) {
+            showError('لم يتم تحديد أي جدولات صيانة');
+            return;
+        }
+
+        const result = await showConfirm(
+            `هل تريد حذف ${scheduleIds.length} جدولة صيانة؟\nهذا الإجراء لا يمكن التراجع عنه.`,
+            'تأكيد الحذف المتعدد'
+        );
+
+        if (result.isConfirmed) {
+            try {
+                showLoading('جاري حذف جدولات الصيانة...');
+                const response = await api.bulkDeleteMaintenanceSchedules(scheduleIds);
+                hideLoading();
+
+                if (response.success) {
+                    showSuccess(response.message);
+                    this.loadMaintenanceSchedules();
+                } else {
+                    showError(response.message || 'فشل في حذف جدولات الصيانة');
+                }
+            } catch (error) {
+                hideLoading();
+                showError(error.message || 'حدث خطأ أثناء حذف جدولات الصيانة');
             }
         }
     },
@@ -6946,7 +7121,9 @@ const App = {
         try {
             // Filter documents by company_id
             const response = await api.getDocuments();
-            return response.filter(doc => doc.company_id === companyId);
+            // Access the documents array from the response object
+            const documents = response.documents || [];
+            return documents.filter(doc => doc.company_id === companyId);
         } catch (error) {
             console.error('Error loading company documents:', error);
             return [];
@@ -7094,7 +7271,18 @@ const App = {
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">الملف</label>
-                                    <input type="file" class="form-control" name="file" required accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+                                    <div class="upload-area" id="companyUploadArea" onclick="document.getElementById('companyFileInput').click()">
+                                        <input type="file" id="companyFileInput" name="file" required accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="display: none;">
+                                        <div class="upload-content">
+                                            <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
+                                            <h5 class="text-muted">اسحب الملف هنا أو انقر للاختيار</h5>
+                                            <p class="text-muted small">الأنواع المدعومة: PDF, DOC, DOCX, JPG, PNG</p>
+                                            <p class="text-muted small">الحد الأقصى: 15 ميجابايت</p>
+                                        </div>
+                                        <div id="companyFilePreview" class="files-preview" style="display: none;">
+                                            <!-- File preview will be shown here -->
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -7190,6 +7378,11 @@ const App = {
     openCompanyUploadModal(companyId) {
         const modal = new bootstrap.Modal(document.getElementById('companyUploadModal'));
         modal.show();
+        
+        // Initialize drag-and-drop functionality after modal is shown
+        setTimeout(() => {
+            this.initializeCompanyUploadDragDrop();
+        }, 100);
     },
 
     /**
@@ -7200,16 +7393,40 @@ const App = {
             const form = document.getElementById('companyUploadForm');
             const formData = new FormData(form);
             
+            // Validate required fields
+            const documentName = formData.get('document_name');
+            const documentType = formData.get('document_type');
+            const file = formData.get('file');
+            
+            if (!documentName || !documentType || !file || file.size === 0) {
+                showError('الرجاء ملء جميع الحقول المطلوبة واختيار ملف');
+                return;
+            }
+            
+            // Validate file size (15MB limit)
+            const maxSize = 15 * 1024 * 1024; // 15MB
+            if (file.size > maxSize) {
+                showError('حجم الملف كبير جداً. الحد الأقصى 15 ميجابايت');
+                return;
+            }
+            
             // Show loading
             const submitBtn = document.querySelector('#companyUploadModal .btn-primary');
             const originalText = submitBtn.textContent;
             submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>جاري الرفع...';
             submitBtn.disabled = true;
 
-            // Submit to API
+            // Get CSRF token for file upload
+            const csrfToken = await api.ensureCSRFToken();
+            
+            // Submit to API with CSRF token
             const response = await fetch('/api/documents', {
                 method: 'POST',
-                body: formData
+                headers: {
+                    'X-CSRFToken': csrfToken
+                },
+                body: formData,
+                credentials: 'same-origin'
             });
 
             if (response.ok) {
@@ -7220,9 +7437,15 @@ const App = {
                 const modal = bootstrap.Modal.getInstance(document.getElementById('companyUploadModal'));
                 modal.hide();
                 
-                // Refresh the page
+                // Clear form
+                form.reset();
+                
+                // Refresh company documents page
                 const companyId = formData.get('company_id');
-                this.openCompanyDocuments(companyId);
+                await this.openCompanyDocuments(companyId);
+                
+                // Update company stats
+                await this.refreshCompanyStats(companyId);
                 
             } else {
                 const error = await response.json();
@@ -7230,7 +7453,7 @@ const App = {
             }
 
         } catch (error) {
-            console.error('Error uploading document:', error);
+            console.error('Error uploading company document:', error);
             showError('خطأ في رفع الوثيقة: ' + error.message);
         } finally {
             // Restore button
@@ -7239,6 +7462,368 @@ const App = {
                 submitBtn.textContent = 'رفع الوثيقة';
                 submitBtn.disabled = false;
             }
+        }
+    },
+
+    /**
+     * Refresh company document statistics
+     */
+    async refreshCompanyStats(companyId) {
+        try {
+            // Load documents for the specific company
+            const response = await api.getDocuments();
+            const documents = response.documents || [];
+            
+            // Filter documents for this company
+            const companyDocs = documents.filter(doc => doc.company_id === companyId);
+            
+            // Calculate stats
+            const now = new Date();
+            let expiringCount = 0;
+            let expiredCount = 0;
+            
+            companyDocs.forEach(doc => {
+                if (doc.expiry_date) {
+                    const expiryDate = new Date(doc.expiry_date);
+                    const daysUntilExpiry = Math.ceil((expiryDate - now) / (1000 * 60 * 60 * 24));
+                    
+                    if (daysUntilExpiry < 0) {
+                        expiredCount++;
+                    } else if (daysUntilExpiry <= 30) {
+                        expiringCount++;
+                    }
+                }
+            });
+            
+            // Update stats in UI (both main page and company page)
+            const docCountEl = document.getElementById(`${companyId}DocCount`);
+            const expiringEl = document.getElementById(`${companyId}Expiring`);
+            const expiredEl = document.getElementById(`${companyId}Expired`);
+            
+            if (docCountEl) docCountEl.textContent = companyDocs.length;
+            if (expiringEl) expiringEl.textContent = expiringCount;
+            if (expiredEl) expiredEl.textContent = expiredCount;
+            
+        } catch (error) {
+            console.error('Failed to refresh company stats:', error);
+        }
+    },
+
+    /**
+     * Initialize drag-and-drop functionality for company upload
+     */
+    initializeCompanyUploadDragDrop() {
+        const uploadArea = document.getElementById('companyUploadArea');
+        const fileInput = document.getElementById('companyFileInput');
+        const filePreview = document.getElementById('companyFilePreview');
+        
+        if (!uploadArea || !fileInput || !filePreview) return;
+        
+        // Drag and drop events
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                this.handleCompanyFileSelection(files[0]);
+            }
+        });
+        
+        // File input change event
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                this.handleCompanyFileSelection(e.target.files[0]);
+            }
+        });
+        
+        // Clear file preview on modal hide
+        const modal = document.getElementById('companyUploadModal');
+        modal.addEventListener('hidden.bs.modal', () => {
+            this.clearCompanyFilePreview();
+        });
+    },
+    
+    /**
+     * Handle file selection for company upload
+     */
+    handleCompanyFileSelection(file) {
+        const fileInput = document.getElementById('companyFileInput');
+        const uploadArea = document.getElementById('companyUploadArea');
+        const uploadContent = uploadArea.querySelector('.upload-content');
+        const filePreview = document.getElementById('companyFilePreview');
+        
+        // Validate file type
+        const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'image/jpeg', 'image/jpg', 'image/png'];
+        const allowedExtensions = ['.pdf', '.doc', '.docx', '.jpg', '.jpeg', '.png'];
+        const fileExtension = '.' + file.name.split('.').pop().toLowerCase();
+        
+        if (!allowedTypes.includes(file.type) && !allowedExtensions.includes(fileExtension)) {
+            showError('نوع الملف غير مدعوم. الأنواع المدعومة: PDF, DOC, DOCX, JPG, PNG');
+            return;
+        }
+        
+        // Validate file size (15MB limit)
+        const maxSize = 15 * 1024 * 1024; // 15MB
+        if (file.size > maxSize) {
+            showError('حجم الملف كبير جداً. الحد الأقصى 15 ميجابايت');
+            return;
+        }
+        
+        // Update file input
+        const fileList = this.createFileList([file]);
+        Object.defineProperty(fileInput, 'files', {
+            value: fileList,
+            writable: false
+        });
+        
+        // Show file preview
+        this.showCompanyFilePreview(file);
+        
+        // Hide upload content and show preview
+        uploadContent.style.display = 'none';
+        filePreview.style.display = 'block';
+    },
+    
+    /**
+     * Create a FileList-like object
+     */
+    createFileList(files) {
+        const fileList = {
+            length: files.length,
+            item: function(index) { return this[index]; }
+        };
+        
+        files.forEach((file, index) => {
+            fileList[index] = file;
+        });
+        
+        return fileList;
+    },
+    
+    /**
+     * Show file preview for company upload
+     */
+    showCompanyFilePreview(file) {
+        const filePreview = document.getElementById('companyFilePreview');
+        const fileSize = this.formatFileSize(file.size);
+        const fileIcon = this.getFileIcon(file.type, file.name);
+        
+        filePreview.innerHTML = `
+            <div class="file-item">
+                <div class="file-info">
+                    <div class="file-icon ${fileIcon.class}">
+                        <i class="${fileIcon.icon}"></i>
+                    </div>
+                    <div class="file-details">
+                        <h6>${file.name}</h6>
+                        <div class="file-size">${fileSize}</div>
+                    </div>
+                </div>
+                <div class="file-status valid">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-danger" onclick="app.clearCompanyFilePreview()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        `;
+    },
+    
+    /**
+     * Clear file preview for company upload
+     */
+    clearCompanyFilePreview() {
+        const uploadArea = document.getElementById('companyUploadArea');
+        const fileInput = document.getElementById('companyFileInput');
+        const uploadContent = uploadArea?.querySelector('.upload-content');
+        const filePreview = document.getElementById('companyFilePreview');
+        
+        if (fileInput) {
+            fileInput.value = '';
+        }
+        
+        if (uploadContent) {
+            uploadContent.style.display = 'block';
+        }
+        
+        if (filePreview) {
+            filePreview.style.display = 'none';
+            filePreview.innerHTML = '';
+        }
+    },
+    
+    /**
+     * Get file icon based on file type
+     */
+    getFileIcon(fileType, fileName) {
+        const extension = fileName.split('.').pop().toLowerCase();
+        
+        if (fileType === 'application/pdf' || extension === 'pdf') {
+            return { icon: 'fas fa-file-pdf', class: 'pdf' };
+        } else if (fileType.startsWith('image/') || ['jpg', 'jpeg', 'png'].includes(extension)) {
+            return { icon: 'fas fa-file-image', class: 'image' };
+        } else if (fileType.includes('word') || ['doc', 'docx'].includes(extension)) {
+            return { icon: 'fas fa-file-word', class: 'document' };
+        } else if (['xls', 'xlsx'].includes(extension)) {
+            return { icon: 'fas fa-file-excel', class: 'spreadsheet' };
+        } else {
+            return { icon: 'fas fa-file-alt', class: 'document' };
+        }
+    },
+    
+    /**
+     * Format file size for display
+     */
+    formatFileSize(bytes) {
+        if (bytes === 0) return '0 بايت';
+        
+        const k = 1024;
+        const sizes = ['بايت', 'كيلوبايت', 'ميجابايت', 'جيجابايت'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    },
+
+    /**
+     * Initialize drag-and-drop functionality for general upload modal
+     */
+    initializeGeneralUploadDragDrop() {
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const filePreview = document.getElementById('filePreview');
+        
+        if (!uploadArea || !fileInput || !filePreview) return;
+        
+        // Drag and drop events
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                this.handleGeneralFileSelection(files[0]);
+            }
+        });
+        
+        // File input change event
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                this.handleGeneralFileSelection(e.target.files[0]);
+            }
+        });
+        
+        // Clear file preview on modal hide
+        const modal = document.getElementById('uploadModal');
+        modal.addEventListener('hidden.bs.modal', () => {
+            this.clearGeneralFilePreview();
+        });
+    },
+    
+    /**
+     * Handle file selection for general upload
+     */
+    handleGeneralFileSelection(file) {
+        const fileInput = document.getElementById('fileInput');
+        const uploadArea = document.getElementById('uploadArea');
+        const uploadContent = uploadArea.querySelector('.upload-content');
+        const filePreview = document.getElementById('filePreview');
+        
+        // Validate file type
+        const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'image/jpeg', 'image/jpg', 'image/png'];
+        if (!allowedTypes.includes(file.type)) {
+            showError('نوع الملف غير مدعوم. الرجاء اختيار ملف PDF, DOC, DOCX, JPG أو PNG');
+            return;
+        }
+        
+        // Validate file size (15MB)
+        const maxSize = 15 * 1024 * 1024; // 15MB
+        if (file.size > maxSize) {
+            showError('حجم الملف كبير جداً. الحد الأقصى 15 ميجابايت');
+            return;
+        }
+        
+        // Create FileList-like object for single file
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(file);
+        fileInput.files = dataTransfer.files;
+        
+        // Show file preview
+        this.showGeneralFilePreview(file);
+        
+        // Hide upload content and show preview
+        if (uploadContent) uploadContent.style.display = 'none';
+        if (filePreview) filePreview.style.display = 'block';
+    },
+    
+    /**
+     * Show file preview for general upload
+     */
+    showGeneralFilePreview(file) {
+        const filePreview = document.getElementById('filePreview');
+        const fileSize = this.formatFileSize(file.size);
+        const fileIcon = this.getFileIcon(file.type, file.name);
+        
+        filePreview.innerHTML = `
+            <div class="file-item">
+                <div class="file-info">
+                    <div class="file-icon ${fileIcon.class}">
+                        <i class="${fileIcon.icon}"></i>
+                    </div>
+                    <div class="file-details">
+                        <h6>${file.name}</h6>
+                        <span class="file-size text-muted">${fileSize}</span>
+                    </div>
+                </div>
+                <div class="file-status">
+                    <span class="text-success">
+                        <i class="fas fa-check-circle"></i>
+                    </span>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-danger" onclick="app.clearGeneralFilePreview()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        `;
+    },
+    
+    /**
+     * Clear file preview for general upload
+     */
+    clearGeneralFilePreview() {
+        const uploadArea = document.getElementById('uploadArea');
+        const uploadContent = uploadArea?.querySelector('.upload-content');
+        const filePreview = document.getElementById('filePreview');
+        const fileInput = document.getElementById('fileInput');
+        
+        // Clear file input
+        if (fileInput) fileInput.value = '';
+        
+        // Show upload content and hide preview
+        if (uploadContent) uploadContent.style.display = 'block';
+        if (filePreview) {
+            filePreview.style.display = 'none';
+            filePreview.innerHTML = '';
         }
     },
 
@@ -10074,9 +10659,11 @@ const App = {
                 actions: ['edit', 'delete', 'history'],
                 exportable: true,
                 importable: true,
+                selectable: true,
                 onAdd: () => this.showBreakdownForm(),
                 onEdit: (breakdown) => this.showBreakdownForm(breakdown),
                 onDelete: (breakdown) => this.deleteBreakdown(breakdown),
+                onBulkDelete: (ids) => this.bulkDeleteBreakdowns(ids),
                 onHistory: (breakdown) => this.showBreakdownHistory(breakdown),
                 onImport: (data) => this.importBreakdowns(data)
             });
@@ -10242,6 +10829,39 @@ const App = {
                 this.initializeBreakdownsPage();
             } catch (error) {
                 showError('حدث خطأ أثناء حذف العطل: ' + error.message);
+            }
+        }
+    },
+
+    /**
+     * Bulk delete breakdowns
+     */
+    async bulkDeleteBreakdowns(breakdownIds) {
+        if (!breakdownIds || breakdownIds.length === 0) {
+            showError('لم يتم تحديد أي أعطال');
+            return;
+        }
+
+        const result = await showConfirm(
+            `هل تريد حذف ${breakdownIds.length} عطل؟\nهذا الإجراء لا يمكن التراجع عنه.`,
+            'تأكيد الحذف المتعدد'
+        );
+
+        if (result.isConfirmed) {
+            try {
+                showLoading('جاري حذف الأعطال...');
+                const response = await api.bulkDeleteBreakdowns(breakdownIds);
+                hideLoading();
+
+                if (response.success) {
+                    showSuccess(response.message);
+                    this.initializeBreakdownsPage();
+                } else {
+                    showError(response.message || 'فشل في حذف الأعطال');
+                }
+            } catch (error) {
+                hideLoading();
+                showError(error.message || 'حدث خطأ أثناء حذف الأعطال');
             }
         }
     },

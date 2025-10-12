@@ -3507,6 +3507,95 @@ def delete_driver(driver_id):
     except Exception as e:
         return jsonify({'error': f'خطأ في حذف السائق: {str(e)}'}), 500
 
+@app.route('/api/drivers/bulk', methods=['DELETE'])
+@login_required
+def bulk_delete_drivers():
+    """
+    Bulk delete multiple drivers
+    حذف متعدد للسائقين
+    """
+    try:
+        from json_store import json_store
+
+        # Get request data
+        data = request.get_json()
+        if not data or 'driver_ids' not in data:
+            return jsonify({'error': 'قائمة معرفات السائقين مطلوبة'}), 400
+
+        driver_ids = data['driver_ids']
+        if not isinstance(driver_ids, list) or len(driver_ids) == 0:
+            return jsonify({'error': 'قائمة معرفات السائقين يجب أن تحتوي على عنصر واحد على الأقل'}), 400
+
+        if len(driver_ids) > 50:  # Limit bulk operations
+            return jsonify({'error': 'لا يمكن حذف أكثر من 50 سائق في المرة الواحدة'}), 400
+
+        deleted = []
+        failed = []
+
+        # Process each driver
+        for driver_id in driver_ids:
+            try:
+                # Check if driver exists
+                existing_driver = json_store.find_by_id('drivers', driver_id)
+                if not existing_driver:
+                    failed.append({
+                        'driver_id': driver_id,
+                        'error': 'السائق غير موجود'
+                    })
+                    continue
+
+                # Log the deletion event before deleting
+                log_delete('driver', driver_id, {
+                    'driver_name': existing_driver.get('full_name', ''),
+                    'employment_type': existing_driver.get('employment_type', ''),
+                    'phone': existing_driver.get('phone', '')
+                })
+
+                # Delete driver
+                success = json_store.delete('drivers', driver_id)
+                if success:
+                    deleted.append(driver_id)
+                else:
+                    failed.append({
+                        'driver_id': driver_id,
+                        'error': 'فشل في حذف السائق'
+                    })
+
+            except Exception as e:
+                failed.append({
+                    'driver_id': driver_id,
+                    'error': f'خطأ في الحذف: {str(e)}'
+                })
+
+        # Prepare response
+        total_requested = len(driver_ids)
+        total_deleted = len(deleted)
+        total_failed = len(failed)
+
+        if total_deleted == total_requested:
+            message = f'تم حذف جميع السائقين بنجاح ({total_deleted} سائق)'
+        elif total_deleted > 0:
+            message = f'تم حذف {total_deleted} من {total_requested} سائقين بنجاح'
+        else:
+            message = 'فشل في حذف جميع السائقين'
+
+        return jsonify({
+            'success': total_deleted > 0,
+            'message': message,
+            'results': {
+                'deleted': deleted,
+                'failed': failed,
+                'counts': {
+                    'total': total_requested,
+                    'deleted': total_deleted,
+                    'failed': total_failed
+                }
+            }
+        })
+
+    except Exception as e:
+        return jsonify({'error': f'خطأ في حذف السائقين: {str(e)}'}), 500
+
 # Vehicles CRUD Routes
 @app.route('/api/vehicles', methods=['GET'])
 @login_required
@@ -3671,6 +3760,94 @@ def delete_vehicle(vehicle_id):
 
     except Exception as e:
         return jsonify({'error': f'خطأ في حذف السيارة: {str(e)}'}), 500
+
+@app.route('/api/vehicles/bulk', methods=['DELETE'])
+@login_required
+def bulk_delete_vehicles():
+    """
+    Bulk delete multiple vehicles
+    حذف متعدد للسيارات
+    """
+    try:
+        from json_store import json_store
+
+        # Get request data
+        data = request.get_json()
+        if not data or 'vehicle_ids' not in data:
+            return jsonify({'error': 'قائمة معرفات السيارات مطلوبة'}), 400
+
+        vehicle_ids = data['vehicle_ids']
+        if not isinstance(vehicle_ids, list) or len(vehicle_ids) == 0:
+            return jsonify({'error': 'قائمة معرفات السيارات يجب أن تحتوي على عنصر واحد على الأقل'}), 400
+
+        if len(vehicle_ids) > 50:  # Limit bulk operations
+            return jsonify({'error': 'لا يمكن حذف أكثر من 50 سيارة في المرة الواحدة'}), 400
+
+        deleted = []
+        failed = []
+
+        # Process each vehicle
+        for vehicle_id in vehicle_ids:
+            try:
+                # Check if vehicle exists
+                existing_vehicle = json_store.find_by_id('vehicles', vehicle_id)
+                if not existing_vehicle:
+                    failed.append({
+                        'vehicle_id': vehicle_id,
+                        'error': 'السيارة غير موجودة'
+                    })
+                    continue
+
+                # Delete vehicle
+                success = json_store.delete('vehicles', vehicle_id)
+                if success:
+                    deleted.append(vehicle_id)
+                    # Log deletion
+                    log_delete('vehicle', vehicle_id, {
+                        'make': existing_vehicle.get('make', ''),
+                        'model': existing_vehicle.get('model', ''),
+                        'license_plate': existing_vehicle.get('license_plate', '')
+                    })
+                else:
+                    failed.append({
+                        'vehicle_id': vehicle_id,
+                        'error': 'فشل في حذف السيارة'
+                    })
+
+            except Exception as e:
+                failed.append({
+                    'vehicle_id': vehicle_id,
+                    'error': f'خطأ في الحذف: {str(e)}'
+                })
+
+        # Prepare response
+        total_requested = len(vehicle_ids)
+        total_deleted = len(deleted)
+        total_failed = len(failed)
+
+        if total_deleted == total_requested:
+            message = f'تم حذف جميع السيارات بنجاح ({total_deleted} سيارة)'
+        elif total_deleted > 0:
+            message = f'تم حذف {total_deleted} من {total_requested} سيارات بنجاح'
+        else:
+            message = 'فشل في حذف جميع السيارات'
+
+        return jsonify({
+            'success': total_deleted > 0,
+            'message': message,
+            'results': {
+                'deleted': deleted,
+                'failed': failed,
+                'counts': {
+                    'total': total_requested,
+                    'deleted': total_deleted,
+                    'failed': total_failed
+                }
+            }
+        })
+
+    except Exception as e:
+        return jsonify({'error': f'خطأ في حذف السيارات: {str(e)}'}), 500
 
 # Clients CRUD Routes
 @app.route('/api/clients', methods=['GET'])
@@ -3838,6 +4015,94 @@ def delete_client(client_id):
 
     except Exception as e:
         return jsonify({'error': f'خطأ في حذف العميل: {str(e)}'}), 500
+
+@app.route('/api/clients/bulk', methods=['DELETE'])
+@login_required
+def bulk_delete_clients():
+    """
+    Bulk delete multiple clients
+    حذف متعدد للعملاء
+    """
+    try:
+        from json_store import json_store
+
+        # Get request data
+        data = request.get_json()
+        if not data or 'client_ids' not in data:
+            return jsonify({'error': 'قائمة معرفات العملاء مطلوبة'}), 400
+
+        client_ids = data['client_ids']
+        if not isinstance(client_ids, list) or len(client_ids) == 0:
+            return jsonify({'error': 'قائمة معرفات العملاء يجب أن تحتوي على عنصر واحد على الأقل'}), 400
+
+        if len(client_ids) > 50:  # Limit bulk operations
+            return jsonify({'error': 'لا يمكن حذف أكثر من 50 عميل في المرة الواحدة'}), 400
+
+        deleted = []
+        failed = []
+
+        # Process each client
+        for client_id in client_ids:
+            try:
+                # Check if client exists
+                existing_client = json_store.find_by_id('clients', client_id)
+                if not existing_client:
+                    failed.append({
+                        'client_id': client_id,
+                        'error': 'العميل غير موجود'
+                    })
+                    continue
+
+                # Delete client
+                success = json_store.delete('clients', client_id)
+                if success:
+                    deleted.append(client_id)
+                    # Log deletion
+                    log_delete('client', client_id, {
+                        'company_name': existing_client.get('company_name', ''),
+                        'contact_person': existing_client.get('contact_person', ''),
+                        'phone': existing_client.get('phone', '')
+                    })
+                else:
+                    failed.append({
+                        'client_id': client_id,
+                        'error': 'فشل في حذف العميل'
+                    })
+
+            except Exception as e:
+                failed.append({
+                    'client_id': client_id,
+                    'error': f'خطأ في الحذف: {str(e)}'
+                })
+
+        # Prepare response
+        total_requested = len(client_ids)
+        total_deleted = len(deleted)
+        total_failed = len(failed)
+
+        if total_deleted == total_requested:
+            message = f'تم حذف جميع العملاء بنجاح ({total_deleted} عميل)'
+        elif total_deleted > 0:
+            message = f'تم حذف {total_deleted} من {total_requested} عملاء بنجاح'
+        else:
+            message = 'فشل في حذف جميع العملاء'
+
+        return jsonify({
+            'success': total_deleted > 0,
+            'message': message,
+            'results': {
+                'deleted': deleted,
+                'failed': failed,
+                'counts': {
+                    'total': total_requested,
+                    'deleted': total_deleted,
+                    'failed': total_failed
+                }
+            }
+        })
+
+    except Exception as e:
+        return jsonify({'error': f'خطأ في حذف العملاء: {str(e)}'}), 500
 
 # Orders CRUD Routes
 @app.route('/api/orders', methods=['GET'])
@@ -4326,6 +4591,94 @@ def delete_advance(advance_id):
 
     except Exception as e:
         return jsonify({'error': f'خطأ في حذف السُلفة: {str(e)}'}), 500
+
+@app.route('/api/advances/bulk', methods=['DELETE'])
+@login_required
+def bulk_delete_advances():
+    """
+    Bulk delete multiple advances
+    حذف متعدد للسُلف
+    """
+    try:
+        from json_store import json_store
+
+        # Get request data
+        data = request.get_json()
+        if not data or 'advance_ids' not in data:
+            return jsonify({'error': 'قائمة معرفات السُلف مطلوبة'}), 400
+
+        advance_ids = data['advance_ids']
+        if not isinstance(advance_ids, list) or len(advance_ids) == 0:
+            return jsonify({'error': 'قائمة معرفات السُلف يجب أن تحتوي على عنصر واحد على الأقل'}), 400
+
+        if len(advance_ids) > 50:  # Limit bulk operations
+            return jsonify({'error': 'لا يمكن حذف أكثر من 50 سُلفة في المرة الواحدة'}), 400
+
+        deleted = []
+        failed = []
+
+        # Process each advance
+        for advance_id in advance_ids:
+            try:
+                # Check if advance exists
+                existing_advance = json_store.find_by_id('advances', advance_id)
+                if not existing_advance:
+                    failed.append({
+                        'advance_id': advance_id,
+                        'error': 'السُلفة غير موجودة'
+                    })
+                    continue
+
+                # Delete advance
+                success = json_store.delete('advances', advance_id)
+                if success:
+                    deleted.append(advance_id)
+                    # Log deletion
+                    log_delete('advance', advance_id, {
+                        'driver_id': existing_advance.get('driver_id', ''),
+                        'amount': existing_advance.get('amount', 0),
+                        'date': existing_advance.get('date', '')
+                    })
+                else:
+                    failed.append({
+                        'advance_id': advance_id,
+                        'error': 'فشل في حذف السُلفة'
+                    })
+
+            except Exception as e:
+                failed.append({
+                    'advance_id': advance_id,
+                    'error': f'خطأ في الحذف: {str(e)}'
+                })
+
+        # Prepare response
+        total_requested = len(advance_ids)
+        total_deleted = len(deleted)
+        total_failed = len(failed)
+
+        if total_deleted == total_requested:
+            message = f'تم حذف جميع السُلف بنجاح ({total_deleted} سُلفة)'
+        elif total_deleted > 0:
+            message = f'تم حذف {total_deleted} من {total_requested} سُلف بنجاح'
+        else:
+            message = 'فشل في حذف جميع السُلف'
+
+        return jsonify({
+            'success': total_deleted > 0,
+            'message': message,
+            'results': {
+                'deleted': deleted,
+                'failed': failed,
+                'counts': {
+                    'total': total_requested,
+                    'deleted': total_deleted,
+                    'failed': total_failed
+                }
+            }
+        })
+
+    except Exception as e:
+        return jsonify({'error': f'خطأ في حذف السُلف: {str(e)}'}), 500
 
 # Additional Advances Endpoints
 @app.route('/api/advances/driver/<driver_id>', methods=['GET'])
@@ -4843,6 +5196,94 @@ def delete_maintenance_schedule(schedule_id):
     except Exception as e:
         return jsonify({'error': f'خطأ في حذف جدولة الصيانة: {str(e)}'}), 500
 
+@app.route('/api/maintenance/schedules/bulk', methods=['DELETE'])
+@login_required
+def bulk_delete_maintenance_schedules():
+    """
+    Bulk delete multiple maintenance schedules
+    حذف متعدد لجدولة الصيانة
+    """
+    try:
+        from json_store import json_store
+
+        # Get request data
+        data = request.get_json()
+        if not data or 'schedule_ids' not in data:
+            return jsonify({'error': 'قائمة معرفات جدولة الصيانة مطلوبة'}), 400
+
+        schedule_ids = data['schedule_ids']
+        if not isinstance(schedule_ids, list) or len(schedule_ids) == 0:
+            return jsonify({'error': 'قائمة معرفات جدولة الصيانة يجب أن تحتوي على عنصر واحد على الأقل'}), 400
+
+        if len(schedule_ids) > 50:  # Limit bulk operations
+            return jsonify({'error': 'لا يمكن حذف أكثر من 50 جدولة في المرة الواحدة'}), 400
+
+        deleted = []
+        failed = []
+
+        # Process each schedule
+        for schedule_id in schedule_ids:
+            try:
+                # Check if schedule exists
+                existing_schedule = json_store.find_by_id('maintenance_schedules', schedule_id)
+                if not existing_schedule:
+                    failed.append({
+                        'schedule_id': schedule_id,
+                        'error': 'جدولة الصيانة غير موجودة'
+                    })
+                    continue
+
+                # Delete schedule
+                success = json_store.delete('maintenance_schedules', schedule_id)
+                if success:
+                    deleted.append(schedule_id)
+                    # Log deletion
+                    log_delete('maintenance_schedule', schedule_id, {
+                        'vehicle_id': existing_schedule.get('vehicle_id', ''),
+                        'service_type': existing_schedule.get('service_type', ''),
+                        'scheduled_date': existing_schedule.get('scheduled_date', '')
+                    })
+                else:
+                    failed.append({
+                        'schedule_id': schedule_id,
+                        'error': 'فشل في حذف جدولة الصيانة'
+                    })
+
+            except Exception as e:
+                failed.append({
+                    'schedule_id': schedule_id,
+                    'error': f'خطأ في الحذف: {str(e)}'
+                })
+
+        # Prepare response
+        total_requested = len(schedule_ids)
+        total_deleted = len(deleted)
+        total_failed = len(failed)
+
+        if total_deleted == total_requested:
+            message = f'تم حذف جميع جدولات الصيانة بنجاح ({total_deleted} جدولة)'
+        elif total_deleted > 0:
+            message = f'تم حذف {total_deleted} من {total_requested} جدولات صيانة بنجاح'
+        else:
+            message = 'فشل في حذف جميع جدولات الصيانة'
+
+        return jsonify({
+            'success': total_deleted > 0,
+            'message': message,
+            'results': {
+                'deleted': deleted,
+                'failed': failed,
+                'counts': {
+                    'total': total_requested,
+                    'deleted': total_deleted,
+                    'failed': total_failed
+                }
+            }
+        })
+
+    except Exception as e:
+        return jsonify({'error': f'خطأ في حذف جدولات الصيانة: {str(e)}'}), 500
+
 @app.route('/api/maintenance/schedules/due', methods=['GET'])
 @login_required
 def get_due_maintenance():
@@ -5035,6 +5476,94 @@ def delete_breakdown(breakdown_id):
 
     except Exception as e:
         return jsonify({'error': f'خطأ في حذف العطل: {str(e)}'}), 500
+
+@app.route('/api/breakdowns/bulk', methods=['DELETE'])
+@login_required
+def bulk_delete_breakdowns():
+    """
+    Bulk delete multiple breakdowns
+    حذف متعدد للأعطال
+    """
+    try:
+        from json_store import json_store
+
+        # Get request data
+        data = request.get_json()
+        if not data or 'breakdown_ids' not in data:
+            return jsonify({'error': 'قائمة معرفات الأعطال مطلوبة'}), 400
+
+        breakdown_ids = data['breakdown_ids']
+        if not isinstance(breakdown_ids, list) or len(breakdown_ids) == 0:
+            return jsonify({'error': 'قائمة معرفات الأعطال يجب أن تحتوي على عنصر واحد على الأقل'}), 400
+
+        if len(breakdown_ids) > 50:  # Limit bulk operations
+            return jsonify({'error': 'لا يمكن حذف أكثر من 50 عطل في المرة الواحدة'}), 400
+
+        deleted = []
+        failed = []
+
+        # Process each breakdown
+        for breakdown_id in breakdown_ids:
+            try:
+                # Check if breakdown exists
+                existing_breakdown = json_store.find_by_id('breakdowns', breakdown_id)
+                if not existing_breakdown:
+                    failed.append({
+                        'breakdown_id': breakdown_id,
+                        'error': 'العطل غير موجود'
+                    })
+                    continue
+
+                # Delete breakdown
+                success = json_store.delete('breakdowns', breakdown_id)
+                if success:
+                    deleted.append(breakdown_id)
+                    # Log deletion
+                    log_delete('breakdown', breakdown_id, {
+                        'vehicle_id': existing_breakdown.get('vehicle_id', ''),
+                        'description': existing_breakdown.get('description', ''),
+                        'reported_date': existing_breakdown.get('reported_date', '')
+                    })
+                else:
+                    failed.append({
+                        'breakdown_id': breakdown_id,
+                        'error': 'فشل في حذف العطل'
+                    })
+
+            except Exception as e:
+                failed.append({
+                    'breakdown_id': breakdown_id,
+                    'error': f'خطأ في الحذف: {str(e)}'
+                })
+
+        # Prepare response
+        total_requested = len(breakdown_ids)
+        total_deleted = len(deleted)
+        total_failed = len(failed)
+
+        if total_deleted == total_requested:
+            message = f'تم حذف جميع الأعطال بنجاح ({total_deleted} عطل)'
+        elif total_deleted > 0:
+            message = f'تم حذف {total_deleted} من {total_requested} أعطال بنجاح'
+        else:
+            message = 'فشل في حذف جميع الأعطال'
+
+        return jsonify({
+            'success': total_deleted > 0,
+            'message': message,
+            'results': {
+                'deleted': deleted,
+                'failed': failed,
+                'counts': {
+                    'total': total_requested,
+                    'deleted': total_deleted,
+                    'failed': total_failed
+                }
+            }
+        })
+
+    except Exception as e:
+        return jsonify({'error': f'خطأ في حذف الأعطال: {str(e)}'}), 500
 
 # ==================== BREAKDOWN HISTORY API ====================
 

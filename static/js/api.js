@@ -85,7 +85,7 @@ class API {
             }
         }
 
-        if (data && (method === 'POST' || method === 'PUT' || method === 'PATCH')) {
+        if (data && (method === 'POST' || method === 'PUT' || method === 'PATCH' || method === 'DELETE')) {
             options.body = JSON.stringify(data);
         }
 
@@ -172,6 +172,10 @@ class API {
         return await this.request('DELETE', `/drivers/${id}`);
     }
 
+    async bulkDeleteDrivers(ids) {
+        return await this.request('DELETE', '/drivers/bulk', { driver_ids: ids });
+    }
+
     // Vehicles
     async getVehicles() {
         return await this.request('GET', '/vehicles');
@@ -193,6 +197,10 @@ class API {
         return await this.request('DELETE', `/vehicles/${id}`);
     }
 
+    async bulkDeleteVehicles(ids) {
+        return await this.request('DELETE', '/vehicles/bulk', { vehicle_ids: ids });
+    }
+
     // Clients
     async getClients() {
         return await this.request('GET', '/clients');
@@ -212,6 +220,10 @@ class API {
 
     async deleteClient(id) {
         return await this.request('DELETE', `/clients/${id}`);
+    }
+
+    async bulkDeleteClients(ids) {
+        return await this.request('DELETE', '/clients/bulk', { client_ids: ids });
     }
 
     // Orders
@@ -285,6 +297,10 @@ class API {
         return await this.request('DELETE', `/advances/${id}`);
     }
 
+    async bulkDeleteAdvances(ids) {
+        return await this.request('DELETE', '/advances/bulk', { advance_ids: ids });
+    }
+
     async getDriverAdvances(driverId) {
         return await this.request('GET', `/advances/driver/${driverId}`);
     }
@@ -355,6 +371,10 @@ class API {
         return await this.request('DELETE', `/maintenance/schedules/${id}`);
     }
 
+    async bulkDeleteMaintenanceSchedules(ids) {
+        return await this.request('DELETE', '/maintenance/schedules/bulk', { schedule_ids: ids });
+    }
+
     async getDueMaintenance() {
         return await this.request('GET', '/maintenance/schedules/due');
     }
@@ -417,6 +437,10 @@ class API {
 
     async deleteBreakdown(id) {
         return await this.request('DELETE', `/breakdowns/${id}`);
+    }
+
+    async bulkDeleteBreakdowns(ids) {
+        return await this.request('DELETE', '/breakdowns/bulk', { breakdown_ids: ids });
     }
 
     // Breakdown History
