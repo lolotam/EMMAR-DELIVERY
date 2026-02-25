@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: emmar-delivery-app
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./uploads:/app/uploads
+      - ./backups:/app/backups
+      - ./exports:/app/exports
+    environment:
+      - FLASK_ENV=production
+      - FLASK_USE_HTTPS=false
+      - RATELIMIT_DEFAULT=100 per hour
+      - FLASK_SECRET_KEY=emar-delivery-secret-key-production-change-me
