@@ -108,7 +108,7 @@ csp = {
 talisman = Talisman(
     app,
     force_https=False,  # Set to True in production
-    strict_transport_security=True,
+    strict_transport_security=False, # Disabled for development mode to prevent connection errors
     strict_transport_security_max_age=31536000,  # 1 year
     frame_options=None,  # Disable X-Frame-Options to allow embedding previews
     content_security_policy=csp,
