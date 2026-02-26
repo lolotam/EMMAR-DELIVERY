@@ -37,7 +37,10 @@
 
     <!-- Login Container -->
     <div id="loginContainer" class="login-container">
-        <div class="container-fluid vh-100 d-flex align-items-center justify-content-center">
+        <video autoplay muted loop playsinline class="login-video-bg">
+            <source src="https://res.cloudinary.com/dnb3glmxm/video/upload/v1772126525/Animate_cars_move_right_left_delpmaspu__bsz3ui.mp4" type="video/mp4">
+        </video>
+        <div class="container-fluid vh-100 d-flex align-items-center justify-content-center position-relative" style="z-index: 1;">
             <div class="login-card">
                 <div class="text-center mb-4">
                     <i class="fas fa-truck fa-3x text-primary mb-3"></i>
@@ -51,7 +54,7 @@
                         <label for="username" class="form-label">اسم المستخدم</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            <input type="text" class="form-control" id="username" required>
+                            <input type="text" class="form-control" id="username" name="username" autocomplete="username" required>
                         </div>
                     </div>
 
@@ -59,7 +62,7 @@
                         <label for="password" class="form-label">كلمة المرور</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                            <input type="password" class="form-control" id="password" required>
+                            <input type="password" class="form-control" id="password" name="password" autocomplete="current-password" required>
                             <button class="btn btn-outline-secondary" type="button" id="toggleLoginPassword">
                                 <i class="fas fa-eye"></i>
                             </button>
@@ -102,8 +105,20 @@
                             السيارات
                         </a>
                         <a href="#" data-page="clients" class="nav-link">
-                            <i class="fas fa-building me-2"></i>
-                            العملاء
+                            <i class="fas fa-building"></i>
+                            <span>العملاء</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" data-page="companies" class="nav-link">
+                            <i class="fas fa-industry"></i>
+                            <span>الشركات</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" data-page="orders" class="nav-link">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>الطلبات</span>
                         </a>
                         <a href="#" data-page="orders" class="nav-link">
                             <i class="fas fa-shopping-cart me-2"></i>
@@ -160,8 +175,9 @@
                                         <span class="input-group-text bg-white border-end-0">
                                             <i class="fas fa-search text-muted"></i>
                                         </span>
-                                        <input type="text" class="form-control border-start-0"
+                                        <input type="search" class="form-control border-start-0"
                                                id="globalSearchInput"
+                                               name="search"
                                                placeholder="بحث في السائقين، العملاء، والمركبات..."
                                                autocomplete="off">
                                     </div>
