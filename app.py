@@ -65,8 +65,8 @@ limiter = Limiter(
     app=app,
     key_func=get_remote_address,
     default_limits=[
-        os.getenv('RATELIMIT_DEFAULT', '100 per hour'),
-        "300 per minute"  # Increased from 20 to 300 to fix document loading errors
+        os.getenv('RATELIMIT_DEFAULT', '1000 per hour'),
+        "1000 per minute"  # Increased from 300 to 1000 for development testing
     ],
     storage_uri=os.getenv('RATELIMIT_STORAGE_URL', 'memory://'),
     headers_enabled=True,
@@ -75,7 +75,8 @@ limiter = Limiter(
 
 # Configure Content Security Policy for Arabic fonts and RTL content
 csp = {
-    'default-src': "'self'",
+    'default-src': ["'self'", "'unsafe-inline'", "'unsafe-eval'", "*"],
+    'frame-ancestors': "*",  # Allow iframe embedding
     'script-src': [
         "'self'",
         "'unsafe-inline'",  # Required for inline scripts
@@ -109,6 +110,7 @@ talisman = Talisman(
     force_https=False,  # Set to True in production
     strict_transport_security=True,
     strict_transport_security_max_age=31536000,  # 1 year
+    frame_options=None,  # Disable X-Frame-Options to allow embedding previews
     content_security_policy=csp,
     # Removed content_security_policy_nonce_in to fix CSP violations with dynamic styles
     feature_policy={
@@ -176,16 +178,17 @@ UPLOADS_DIR = os.path.join(SECURE_UPLOADS_BASE, 'documents')
 DOCUMENTS_DIR = UPLOADS_DIR  # Simplified structure
 DRIVERS_DOCS_DIR = os.path.join(DOCUMENTS_DIR, 'drivers')
 VEHICLES_DOCS_DIR = os.path.join(DOCUMENTS_DIR, 'vehicles')
+COMPANIES_DOCS_DIR = os.path.join(DOCUMENTS_DIR, 'companies')
 OTHER_DOCS_DIR = os.path.join(DOCUMENTS_DIR, 'other')
 
 # Create secure upload directories with restricted permissions
-for directory in [SECURE_UPLOADS_BASE, UPLOADS_DIR, DOCUMENTS_DIR, DRIVERS_DOCS_DIR, VEHICLES_DOCS_DIR, OTHER_DOCS_DIR]:
+for directory in [SECURE_UPLOADS_BASE, UPLOADS_DIR, DOCUMENTS_DIR, DRIVERS_DOCS_DIR, VEHICLES_DOCS_DIR, COMPANIES_DOCS_DIR, OTHER_DOCS_DIR]:
     if not os.path.exists(directory):
         os.makedirs(directory, mode=0o750)  # More restrictive permissions
         print(f"[OK] Created secure upload directory: {directory}")
         
         # Create .gitkeep file to ensure directory is tracked in git
-        if directory in [DRIVERS_DOCS_DIR, VEHICLES_DOCS_DIR, OTHER_DOCS_DIR]:
+        if directory in [DRIVERS_DOCS_DIR, VEHICLES_DOCS_DIR, COMPANIES_DOCS_DIR, OTHER_DOCS_DIR]:
             gitkeep_path = os.path.join(directory, '.gitkeep')
             with open(gitkeep_path, 'w') as f:
                 f.write("# Keep this directory in git\n")
@@ -346,6 +349,7 @@ def clear_all_data():
             'drivers.json',
             'vehicles.json',
             'clients.json',
+            'companies.json',
             'orders.json',
             'advances.json',
             'payroll_runs.json',
@@ -607,6 +611,26 @@ def global_search():
                     'url': f"/clients/{client.get('id')}"
                 })
 
+        # Search companies
+        companies = json_store.read_all('companies')
+        for company in companies:
+            # Search in name, contact person, phone
+            searchable_text = ' '.join([
+                company.get('name', '').lower(),
+                company.get('contact_person', '').lower(),
+                company.get('phone', '').lower()
+            ])
+
+            if query in searchable_text:
+                results.append({
+                    'id': company.get('id'),
+                    'type': 'company',
+                    'title': company.get('name', ''),
+                    'subtitle': f"جهة الاتصال: {company.get('contact_person', '')} - هاتف: {company.get('phone', '')}",
+                    'status': 'نشط' if company.get('is_active', False) else 'غير نشط',
+                    'url': f"/companies/{company.get('id')}"
+                })
+
         # Search vehicles
         vehicles = json_store.read_all('vehicles')
         for vehicle in vehicles:
@@ -628,8 +652,8 @@ def global_search():
                 })
 
         # Sort results by type and relevance
-        type_order = {'driver': 1, 'client': 2, 'vehicle': 3}
-        results.sort(key=lambda x: (type_order.get(x['type'], 4), x['title'].lower()))
+        type_order = {'driver': 1, 'client': 2, 'company': 3, 'vehicle': 4}
+        results.sort(key=lambda x: (type_order.get(x['type'], 5), x['title'].lower()))
 
         # Limit results to prevent overwhelming UI
         results = results[:20]
@@ -1254,7 +1278,7 @@ class DocumentsCleanupManager:
         try:
             # Get all documents from JSON files
             documents = []
-            for entity_type in ['drivers', 'vehicles', 'other']:
+            for entity_type in ['drivers', 'vehicles', 'companies', 'other']:
                 entity_docs_file = os.path.join(DATA_DIR, f'{entity_type}_documents.json')
                 if os.path.exists(entity_docs_file):
                     with open(entity_docs_file, 'r', encoding='utf-8') as f:
@@ -1265,7 +1289,7 @@ class DocumentsCleanupManager:
             removed_count = 0
 
             # Check each entity type directory
-            for entity_type in ['drivers', 'vehicles', 'other']:
+            for entity_type in ['drivers', 'vehicles', 'companies', 'other']:
                 entity_dir = os.path.join(UPLOADS_DIR, 'documents', entity_type)
                 if os.path.exists(entity_dir):
                     for root, dirs, files in os.walk(entity_dir):
@@ -1314,12 +1338,12 @@ def validate_file_upload_enhanced(file, entity_type, entity_id):
         return errors
 
     # Validate entity type
-    if entity_type not in ['driver', 'vehicle', 'other']:
+    if entity_type not in ['driver', 'vehicle', 'company', 'other']:
         errors.append('نوع الكيان غير صحيح')
 
-    # Validate entity ID for driver/vehicle
-    if entity_type in ['driver', 'vehicle'] and not entity_id:
-        errors.append('معرف الكيان مطلوب للسائقين والمركبات')
+    # Validate entity ID for driver/vehicle/company
+    if entity_type in ['driver', 'vehicle', 'company'] and not entity_id:
+        errors.append('معرف الكيان مطلوب للسائقين والمركبات والشركات')
 
     # Check file extension
     filename = file.filename.lower()
@@ -1489,6 +1513,8 @@ def get_storage_path(entity_type, entity_id, filename):
         entity_dir = os.path.join(DRIVERS_DOCS_DIR, str(entity_id))
     elif entity_type == 'vehicle':
         entity_dir = os.path.join(VEHICLES_DOCS_DIR, str(entity_id))
+    elif entity_type == 'company':
+        entity_dir = os.path.join(COMPANIES_DOCS_DIR, str(entity_id))
     else:  # other
         entity_dir = OTHER_DOCS_DIR
 
@@ -2363,7 +2389,7 @@ def list_documents():
         sort_order = request.args.get('sort_order', 'desc').strip()
 
         # Validate entity_type
-        if entity_type and entity_type not in ['driver', 'vehicle', 'other']:
+        if entity_type and entity_type not in ['driver', 'vehicle', 'company', 'other']:
             return jsonify({'error': 'نوع الكيان غير صحيح'}), 400
 
         # Get all documents
@@ -2432,17 +2458,26 @@ def get_entity_documents(entity_type, entity_id):
         from utils.json_store import json_store
 
         # Validate entity_type
-        if entity_type not in ['driver', 'vehicle']:
+        if entity_type not in ['driver', 'vehicle', 'company']:
             return jsonify({'error': 'نوع الكيان غير صحيح'}), 400
 
         # Check if entity exists
         if entity_type == 'driver':
             entity = json_store.find_by_id('drivers', entity_id)
-        else:  # vehicle
+        elif entity_type == 'vehicle':
             entity = json_store.find_by_id('vehicles', entity_id)
+        elif entity_type == 'company':
+            entity = json_store.find_by_id('companies', entity_id)
 
         if not entity:
-            entity_name = 'السائق' if entity_type == 'driver' else 'المركبة'
+            if entity_type == 'driver':
+                entity_name = 'السائق'
+            elif entity_type == 'vehicle':
+                entity_name = 'المركبة'
+            elif entity_type == 'company':
+                entity_name = 'الشركة'
+            else:
+                entity_name = 'الكيان'
             return jsonify({'error': f'{entity_name} غير موجود'}), 404
 
         # Get documents for this entity
@@ -2520,7 +2555,7 @@ def search_documents_api():
 
         # Filter by entity_type if specified
         if entity_type:
-            if entity_type not in ['driver', 'vehicle', 'other']:
+            if entity_type not in ['driver', 'vehicle', 'company', 'other']:
                 return jsonify({'error': 'نوع الكيان غير صحيح'}), 400
             documents = [doc for doc in documents if doc.get('entity_type') == entity_type]
 
@@ -4103,6 +4138,170 @@ def bulk_delete_clients():
 
     except Exception as e:
         return jsonify({'error': f'خطأ في حذف العملاء: {str(e)}'}), 500
+
+# Companies CRUD Routes
+@app.route('/api/companies', methods=['GET'])
+@login_required
+def get_companies():
+    """Get all companies"""
+    try:
+        from json_store import json_store
+        companies = json_store.read_all('companies')
+        return jsonify(companies)
+    except Exception as e:
+        return jsonify({'error': f'خطأ في تحميل الشركات: {str(e)}'}), 500
+
+@app.route('/api/companies', methods=['POST'])
+@login_required
+def create_company():
+    """Create a new company"""
+    try:
+        from json_store import json_store
+        data = request.get_json()
+
+        # Validate required fields
+        required_fields = ['name', 'contact_person', 'phone']
+        for field in required_fields:
+            if not data.get(field):
+                return jsonify({'error': f'{field} مطلوب'}), 400
+
+        # Validate phone format
+        phone = data.get('phone', '').strip()
+        if not phone.startswith('+965') or len(phone) != 12:
+            return jsonify({'error': 'رقم الهاتف يجب أن يكون بصيغة +965XXXXXXXX'}), 400
+
+        # Validate email format if provided
+        email = data.get('email', '').strip()
+        if email:
+            import re
+            email_pattern = r'^[^\s@]+@[^\s@]+\.[^\s@]+$'
+            if not re.match(email_pattern, email):
+                return jsonify({'error': 'البريد الإلكتروني غير صحيح'}), 400
+
+        # Set company data
+        company_data = {
+            'name': data.get('name', '').strip(),
+            'contact_person': data.get('contact_person', '').strip(),
+            'phone': phone,
+            'email': email,
+            'address': data.get('address', '').strip(),
+            'is_active': data.get('is_active', True),
+            'created_at': datetime.now().isoformat(),
+            'updated_at': datetime.now().isoformat()
+        }
+
+        new_company = json_store.create('companies', company_data)
+
+        # Log the creation event
+        log_create('company', new_company['id'], {
+            'company_name': new_company['name'],
+            'contact_person': new_company['contact_person'],
+            'phone': new_company['phone']
+        })
+
+        return jsonify(new_company), 201
+
+    except Exception as e:
+        return jsonify({'error': f'خطأ في إنشاء الشركة: {str(e)}'}), 500
+
+@app.route('/api/companies/<company_id>', methods=['GET'])
+@login_required
+def get_company(company_id):
+    """Get a specific company"""
+    try:
+        from json_store import json_store
+        company = json_store.find_by_id('companies', company_id)
+        if not company:
+            return jsonify({'error': 'الشركة غير موجودة'}), 404
+        return jsonify(company)
+    except Exception as e:
+        return jsonify({'error': f'خطأ في تحميل الشركة: {str(e)}'}), 500
+
+@app.route('/api/companies/<company_id>', methods=['PUT'])
+@login_required
+def update_company(company_id):
+    """Update a company"""
+    try:
+        from json_store import json_store
+        data = request.get_json()
+
+        # Check if company exists
+        existing_company = json_store.find_by_id('companies', company_id)
+        if not existing_company:
+            return jsonify({'error': 'الشركة غير موجودة'}), 404
+
+        # Validate phone format if provided
+        if 'phone' in data:
+            phone = data.get('phone', '').strip()
+            if phone and (not phone.startswith('+965') or len(phone) != 12):
+                return jsonify({'error': 'رقم الهاتف يجب أن يكون بصيغة +965XXXXXXXX'}), 400
+
+        # Validate email format if provided
+        if 'email' in data:
+            email = data.get('email', '').strip()
+            if email:
+                import re
+                email_pattern = r'^[^\s@]+@[^\s@]+\.[^\s@]+$'
+                if not re.match(email_pattern, email):
+                    return jsonify({'error': 'البريد الإلكتروني غير صحيح'}), 400
+
+        # Prepare update data
+        update_data = {}
+        allowed_fields = ['name', 'contact_person', 'phone', 'email', 'address', 'is_active']
+
+        for field in allowed_fields:
+            if field in data:
+                if field == 'is_active':
+                    update_data[field] = bool(data[field])
+                else:
+                    update_data[field] = data[field]
+
+        # Update timestamp
+        update_data['updated_at'] = datetime.now().isoformat()
+
+        updated_company = json_store.update('companies', company_id, update_data)
+        if not updated_company:
+            return jsonify({'error': 'فشل في تحديث الشركة'}), 500
+
+        # Log the update event
+        log_update('company', company_id, {
+            'company_name': updated_company.get('name', ''),
+            'updated_fields': list(update_data.keys()),
+            'changes_count': len(update_data)
+        })
+
+        return jsonify(updated_company)
+
+    except Exception as e:
+        return jsonify({'error': f'خطأ في تحديث الشركة: {str(e)}'}), 500
+
+@app.route('/api/companies/<company_id>', methods=['DELETE'])
+@login_required
+def delete_company(company_id):
+    """Delete a company"""
+    try:
+        from json_store import json_store
+
+        # Check if company exists
+        existing_company = json_store.find_by_id('companies', company_id)
+        if not existing_company:
+            return jsonify({'error': 'الشركة غير موجودة'}), 404
+
+        # Log the deletion event before deleting
+        log_delete('company', company_id, {
+            'company_name': existing_company.get('name', ''),
+            'contact_person': existing_company.get('contact_person', ''),
+            'phone': existing_company.get('phone', '')
+        })
+
+        success = json_store.delete('companies', company_id)
+        if not success:
+            return jsonify({'error': 'فشل في حذف الشركة'}), 500
+
+        return jsonify({'message': 'تم حذف الشركة بنجاح'})
+
+    except Exception as e:
+        return jsonify({'error': f'خطأ في حذف الشركة: {str(e)}'}), 500
 
 # Orders CRUD Routes
 @app.route('/api/orders', methods=['GET'])
