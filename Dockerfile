@@ -16,5 +16,8 @@ COPY . .
 # Expose the port the app runs on
 EXPOSE 8000
 
+RUN useradd -U -u 1000 appuser && chown -R 1000:1000 /app
+USER 1000
+
 # Run the application using gunicorn
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]
